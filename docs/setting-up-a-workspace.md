@@ -60,7 +60,6 @@ description: Builds and maintains the API and workers (services/) to the specs i
 work: worktree
 capabilities:
   oats.developer: { from: package }
-  oats.adversarial-code-review: { from: package }
 ```
 
 ```markdown

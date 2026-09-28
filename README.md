@@ -1,7 +1,8 @@
 # oats.engineering
 
-**A way of working for engineering teams of agents: experts who plan and coordinate,
-developers who build, and an adversarial review before anything is presented.**
+**A way of working for engineering teams of agents: experts who plan, coordinate and land
+the work; developers who build it in parallel and get it through an adversarial review
+before anything is presented.**
 
 `oats.engineering` is an official [OATS](https://github.com/awebai/oats) package. Add it to a
 workspace, give its capabilities to your souls, and your agents work like a small
@@ -20,7 +21,8 @@ engineering organisation:
                   ▼                          │ reviewed work
    ┌──────────────────────────────┐          │
    │  developer (one per surface) │──────────┘
-   │  spec → strategy → build     │
+   │  spec → parallel build →     │
+   │  consolidate → review loop   │
    └──────────────┬───────────────┘
                   │  one piece of work
                   ▼
@@ -35,8 +37,7 @@ engineering organisation:
 | | Give it to | It teaches |
 |---|---|---|
 | **`oats.engineering-expert`** (capability) | your domain experts | Plan and write specs per surface; launch and drive developers; lead or join other experts on cross-domain work, including across machines and people; verify what comes back for architecture, fit and simplicity; own their PRs until merged. |
-| **`oats.developer`** (capability) | your developers | Evaluate the spec (or write one); choose how to execute: yourself, a few subagents, a parallel workflow, one worktree or several; hand back verified work. |
-| **`oats.adversarial-code-review`** (capability) | your developers | Before presenting work, spawn ONE reviewer, brief it without biasing it, and iterate with it until it approves. Also the reviewer's method: proven bugs, security, simplification. |
+| **`oats.developer`** (capability) | your developers | Evaluate the spec (or write one); execute it, leaning toward parallel dynamic workflows in one or several worktrees; consolidate; then iterate with ONE adversarial reviewer until it approves before handing back. Also the reviewer's method: proven bugs, security, simplification. |
 | **`code-reviewer`** (soul) | spawned by developers | The adversarial reviewer. It reads the work in the developer's worktree, runs tests only to confirm a finding, and stays for the whole loop. |
 
 Each capability is an always-on briefing (inject) plus skills the agent loads when it needs
@@ -60,7 +61,6 @@ names, who merges) stay in your repository.
    work: worktree
    capabilities:
      oats.developer: { from: package }
-     oats.adversarial-code-review: { from: package }
    ```
 3. **Sync and spawn:** `oats sync`, then `oats spawn <expert> --task "<goal>"`. The expert
    takes it from there.
@@ -80,8 +80,9 @@ transcripts.
   organised with this package.
 
 ## Requirements
-OATS ≥ 0.29.0. Works with any harness OATS supports (pi, Claude Code, Codex); the developer
-skills use your harness's own subagents or workflow tool when it has one.
+OATS ≥ 0.29.0. Works with any harness OATS supports (pi, Claude Code, Codex). Developers use
+your harness's workflow tool for parallel work; where it has none, its subagents in the same
+pattern.
 
 ## License
 MIT

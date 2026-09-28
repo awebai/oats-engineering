@@ -2,7 +2,7 @@
 
 ## Capabilities per soul
 
-| Soul | `work` | oats.engineering capabilities | Plus |
+| Soul | `work` | oats.engineering capability | Plus |
 |---|---|---|---|
 | `oats-expert` | directory | engineering-expert | oats.workspace-experts |
 | `oats-kernel-expert` | directory | engineering-expert | oats.workspace-experts |
@@ -10,11 +10,11 @@
 | `integrations-expert` | directory | engineering-expert | oats.workspace-experts |
 | `oats-operator-expert` | directory | engineering-expert | oats.workspace-experts |
 | `market-research-expert` | directory | engineering-expert | (research, not code; plans and coordinates studies) |
-| `oats-kernel-developer` (was `cli-dev`) | worktree | developer + adversarial-code-review | |
-| `oats-desktop-developer` (was `oats-desktop-engineer`) | worktree | developer + adversarial-code-review | |
-| `oats-desktop-designer` (was `ux-designer`) | worktree | developer + adversarial-code-review | |
-| `oats-integrations-developer` (new) | worktree | developer + adversarial-code-review | |
-| `oats-setup-admin` | worktree | developer + adversarial-code-review | oats.setup (it applies config by PR) |
+| `oats-kernel-developer` (was `cli-dev`) | worktree | developer | |
+| `oats-desktop-developer` (was `oats-desktop-engineer`) | worktree | developer | |
+| `oats-desktop-designer` (was `ux-designer`) | worktree | developer | |
+| `oats-integrations-developer` (new) | worktree | developer | |
+| `oats-setup-admin` | worktree | developer | oats.setup (it applies config by PR) |
 | package experts (`oats-*-expert` in each package repo) | directory | engineering-expert | (each repo decides; recommended) |
 
 **Dropped:** `oats-assistant` (folded into `oats-operator-expert`), `oats-dev-expert` (oats.dev

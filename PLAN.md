@@ -94,3 +94,17 @@ oats-workspace-overlay/
 - **Extra worktrees in every work mode** are a KERNEL change (the work-mode injects + retire
   handling): see `../kernel-work-modes/PLAN.md`. The package's `worktrees` skill defers to
   them.
+
+## Third round (the human, 2026-09-28)
+- **Two capabilities, not three.** The review loop and the reviewer's method are part of
+  development, so `adversarial-code-review` is folded into `developer`: the loop is step 4 of
+  the developer inject; the skills run-the-review-loop, adversarial-review, security-review
+  and simplification-review live in `developer/skills/`. The `code-reviewer` soul takes
+  `oats.developer: { from: here }` for the review skills, and its AGENTS.md says the developer
+  briefing isn't its own. (The file tree and tables above predate this.)
+- **Lean toward parallelism with dynamic workflows** (deterministic coordination). Three
+  strategies: implement yourself (genuinely small or tightly coupled), a workflow in one
+  worktree (paths don't touch the same files: the default), a workflow across several
+  worktrees (paths touch the same files, or need other branches).
+- **Consolidate before review:** all paths merged into ONE worktree and verified there;
+  the reviewer is launched on it.

@@ -1,7 +1,7 @@
 schemaVersion: 2
 name: code-reviewer
 description: Adversarial code reviewer. It is attached to a developer's worktree for one piece of work, tries to break the change (bugs, security, simplification), proves its findings, and iterates with the same developer until satisfied.
-# Spawned `--work attached` onto the developer's worktree (the adversarial-code-review
+# Spawned `--work attached` onto the developer's worktree (the developer review
 # loop). A bare spawn gets an empty directory.
 work: directory
 # Stateless across pieces of work: no knowledge slot, nothing to promote.

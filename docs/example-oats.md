@@ -15,8 +15,7 @@ member repositories are the kernel repository and one repository per official pa
 | Deployments (`oats-operator-expert`) | — | onboarding, rebuilds, cutovers |
 | Workspace config (`oats-setup-admin`, a developer-style soul) | the workspace's own config | `oats-workspace.yaml`, `souls/` |
 
-Every expert has `oats.engineering-expert`; every developer has `oats.developer` and
-`oats.adversarial-code-review`.
+Every expert has `oats.engineering-expert`; every developer has `oats.developer`.
 
 ## Its workspace-specific rules
 

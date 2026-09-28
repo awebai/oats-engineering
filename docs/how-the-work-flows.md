@@ -17,11 +17,11 @@ error."
 4. **The developer checks the spec** (skill: *understand-the-spec*) and asks one question
    with a proposed answer: "Should internal service keys be exempt? I propose yes, via
    the existing `internal` flag." The expert answers and updates the spec.
-5. **The developer chooses a strategy** (skill: *execution-strategy*): one main change plus
-   a fixture update, so it implements it itself with one subagent for the fixtures, in its
-   single worktree.
-6. **It builds and verifies:** tests for every "done when", plus a real run against a local
-   gateway.
+5. **The developer chooses a strategy** (skill: *execution-strategy*): three paths that
+   touch different files (the middleware, its tests, the fixtures and docs), so a **dynamic
+   workflow in one worktree** runs them in parallel and integrates them.
+6. **It consolidates and verifies** in that worktree: tests for every "done when", plus a
+   real run against a local gateway.
 7. **Adversarial review** (skill: *run-the-review-loop*). It spawns ONE `code-reviewer`
    attached to its worktree, briefed with the goal, the spec and the diff range, but not
    its own reasoning.
