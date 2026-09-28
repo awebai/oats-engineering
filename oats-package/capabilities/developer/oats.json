@@ -2,12 +2,16 @@
   "capability": "oats.developer",
   "version": "1.0.0",
   "compatibility": { "oats": ">=0.29.0" },
-  "description": "Developers deliver a piece of work end to end: evaluate the spec they are given (or write one carefully), choose how to execute it (solo, simple subagents, a parallel workflow, one or several worktrees), and hand back reviewed, verified work.",
+  "description": "Developers deliver a piece of work end to end: evaluate the spec (or write one), execute it, preferring parallel dynamic workflows in one or several worktrees, consolidate, and run an adversarial review loop with one code-reviewer until it is satisfied before handing back. Includes the reviewer's method: proven bugs, security, simplification.",
   "requires": [],
   "inject": "injects/developer.md",
   "skills": [
     "skills/understand-the-spec",
     "skills/execution-strategy",
-    "skills/worktrees"
+    "skills/worktrees",
+    "skills/run-the-review-loop",
+    "skills/adversarial-review",
+    "skills/security-review",
+    "skills/simplification-review"
   ]
 }

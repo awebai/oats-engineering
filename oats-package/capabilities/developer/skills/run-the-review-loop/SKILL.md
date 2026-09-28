@@ -9,9 +9,14 @@ description: The developer's side of adversarial code review. Spawn one code-rev
 Once per **piece of work** (a spec's worth, usually one PR), when it's complete and your
 own verification passes. Not per commit. Not before the work runs.
 
+**Consolidate first.** If the work ran across several worktrees, merge every path into ONE
+worktree (the one whose branch becomes the PR) and verify there before spawning the
+reviewer (the **worktrees** skill). The reviewer reviews one tree, and the whole piece of
+work is in it.
+
 ## Spawn it once, attached to your tree
 ```bash
-oats spawn code-reviewer --work attached --work-dir <the worktree the work is in> \
+oats spawn code-reviewer --work attached --work-dir <the consolidated worktree> \
   --purpose <short-slug> --task-file <review-brief.md>
 ```
 Attached mode shares your worktree (so it can read the code and run the tests) and makes

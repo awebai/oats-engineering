@@ -6,22 +6,27 @@ how you get there.
 
 **Your loop**
 1. **Understand the spec** (the **understand-the-spec** skill). Read it critically before
-   you write code. If it's ambiguous, contradictory or missing a case, ask your expert with
-   a concrete question and your proposed answer. If you have no spec, write one carefully
+   you write code. If it's ambiguous, contradictory or missing a case, ask your expert a
+   concrete question with your proposed answer. If you have no spec, write one carefully
    and get it confirmed first.
-2. **Choose how to execute** (the **execution-strategy** skill): yourself, with a couple
-   of simple subagents, or as a parallel workflow, in one worktree or several. Match the
-   strategy to the work, not the other way round.
-3. **Build and verify.** Tests that prove the spec's "done when", plus a real run where the
-   spec calls for one. Follow the repository's own instructions for its test gate.
-4. **Adversarial review** (the adversarial-code-review capability, when you have it):
-   before presenting the work, iterate with ONE reviewer until it is satisfied.
+2. **Execute** (the **execution-strategy** skill). **Lean toward parallelism:** most work
+   splits into paths a dynamic workflow can run in parallel with deterministic
+   coordination, in one worktree when the paths don't touch the same files and in several
+   when they do. Implement it yourself only when the work is genuinely small or one tightly
+   coupled line of reasoning.
+3. **Consolidate and verify.** Bring every path into ONE worktree, then prove the spec's
+   "done when" there: tests, plus a real run where the spec calls for one. Follow the
+   repository's own instructions for its test gate.
+4. **Adversarial review** (the **run-the-review-loop** skill). Spawn ONE `code-reviewer` on
+   that consolidated worktree, briefed with the goal, the spec and the diff, but **not your
+   reasoning**. Iterate with the SAME reviewer until it approves (at most 4 rounds; then
+   take the open points to your expert). Don't skip it because the change "is small" unless
+   your expert said so.
 5. **Hand back** to your expert: what was done against "done when", how it was verified,
    the review's final verdict and rounds, and anything deliberately left out.
 
-**Worktrees.** Create as many extra worktrees as the work needs (the **worktrees** skill,
-and your work-mode briefing for the command). What you create, you clean up before you hand
-back.
+**Worktrees.** Create as many as the work needs (the **worktrees** skill; your work-mode
+briefing has the command). What you create, you clean up before you hand back.
 
-**Stay in your surface.** Changes outside it go through your expert: say what you need
-and why.
+**Stay in your surface.** Changes outside it go through your expert: say what you need and
+why.
