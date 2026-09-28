@@ -1,87 +1,83 @@
-# oats.engineering
+# PLAN: `oats.engineering`, the official engineering package (draft for review)
 
-**A way of working for engineering teams of agents: experts who plan and coordinate,
-developers who build, and an adversarial review before anything is presented.**
+**Status:** a draft for the human to review. These files are the proposed CONTENT. A
+developer turns them into the `awebai/oats-engineering` repository (manifests, validator,
+tests, CI, the v1.0.0 tag), and the oats repo mirrors and pins it in the official catalog.
 
-`oats.engineering` is an official [OATS](https://github.com/awebai/oats) package. Add it to a
-workspace, give its capabilities to your souls, and your agents work like a small
-engineering organisation:
+## What it is
 
-```
-            requester (you)
-                  │  goal
-                  ▼
-   ┌──────────────────────────────┐       leads or joins
-   │  expert (one per domain)     │◄────── other experts on
-   │  plans · specs · coordinates │        cross-domain work
-   │  · verifies                  │
-   └──────────────┬───────────────┘
-        spec per  │  surface                ▲ handback: verified,
-                  ▼                          │ reviewed work
-   ┌──────────────────────────────┐          │
-   │  developer (one per surface) │──────────┘
-   │  spec → strategy → build     │
-   └──────────────┬───────────────┘
-                  │  one piece of work
-                  ▼
-   ┌──────────────────────────────┐
-   │  code-reviewer               │  attached to the developer's worktree;
-   │  bugs · security · simplify  │  iterated with until it approves
-   └──────────────────────────────┘
-```
+It replaces `oats.dev`, which is retired from the workspace. There are three capabilities
+and one package soul, all generic (nothing OATS-project-specific):
 
-## What's in the package
-
-| | Give it to | It teaches |
+| Capability | Who gets it | What it teaches |
 |---|---|---|
-| **`oats.engineering-expert`** (capability) | your domain experts | Plan and write specs per surface; launch and drive developers; lead or join other experts on cross-domain work; verify what comes back for architecture, fit and simplicity. |
-| **`oats.developer`** (capability) | your developers | Evaluate the spec (or write one); choose how to execute: yourself, a few subagents, a parallel workflow, one worktree or several; hand back verified work. |
-| **`oats.adversarial-code-review`** (capability) | your developers | Before presenting work, spawn ONE reviewer, brief it without biasing it, and iterate with it until it approves. Also the reviewer's method: proven bugs, security, simplification. |
-| **`code-reviewer`** (soul) | spawned by developers | The adversarial reviewer. It reads the work in the developer's worktree, runs tests only to confirm a finding, and stays for the whole loop. |
+| `engineering-expert` | every expert soul | Experts plan, spec, coordinate developers (and other experts), and verify the work developers hand back. |
+| `developer` | every developer soul | Understand or write the spec; choose how to execute (solo, subagents, a workflow, several worktrees); deliver. |
+| `adversarial-code-review` | every developer soul | Before presenting work, run ONE reviewer per piece of work and iterate with it until it is satisfied. Its skills are the reviewer's method: bugs, security, simplification. |
 
-Each capability is an always-on briefing (inject) plus skills the agent loads when it needs
-them. Nothing is tied to one project: your repository's own rules (test gates, branch
-names, who merges) stay in your repository.
+| Package soul | Spawned by | Role |
+|---|---|---|
+| `code-reviewer` | a developer, via `adversarial-code-review` | Adversarial reviewer. It is attached to the developer's worktree, runs tests only to confirm a finding, and lives for the whole review loop. |
 
-## Quick start
+## Files (open each to review)
 
-1. **Declare the package** in your `oats-workspace.yaml`:
-   ```yaml
-   packages:
-     oats.engineering: v1.0.0
-   ```
-2. **Give the capabilities to your souls** in each `soul.yaml`:
-   ```yaml
-   # an expert
-   capabilities:
-     oats.engineering-expert: { from: package }
+```
+oats-package/
+  oats-package.json                          package manifest
+  capabilities/
+    engineering-expert/
+      oats.json
+      injects/expert.md                      always-on: the expert's role and loop
+      skills/plan-and-spec/SKILL.md          turning a goal into plans + specs per surface
+      skills/coordinate-developers/SKILL.md  launching and driving developers
+      skills/coordinate-experts/SKILL.md     leading or joining a cross-domain effort
+      skills/verify-developer-work/SKILL.md  the expert's review: architecture, fit, simplicity
+    developer/
+      oats.json
+      injects/developer.md                   always-on: the developer's role and loop
+      skills/understand-the-spec/SKILL.md    evaluating a spec, or writing one
+      skills/execution-strategy/SKILL.md     solo / subagents / workflow / multi-worktree
+      skills/worktrees/SKILL.md              extra worktrees, safely
+    adversarial-code-review/
+      oats.json
+      injects/review-loop.md                 always-on (developers): the review loop rule
+      skills/run-the-review-loop/SKILL.md    the developer side: spawn once, brief, iterate
+      skills/adversarial-review/SKILL.md     the reviewer's method: real bugs, low noise
+      skills/security-review/SKILL.md        the reviewer's security pass
+      skills/simplification-review/SKILL.md  the reviewer's refactor/simplify pass
+  souls/
+    code-reviewer/soul.yaml + AGENTS.md
+oats-workspace-overlay/
+  oats-experts.md                            the OATS-repo-specific expert inject (NOT in the package)
+  soul-assignments.md                        which soul gets what; the renames; cleanup
+```
 
-   # a developer
-   work: worktree
-   capabilities:
-     oats.developer: { from: package }
-     oats.adversarial-code-review: { from: package }
-   ```
-3. **Sync and spawn:** `oats sync`, then `oats spawn <expert> --task "<goal>"`. The expert
-   takes it from there.
+## Decisions taken (the human's direction, 2026-09-28)
 
-A messaging capability (for example `oats.aweb`) is strongly recommended: experts,
-developers and reviewers coordinate by mail. Without one, reports land in session
-transcripts.
+- A new repo, `awebai/oats-engineering`, in the official catalog. `oats.dev` stops being used.
+- Experts are planners and coordinators, not just advisers. Any expert may plan for and
+  coordinate any soul, and may be coordinated by another expert on cross-domain work.
+- To drive development, an expert launches a developer per surface; several surfaces mean
+  several developers. The expert writes the specs. An expert MAY also keep its own
+  worktrees (`.work-<surface>`) to drive work in-session. That rule is OATS-repo-specific,
+  so it lives in the workspace overlay, not in the package.
+- Developers may create several worktrees. They evaluate the spec (or write one), then
+  pick the execution strategy.
+- Review: ONE reviewer per piece of work, iterated with until satisfied (not a fresh one per
+  round). It is briefed with the goal, the spec and the diff range, NOT the developer's
+  reasoning (so it stays unbiased). It is not noisy, catches real bugs, covers security, and
+  suggests simplifications.
+- Experts do their own verification on what developers hand back: architecture, coherence,
+  fit, simplest solution, and glaring bugs. They assume the adversarial review happened, and
+  check that it did.
 
-## Guides
+## Open questions for the human (defaults chosen; say if you disagree)
 
-- **[Setting up a workspace for this way of working](docs/setting-up-a-workspace.md):**
-  choosing domains and surfaces, the experts and developers you need, soul examples,
-  and the repository-specific rules you add yourself.
-- **[How the work flows](docs/how-the-work-flows.md):** one feature end to end, from goal
-  to merged PR, including a cross-domain effort.
-- **[Example: the OATS workspace](docs/example-oats.md):** how the OATS project itself is
-  organised with this package.
-
-## Requirements
-OATS ≥ 0.29.0. Works with any harness OATS supports (pi, Claude Code, Codex); the developer
-skills use your harness's own subagents or workflow tool when it has one.
-
-## License
-MIT
+1. **The review-round cap.** "Iterate until it's happy" is the rule, capped at **4 rounds**;
+   after that the developer escalates the disagreement to its expert. This stops a loop.
+   (Your earlier LFX note said "one review + one fix round". This supersedes it for OATS.)
+2. **Remove oats.dev from the workspace** (pin, member repo, `oats-dev-expert` soul) in the
+   same change that pins oats.engineering. Default: yes. The repo gets archived, not deleted.
+3. **Package id `oats.engineering`**, capability ids `engineering-expert`, `developer`,
+   `adversarial-code-review`, soul `code-reviewer`. (The oats.* prefix matches the other
+   official packages.)
