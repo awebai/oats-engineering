@@ -37,8 +37,9 @@ engineering organisation:
 | | Give it to | It teaches |
 |---|---|---|
 | **`oats.engineering-expert`** (capability) | your domain experts | Plan and write specs per surface; launch and drive developers; lead or join other experts on cross-domain work, including across machines and people; verify what comes back for architecture, fit and simplicity; own their PRs until merged. |
-| **`oats.developer`** (capability) | your developers | Evaluate the spec (or write one); execute it, leaning toward parallel dynamic workflows in one or several worktrees; consolidate; then iterate with ONE adversarial reviewer until it approves before handing back. Also the reviewer's method: proven bugs, security, simplification. |
-| **`code-reviewer`** (soul) | spawned by developers | The adversarial reviewer. It reads the work in the developer's worktree, runs tests only to confirm a finding, and stays for the whole loop. |
+| **`oats.developer`** (capability) | your developers | Evaluate the spec (or write one); execute it, leaning toward parallel dynamic workflows in one or several worktrees; consolidate; then iterate with ONE `code-reviewer` until it approves before handing back. |
+| **`oats.code-review`** (capability) | the `code-reviewer` soul (already assigned) | The reviewer's role and method: try to break the change, prove each finding, security and simplification passes, low noise, same reviewer every round. |
+| **`code-reviewer`** (soul) | spawned by developers | The adversarial reviewer, carrying only `oats.code-review`. It reads the work in the developer's worktree, runs tests only to confirm a finding, and stays for the whole loop. |
 
 Each capability is an always-on briefing (inject) plus skills the agent loads when it needs
 them. Nothing is tied to one project: your repository's own rules (test gates, branch

@@ -108,3 +108,12 @@ oats-workspace-overlay/
   worktrees (paths touch the same files, or need other branches).
 - **Consolidate before review:** all paths merged into ONE worktree and verified there;
   the reviewer is launched on it.
+
+## Fourth round (the human, 2026-09-28): FINAL shape
+Three capabilities, and each soul gets only what its role needs:
+- `oats.engineering-expert` → expert souls.
+- `oats.developer` → developer souls. Its inject says when and how to launch the
+  code-reviewer (`/run-the-review-loop`); it does NOT carry the reviewer's method.
+- `oats.code-review` → the `code-reviewer` soul ONLY: its inject (the reviewer's role and
+  loop) + `/adversarial-review`, `/security-review`, `/simplification-review`.
+Skills are referenced as `/<skill-name>` in every inject and skill.

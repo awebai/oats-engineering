@@ -34,6 +34,9 @@ It must NOT contain: your design reasoning, what you think is risky, what you al
 checked, or how confident you are. That is the bias the review exists to avoid. If the
 reviewer needs a fact, it can ask you.
 
+The reviewer's method (what it checks, how it reports) is its own `oats.code-review`
+capability; you don't need it to run the loop.
+
 ## Iterate with the same instance
 1. It reports findings with a verdict: `APPROVE`, `APPROVE WITH NITS` or `CHANGES NEEDED`.
 2. For each finding: **fix it**, or **dispute it** with a concrete reason (a test, a
