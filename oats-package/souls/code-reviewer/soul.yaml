@@ -1,0 +1,12 @@
+schemaVersion: 2
+name: code-reviewer
+description: Adversarial code reviewer. It is attached to a developer's worktree for one piece of work, tries to break the change (bugs, security, simplification), proves its findings, and iterates with the same developer until satisfied.
+# Spawned `--work attached` onto the developer's worktree (the adversarial-code-review
+# loop). A bare spawn gets an empty directory.
+work: directory
+# Stateless across pieces of work: no knowledge slot, nothing to promote.
+knowledge: none
+# Its method is this package's review skills. The loop's inject is for developers; the
+# soul's AGENTS.md says it doesn't apply here.
+capabilities:
+  oats.adversarial-code-review: { from: here }

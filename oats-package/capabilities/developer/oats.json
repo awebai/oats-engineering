@@ -1,0 +1,13 @@
+{
+  "capability": "oats.developer",
+  "version": "1.0.0",
+  "compatibility": { "oats": ">=0.29.0" },
+  "description": "Developers deliver a piece of work end to end: evaluate the spec they are given (or write one carefully), choose how to execute it (solo, simple subagents, a parallel workflow, one or several worktrees), and hand back reviewed, verified work.",
+  "requires": [],
+  "inject": "injects/developer.md",
+  "skills": [
+    "skills/understand-the-spec",
+    "skills/execution-strategy",
+    "skills/worktrees"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "capability": "oats.engineering-expert",
+  "version": "1.0.0",
+  "compatibility": { "oats": ">=0.29.0" },
+  "description": "Experts plan and coordinate: they turn goals into plans and specs per surface, launch and drive developers (and coordinate or join other experts on cross-domain work), and verify what developers hand back for architecture, coherence, fit and simplicity.",
+  "requires": [],
+  "inject": "injects/expert.md",
+  "skills": [
+    "skills/plan-and-spec",
+    "skills/coordinate-developers",
+    "skills/coordinate-experts",
+    "skills/verify-developer-work"
+  ]
+}
