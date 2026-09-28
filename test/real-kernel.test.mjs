@@ -131,13 +131,15 @@ async function checkKernel(t, label, ref) {
 
   const dev = runJson(process.execPath, [cli, "spawn", "dev", "--dir", deploy, "--preview", "--json"], { timeout: 120_000, env });
   assert.deepEqual(dev.modules.map((m) => m.name), ["oats.developer"]);
-  assert.deepEqual(dev.skills.map((s) => s.name).sort(), ["execution-strategy", "run-the-review-loop", "understand-the-spec", "worktrees"]);
+  assert.deepEqual(dev.skills.map((s) => s.name).sort(), ["execution-strategy", "maintain-dev-docs", "run-the-review-loop", "understand-the-spec", "worktrees"]);
   assert.equal(dev.skills.some((s) => s.name === "adversarial-review"), false, "developer must not compose reviewer skills");
+  assert.equal(dev.skills.some((s) => s.name === "review-dev-docs"), false, "developer must not compose reviewer documentation-review skill");
 
   const reviewer = runJson(process.execPath, [cli, "spawn", "oats.engineering/code-reviewer", "--dir", deploy, "--preview", "--json"], { timeout: 120_000, env });
   assert.deepEqual(reviewer.modules.map((m) => m.name), ["oats.code-review"]);
-  assert.deepEqual(reviewer.skills.map((s) => s.name).sort(), ["adversarial-review", "security-review", "simplification-review"]);
+  assert.deepEqual(reviewer.skills.map((s) => s.name).sort(), ["adversarial-review", "review-dev-docs", "security-review", "simplification-review"]);
   assert.equal(reviewer.modules.some((m) => m.name === "oats.developer"), false, "code-reviewer must not compose oats.developer");
+  assert.equal(reviewer.skills.some((s) => s.name === "maintain-dev-docs"), false, "code-reviewer must not compose developer documentation-maintenance skill");
 }
 
 test("package loads in real OATS kernels (0.29.4 and main)", { timeout: 420_000 }, async (t) => {
