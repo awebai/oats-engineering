@@ -32,12 +32,13 @@ oats-package/
       skills/coordinate-developers/SKILL.md  launching and driving developers
       skills/coordinate-experts/SKILL.md     leading or joining a cross-domain effort
       skills/verify-developer-work/SKILL.md  the expert's review: architecture, fit, simplicity
+      skills/land-your-prs/SKILL.md          owning PRs to merge: monitor, triage reviews, rebase, merge
     developer/
       oats.json
       injects/developer.md                   always-on: the developer's role and loop
       skills/understand-the-spec/SKILL.md    evaluating a spec, or writing one
       skills/execution-strategy/SKILL.md     solo / subagents / workflow / multi-worktree
-      skills/worktrees/SKILL.md              extra worktrees, safely
+      skills/worktrees/SKILL.md              when and how to use extra worktrees (the mechanics: the kernel's work-mode injects)
     adversarial-code-review/
       oats.json
       injects/review-loop.md                 always-on (developers): the review loop rule
@@ -81,3 +82,14 @@ oats-workspace-overlay/
 3. **Package id `oats.engineering`**, capability ids `engineering-expert`, `developer`,
    `adversarial-code-review`, soul `code-reviewer`. (The oats.* prefix matches the other
    official packages.)
+
+## Added after the human's second round (2026-09-28)
+- **Experts land their own PRs**, even in coordinated work: open, monitor reviews from bots,
+  agents and humans, triage, rebase and rework, merge by the repository's rules
+  (`land-your-prs`). A coordinator directs the order; each expert does its own landing.
+- **Coordination hierarchy:** a coordinator launches the domain experts with itself as the
+  parent (they are siblings). Coordination across machines and people makes explicit
+  ownership, authority, channels and hand-off agreements (`coordinate-experts`).
+- **Extra worktrees in every work mode** are a KERNEL change (the work-mode injects + retire
+  handling): see `../kernel-work-modes/PLAN.md`. The package's `worktrees` skill defers to
+  them.

@@ -34,7 +34,7 @@ engineering organisation:
 
 | | Give it to | It teaches |
 |---|---|---|
-| **`oats.engineering-expert`** (capability) | your domain experts | Plan and write specs per surface; launch and drive developers; lead or join other experts on cross-domain work; verify what comes back for architecture, fit and simplicity. |
+| **`oats.engineering-expert`** (capability) | your domain experts | Plan and write specs per surface; launch and drive developers; lead or join other experts on cross-domain work, including across machines and people; verify what comes back for architecture, fit and simplicity; own their PRs until merged. |
 | **`oats.developer`** (capability) | your developers | Evaluate the spec (or write one); choose how to execute: yourself, a few subagents, a parallel workflow, one worktree or several; hand back verified work. |
 | **`oats.adversarial-code-review`** (capability) | your developers | Before presenting work, spawn ONE reviewer, brief it without biasing it, and iterate with it until it approves. Also the reviewer's method: proven bugs, security, simplification. |
 | **`code-reviewer`** (soul) | spawned by developers | The adversarial reviewer. It reads the work in the developer's worktree, runs tests only to confirm a finding, and stays for the whole loop. |

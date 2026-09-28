@@ -1,37 +1,30 @@
 ---
 name: worktrees
-description: Create, use and clean up extra git worktrees for parallel or isolated work, inside your own home. Use when execution needs more than one checkout (parallel paths that touch the same files, a spike, a second branch), or before handing back to remove them.
+description: When and how to use extra worktrees for a piece of work: parallel paths that touch the same files, a spike, a second branch. Integrate them and clean them up before handing back. Use when your execution strategy needs more than one checkout.
 ---
 
 # Extra worktrees
 
-Your main checkout is your `work/`. When you need more, add worktrees next to it, inside
-your home, named for their purpose.
+Your work-mode briefing gives the command and the rules: extra worktrees live inside your home as
+`.work-<purpose>`, one new branch each, removed before you hand back. This skill is about
+using them well.
 
-## Create
-```bash
-# from your home; the repo is the one work/ checks out
-git -C work fetch origin
-git -C work worktree add ../.work-<purpose> -b <branch> <base>
-#   e.g. git -C work worktree add ../.work-parser -b agents/<you>-parser origin/main
-```
-- **Where:** always inside your home (`./.work-<purpose>`), never next to the repository or
-  in a shared directory.
-- **Branch:** one new branch per worktree, named under your usual branch prefix, based on
-  the branch it must merge back into.
-- **Name** by purpose (`.work-parser`, `.work-spike-cache`), not by number.
+## When
+- **Parallel paths that touch the same files:** one worktree per path, so agents don't
+  overwrite each other.
+- **A spike** you may throw away, kept apart from the real branch.
+- **A second branch** the work needs (a fix on another base, a stacked change).
+
+Not for parallel paths that touch different files: those share one worktree (the
+**execution-strategy** skill).
 
 ## Use
-- Run each path's build and tests inside its own worktree.
-- Merge back into your main branch in the order the plan set, resolving conflicts
-  yourself. Run the full verification on the merged result.
+- Base each worktree on the branch it will merge back into.
+- Build and test each path inside its own worktree.
+- Integrate into your main branch in the planned order, resolving conflicts yourself, then
+  run the full verification on the merged result. The review loop reviews the merged result.
 
-## Clean up before handing back
-```bash
-git -C work worktree list          # everything you created
-git -C work worktree remove ../.work-<purpose>
-git -C work branch -d <branch>     # once merged; -D only if you are sure it's abandoned
-```
-Nothing you created may outlive the work: stray worktrees and branches confuse the next
-person and can block your own retirement. Unmerged work you want to keep: push its branch
-and say so in your handback.
+## Before handing back
+- Every worktree is merged into your main branch, or its branch is pushed and named in your
+  handback, or it's deliberately abandoned.
+- Then remove them all; the worktree list shows only your main tree.

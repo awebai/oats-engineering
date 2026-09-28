@@ -13,7 +13,7 @@ error."
    cases (clock skew, burst at the minute boundary), the tests, and what's out of scope
    (per-endpoint limits).
 3. **The expert launches a developer** (skill: *coordinate-developers*):
-   `oats spawn api-developer --task-file spec-rate-limit.md`.
+   `oats spawn api-developer --task "$(cat spec-rate-limit.md)"`.
 4. **The developer checks the spec** (skill: *understand-the-spec*) and asks one question
    with a proposed answer: "Should internal service keys be exempt? I propose yes, via
    the existing `internal` flag." The expert answers and updates the spec.
@@ -34,21 +34,36 @@ error."
    "adversarial review: APPROVE after 2 rounds", and what's out of scope.
 9. **The expert verifies** (skill: *verify-developer-work*): the design matches (shared
    bucket store, as specified); it fits the middleware pattern; it's simple; nothing
-   glaring. It accepts, and the PR merges by the repository's rules.
+   glaring. It accepts.
+10. **The expert lands the PR** (skill: *land-your-prs*): it opens it, answers a bot's
+    finding and a teammate's review comment (the developer fixes one; the expert replies to
+    the other with the reason), keeps it rebased, merges it by the repository's rules,
+    checks main's CI, and retires the developer.
 
 ## A feature across domains
 
 **The goal:** "Show each user their remaining API quota in the web app."
 
-- The **web-expert** coordinates (skill: *coordinate-experts*); the **backend-expert**
-  joins.
+- The **web-expert** coordinates (skill: *coordinate-experts*). It launches the
+  **backend-expert** with itself as the parent, so the domain experts are siblings under
+  the coordinator.
 - **The interface first:** the two experts agree `GET /v2/quota → {limit, remaining,
   resetsAt}` in writing before anyone builds.
 - Each expert specs its side and drives its own developer: `api-developer` for the
   endpoint, `web-developer` and `web-designer` for the view.
 - Each developer runs its own review loop; each expert verifies its own domain.
-- The coordinator lands the endpoint first (the consumer can't use it before it exists),
-  checks the whole flow end to end, and reports.
+- Each expert lands its own PRs. The coordinator sets the order: it has the backend PR
+  merge first and asks the web expert to rebase onto it before merging. Then it checks
+  the whole flow end to end, and reports.
+
+## Across machines and people
+
+The same effort might be led by a coordinator on a colleague's machine, or the backend
+expert might belong to another team's human. Neither side can spawn or direct the other's
+agents, so they agree at the start, in writing: who owns which domains and PRs, who
+approves shared contract changes, how they reach each other, and that hand-offs name exact
+commits and PR numbers. OATS itself is built this way by two maintainers, each with a lead
+expert on their own machine.
 
 ## When the expert builds it itself
 

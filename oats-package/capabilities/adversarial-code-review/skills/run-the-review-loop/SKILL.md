@@ -12,7 +12,7 @@ own verification passes. Not per commit. Not before the work runs.
 ## Spawn it once, attached to your tree
 ```bash
 oats spawn code-reviewer --work attached --work-dir <the worktree the work is in> \
-  --purpose <short-slug> --task-file <review-brief.md>
+  --purpose <short-slug> --task "$(cat <review-brief.md>)"
 ```
 Attached mode shares your worktree (so it can read the code and run the tests) and makes
 it your child. It must not edit the tree.

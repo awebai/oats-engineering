@@ -9,12 +9,11 @@ description: Launch and drive developers to build what you specified, one per su
 - **One developer per surface.** Two surfaces mean two developers, in parallel if the
   plan allows. Don't give one developer two unrelated surfaces.
 - Spawn the developer soul that owns the surface, as your child, with the spec as its
-  task. With OATS:
+  task:
   ```bash
-  oats spawn <developer-soul> --purpose <short-slug> --task-file <spec.md>
+  oats spawn <developer-soul> --parent <your instance> --purpose <short-slug> --task "$(cat <spec.md>)"
   ```
-  (Use the deployment's relation flags if your spawn doesn't default to making it your
-  child.) The spec is the brief; add only what the spec can't hold: the branch or PR to
+  The spec is the brief; add only what the spec can't hold: the branch or PR to
   target, and who else is working next to it.
 - Tell a developer about the developers it shares an interface with, so they can talk
   directly instead of through you.
@@ -34,5 +33,5 @@ description: Launch and drive developers to build what you specified, one per su
 - On a return, the SAME developer fixes it; don't spawn a new one per round.
 
 ## Finish
-- When the work is integrated, retire the developers you launched for it, unless the
-  requester wants them kept.
+- Accepted work goes into a PR you own until it merges (the **land-your-prs** skill). Retire
+  the developers you launched when it's merged, unless the requester wants them kept.
