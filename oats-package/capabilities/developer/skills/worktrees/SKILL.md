@@ -16,7 +16,7 @@ create, you clean up. This skill is about using them well.
 - **Another branch** the work needs: a fix on another base, a stacked change, an open PR
   you've been asked to rework.
 
-Paths that touch different files share one worktree (the **execution-strategy** skill).
+Paths that touch different files share one worktree (`/execution-strategy`).
 
 ## Use
 - Base each worktree on the branch it will merge back into.

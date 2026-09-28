@@ -28,10 +28,10 @@ description: Launch and drive developers to build what you specified, one per su
 ## When work comes back
 - It must come with: what was done, how it was verified (tests, real runs), the
   adversarial review's final verdict, and anything deliberately not done.
-- Verify it (the **verify-developer-work** skill). Return it with specific reasons, or
+- Verify it (`/verify-developer-work`). Return it with specific reasons, or
   accept it.
 - On a return, the SAME developer fixes it; don't spawn a new one per round.
 
 ## Finish
-- Accepted work goes into a PR you own until it merges (the **land-your-prs** skill). Retire
+- Accepted work goes into a PR you own until it merges (`/land-your-prs`). Retire
   the developers you launched when it's merged, unless the requester wants them kept.

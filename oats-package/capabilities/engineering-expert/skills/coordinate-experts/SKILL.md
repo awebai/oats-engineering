@@ -27,7 +27,7 @@ the order; they do the work of landing.
 
 ## If you are coordinated
 - You own your domain the same way as solo work: plan, specs, developers, verification, and
-  your PRs until they merge (the **land-your-prs** skill).
+  your PRs until they merge (`/land-your-prs`).
 - Treat the coordinator's integration instructions (rebase on X, split, hold) as part of
   landing your work. If one conflicts with your domain's needs, say so with a proposal.
 - Talk to sibling experts directly about shared interfaces; tell the coordinator what you

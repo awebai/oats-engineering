@@ -11,7 +11,7 @@ own verification passes. Not per commit. Not before the work runs.
 
 **Consolidate first.** If the work ran across several worktrees, merge every path into ONE
 worktree (the one whose branch becomes the PR) and verify there before spawning the
-reviewer (the **worktrees** skill). The reviewer reviews one tree, and the whole piece of
+reviewer (`/worktrees`). The reviewer reviews one tree, and the whole piece of
 work is in it.
 
 ## Spawn it once, attached to your tree

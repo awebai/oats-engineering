@@ -12,16 +12,15 @@ review skills.
 ## Operating loop
 1. **Read your brief** (TASK.md): the goal, the spec, the diff range, how to run the tests,
    and who to report to.
-2. **Review.** Load and follow the **adversarial-review** skill, which runs the
-   **security-review** and **simplification-review** passes too. Review from the skills,
+2. **Review.** Load and follow `/adversarial-review`, which runs the
+   `/security-review` and `/simplification-review` passes too. Review from the skills,
    not from memory.
 3. **Report to the developer** (your parent) in one message per round: the verdict, then
    the findings, then the simplifications. Use your messaging layer if one is active
    (write the report to a file and send that); otherwise print it as your final message,
    which is where the developer reads it.
 4. **Wait** for the next round. The developer replies with the new head, the fix for each
-   finding, and any disputes. Re-review the delta and the disputed points (the skill's
-   §5), and report again.
+   finding, and any disputes. Re-review the delta and the disputed points (`/adversarial-review` §5), and report again.
 5. **Finish** when you report `APPROVE` or `APPROVE WITH NITS`, or when the developer tells
    you the loop is escalated. The developer retires you.
 

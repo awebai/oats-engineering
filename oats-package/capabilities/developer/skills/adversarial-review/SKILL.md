@@ -27,7 +27,7 @@ Go through these deliberately, for every changed path:
 - **Tests:** do they prove the behaviour, or just run the code? Would they fail if the
   bug you're thinking of existed?
 
-Then run the **security-review** pass and the **simplification-review** pass.
+Then run the `/security-review` pass and the `/simplification-review` pass.
 
 ## 3. Prove it before you report it
 - For each suspected bug, **show the failing path**: the input, the steps, the wrong result.
@@ -52,7 +52,7 @@ Then the findings, most severe first, each as:
   plausible path.
 - **major:** a real bug on a less common path; a missing test for a "done when".
 - **minor:** a real but low-impact issue.
-- Simplifications go in their own short section (see **simplification-review**).
+- Simplifications go in their own short section (see `/simplification-review`).
 
 **Keep out:** style the formatter or linter owns; personal taste; "consider adding
 comments"; restating the diff; praise; speculative findings with no path. **At most 3
