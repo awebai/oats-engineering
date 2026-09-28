@@ -11,7 +11,7 @@ description: Launch and drive developers to build what you specified, one per su
 - Spawn the developer soul that owns the surface, as your child, with the spec as its
   task:
   ```bash
-  oats spawn <developer-soul> --parent <your instance> --purpose <short-slug> --task "$(cat <spec.md>)"
+  oats spawn <developer-soul> --parent <your instance> --purpose <short-slug> --task-file <spec.md>
   ```
   The spec is the brief; add only what the spec can't hold: the branch or PR to
   target, and who else is working next to it.

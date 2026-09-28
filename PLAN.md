@@ -90,6 +90,7 @@ oats-workspace-overlay/
 - **Coordination hierarchy:** a coordinator launches the domain experts with itself as the
   parent (they are siblings). Coordination across machines and people makes explicit
   ownership, authority, channels and hand-off agreements (`coordinate-experts`).
+- `oats spawn --task-file <path>` exists on OATS >= 0.25 (the kernel's spawn --help omits it: a kernel help gap).
 - **Extra worktrees in every work mode** are a KERNEL change (the work-mode injects + retire
   handling): see `../kernel-work-modes/PLAN.md`. The package's `worktrees` skill defers to
   them.

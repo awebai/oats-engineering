@@ -13,7 +13,7 @@ error."
    cases (clock skew, burst at the minute boundary), the tests, and what's out of scope
    (per-endpoint limits).
 3. **The expert launches a developer** (skill: *coordinate-developers*):
-   `oats spawn api-developer --task "$(cat spec-rate-limit.md)"`.
+   `oats spawn api-developer --task-file spec-rate-limit.md`.
 4. **The developer checks the spec** (skill: *understand-the-spec*) and asks one question
    with a proposed answer: "Should internal service keys be exempt? I propose yes, via
    the existing `internal` flag." The expert answers and updates the spec.

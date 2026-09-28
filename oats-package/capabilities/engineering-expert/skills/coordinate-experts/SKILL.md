@@ -10,7 +10,7 @@ description: Lead, or take part in, work that spans several domains. One expert 
 2. **Launch the experts under you.** One expert per other domain, each with you as its
    parent, so they're your children and each other's siblings:
    ```bash
-   oats spawn <domain-expert> --parent <your instance> --purpose <effort> --task "$(cat <brief.md>)"
+   oats spawn <domain-expert> --parent <your instance> --purpose <effort> --task-file <brief.md>
    ```
    The brief: the overall goal, that domain's part of "done", the interfaces it must meet,
    the order of work, and how to reach you and the other experts.
