@@ -11,6 +11,7 @@
     "skills/understand-the-spec",
     "skills/execution-strategy",
     "skills/worktrees",
-    "skills/run-the-review-loop"
+    "skills/run-the-review-loop",
+    "skills/maintain-dev-docs"
   ]
 }
