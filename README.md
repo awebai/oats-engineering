@@ -36,9 +36,9 @@ engineering organisation:
 
 | | Give it to | It teaches |
 |---|---|---|
-| **`oats.engineering-expert`** (capability) | your domain experts | Plan and write specs per surface; launch and drive developers; lead or join other experts on cross-domain work, including across machines and people; verify what comes back for architecture, fit and simplicity; own their PRs until merged. |
-| **`oats.developer`** (capability) | your developers | Evaluate the spec (or write one); execute it, leaning toward parallel dynamic workflows in one or several worktrees; consolidate; then iterate with ONE `code-reviewer` until it approves before handing back. |
-| **`oats.code-review`** (capability) | the `code-reviewer` soul (already assigned) | The reviewer's role and method: try to break the change, prove each finding, security and simplification passes, low noise, same reviewer every round. |
+| **`oats.engineering-expert`** (capability) | your domain experts | Skills: `/plan-and-spec`, `/coordinate-developers`, `/coordinate-experts`, `/verify-developer-work`, `/land-your-prs`. Plan and write specs per surface; launch and drive developers; lead or join other experts on cross-domain work, including across machines and people; verify what comes back for architecture, fit and simplicity; own their PRs until merged. |
+| **`oats.developer`** (capability) | your developers | Skills: `/understand-the-spec`, `/execution-strategy`, `/worktrees`, `/maintain-dev-docs`, `/run-the-review-loop`. Evaluate the spec (or write one); execute it, leaning toward parallel dynamic workflows in one or several worktrees; consolidate, verify, document; then iterate with ONE `code-reviewer` until it approves before handing back. |
+| **`oats.code-review`** (capability) | the `code-reviewer` soul (already assigned) | Skills: `/adversarial-review`, `/security-review`, `/simplification-review`, `/review-dev-docs`. The reviewer's role and method: try to break the change, prove each finding, security, simplification and development-doc passes, low noise, same reviewer every round. |
 | **`code-reviewer`** (soul) | spawned by developers | The adversarial reviewer, carrying only `oats.code-review`. It reads the work in the developer's worktree, runs tests only to confirm a finding, and stays for the whole loop. |
 
 Each capability is an always-on briefing (inject) plus skills the agent loads when it needs
@@ -50,7 +50,7 @@ names, who merges) stay in your repository.
 1. **Declare the package** in your `oats-workspace.yaml`:
    ```yaml
    packages:
-     oats.engineering: v1.0.0
+     oats.engineering: v1.1.0
    ```
 2. **Give the capabilities to your souls** in each `soul.yaml`:
    ```yaml
