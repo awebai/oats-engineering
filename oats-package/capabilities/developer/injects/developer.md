@@ -19,8 +19,9 @@ how you get there.
 5. **Hand back** to your expert: what was done against "done when", how it was verified,
    the review's final verdict and rounds, and anything deliberately left out.
 
-**Worktrees.** You may create extra worktrees when the work needs them (the **worktrees**
-skill). Keep them inside your home, and remove them before you hand back.
+**Worktrees.** Create as many extra worktrees as the work needs (the **worktrees** skill,
+and your work-mode briefing for the command). What you create, you clean up before you hand
+back.
 
 **Stay in your surface.** Changes outside it go through your expert: say what you need
 and why.

@@ -5,15 +5,16 @@ description: When and how to use extra worktrees for a piece of work: parallel p
 
 # Extra worktrees
 
-Your work-mode briefing gives the command and the rules: extra worktrees live inside your home as
-`.work-<purpose>`, one new branch each, removed before you hand back. This skill is about
-using them well.
+Your work-mode briefing gives the command. You can create as many worktrees as the work needs,
+on new or existing branches; by default they live in your home as `.work-<purpose>`. What you
+create, you clean up. This skill is about using them well.
 
 ## When
 - **Parallel paths that touch the same files:** one worktree per path, so agents don't
   overwrite each other.
 - **A spike** you may throw away, kept apart from the real branch.
-- **A second branch** the work needs (a fix on another base, a stacked change).
+- **Another branch** the work needs: a fix on another base, a stacked change, or an open PR
+  you've been asked to rework.
 
 Not for parallel paths that touch different files: those share one worktree (the
 **execution-strategy** skill).
