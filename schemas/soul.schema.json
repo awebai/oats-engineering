@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oats.dev/schemas/soul-v2.json",
+  "title": "Soul declaration v2 (soul.yaml)",
+  "description": "Authored shape only. A soul names each capability WITH WHERE IT COMES FROM (`from: here | <repo key> | package`) — a location, never a version. Core-capability payloads (knowledge, messaging, tasks) are opaque to the kernel; `none` empties the slot. Membership, privacy and team semantics are enforced by discovery/resolution, not here.",
+  "type": "object",
+  "required": ["schemaVersion", "name", "description", "work"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "name": { "$ref": "#/$defs/slug" },
+    "description": { "type": "string" },
+    "work": { "enum": ["worktree", "checkout", "directory", "workspace"] },
+    "private": { "type": "boolean", "deprecated": true,
+      "description": "Ignored since 0.26.0: souls have no private mode. Every soul of a confirmed member is listed and spawnable; discovery warns soul-private-ignored. Accepted so existing files still validate; remove it." },
+    "capabilities": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/capabilityName" },
+      "additionalProperties": { "$ref": "#/$defs/capabilityChoice" }
+    },
+    "knowledge": { "$ref": "#/$defs/slotPayload" },
+    "messaging": { "$ref": "#/$defs/slotPayload" },
+    "tasks": { "$ref": "#/$defs/slotPayload" },
+    "compatibility": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/capabilityName" },
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "description": "Optional FLOORS on package versions (semver ranges) — constraints, not sources."
+    }
+  },
+  "$defs": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "capabilityName": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "repoKey": { "type": "string", "pattern": "^[^\\s@/][^\\s@]*/[^\\s@]+$" },
+    "fromLocation": {
+      "anyOf": [
+        { "const": "package" },
+        { "const": "here" },
+        { "$ref": "#/$defs/repoKey" }
+      ]
+    },
+    "capabilityRef": {
+      "type": "object",
+      "required": ["from"],
+      "additionalProperties": false,
+      "properties": { "from": { "$ref": "#/$defs/fromLocation" } }
+    },
+    "capabilityChoice": { "anyOf": [{ "$ref": "#/$defs/capabilityRef" }, { "const": "off" }] },
+    "slotPayload": {
+      "anyOf": [{ "const": "none" }, { "type": "object" }],
+      "description": "Opaque payload for the slot's core capability, or `none` to leave the slot empty."
+    }
+  }
+}

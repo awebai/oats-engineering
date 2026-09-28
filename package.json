@@ -1,0 +1,16 @@
+{
+  "name": "@awebai/oats-engineering",
+  "version": "1.0.0",
+  "description": "Official OATS engineering-role capability package.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate-package.mjs",
+    "test": "npm run validate && node --test test/*.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awebai/oats-engineering"
+  }
+}
