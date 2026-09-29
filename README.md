@@ -50,7 +50,7 @@ names, who merges) stay in your repository.
 1. **Declare the package** in your `oats-workspace.yaml`:
    ```yaml
    packages:
-     oats.engineering: v1.1.0
+     oats.engineering: v1.2.0
    ```
 2. **Give the capabilities to your souls** in each `soul.yaml`:
    ```yaml
@@ -81,7 +81,9 @@ transcripts.
   organised with this package.
 
 ## Requirements
-OATS ≥ 0.29.0. Works with any harness OATS supports (pi, Claude Code, Codex). Developers use
+OATS ≥ 0.30.0. Works with any harness OATS supports (pi, Claude Code, Codex). The packaged
+`code-reviewer` prefers Codex with `gpt-6-astra` (`launch:` in its soul); a machine overrides it
+in `oats-local.yaml` `souls.launch`, and spawn flags win over both. Developers use
 your harness's workflow tool for parallel work; where it has none, its subagents in the same
 pattern.
 

@@ -98,9 +98,13 @@ workspace: file://${workspaceBare}
 `);
   const bin = join(tmp, "bin");
   mkdirSync(bin);
-  const fakePi = join(bin, "pi");
-  writeFileSync(fakePi, "#!/usr/bin/env sh\necho fake pi for spawn-preview tests >&2\n");
-  chmodSync(fakePi, 0o755);
+  // Spawn previews refuse a harness whose binary is missing (E_HARNESS_UNAVAILABLE): pi is the
+  // default harness and codex is the packaged code-reviewer's launch preference.
+  for (const harness of ["pi", "codex"]) {
+    const fake = join(bin, harness);
+    writeFileSync(fake, `#!/usr/bin/env sh\necho fake ${harness} for spawn-preview tests >&2\n`);
+    chmodSync(fake, 0o755);
+  }
   return { deploy, env: { ...process.env, PATH: `${bin}:${process.env.PATH || ""}` } };
 }
 function kernelCli(t, label, ref) {
@@ -115,7 +119,7 @@ async function checkKernel(t, label, ref) {
   const cli = kernelCli(t, label, ref);
   const versionResult = run(process.execPath, [cli, "version", "--json"]);
   const version = JSON.parse(versionResult.stdout);
-  assert.match(version.version, /^0\.(?:29|30)\./, `${label} kernel version ${version.version}`);
+  assert.match(version.version, /^0\.30\./, `${label} kernel version ${version.version}`);
 
   const { deploy, env } = makeDeployment(t);
   const sync = runJson(process.execPath, [cli, "sync", "--dir", deploy, "--json"], { timeout: 120_000, env });
@@ -140,9 +144,12 @@ async function checkKernel(t, label, ref) {
   assert.deepEqual(reviewer.skills.map((s) => s.name).sort(), ["adversarial-review", "review-dev-docs", "security-review", "simplification-review"]);
   assert.equal(reviewer.modules.some((m) => m.name === "oats.developer"), false, "code-reviewer must not compose oats.developer");
   assert.equal(reviewer.skills.some((s) => s.name === "maintain-dev-docs"), false, "code-reviewer must not compose developer documentation-maintenance skill");
+  assert.equal(reviewer.launch.effective.harness, "codex", "code-reviewer launches on Codex by default");
+  assert.equal(reviewer.launch.effective.model, "gpt-6-astra", "code-reviewer launches on Astra by default");
+  assert.equal(reviewer.launch.from, "soul", "the reviewer's launch comes from its soul");
 }
 
-test("package loads in real OATS kernels (0.29.4 and main)", { timeout: 420_000 }, async (t) => {
-  await t.test("OATS 0.29.4", { timeout: 240_000 }, (tt) => checkKernel(tt, "0294", "v0.29.4"));
+test("package loads in real OATS kernels (0.30.0 and main)", { timeout: 420_000 }, async (t) => {
+  await t.test("OATS 0.30.0", { timeout: 240_000 }, (tt) => checkKernel(tt, "0300", "v0.30.0"));
   await t.test("OATS main", { timeout: 240_000 }, (tt) => checkKernel(tt, "MAIN", "main"));
 });
