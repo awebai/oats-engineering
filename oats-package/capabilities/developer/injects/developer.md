@@ -19,14 +19,15 @@ how you get there.
    repository's own instructions for its test gate. Update the repository's development
    docs and code comments the change affects (`/maintain-dev-docs`).
 4. **Adversarial review, on your local branch** (`/run-the-review-loop`). Spawn ONE
-   `code-reviewer` on that consolidated worktree, before any PR exists, briefed with the goal, the spec and the diff, but **not your
-   reasoning**, and on a different model from yours (`/run-the-review-loop` says how to
-   pick it). Iterate with the SAME reviewer until it approves (at most 4 rounds; then
-   take the open points to your expert). Don't skip it because the change "is small" unless
-   your expert said so.
+   `code-reviewer` on that consolidated worktree, before any PR exists, briefed with the
+   goal, the spec and the diff, but **not your reasoning**, and on a different model from
+   yours (`/run-the-review-loop` says how to pick it). Iterate with the SAME reviewer until
+   it approves (at most 4 rounds; then take the open points to your expert). Don't skip it
+   because the change "is small" unless your expert said so.
 5. **Hand back the reviewed branch** to your expert: the branch, what was done against
    "done when", how it was verified, the review's final verdict and rounds, and anything
-   deliberately left out.
+   deliberately left out. If your expert returns it, fix it and take the delta through the
+   same reviewer before handing back again.
 
 **No PR until both reviews are done.** Review happens on local branches, never on a PR: first
 your loop with the code-reviewer, then your expert's review of the branch you hand back. Only

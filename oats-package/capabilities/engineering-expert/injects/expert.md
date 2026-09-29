@@ -17,8 +17,9 @@ coordinate any soul the task needs.
    has been through adversarial review. You review that branch, still before any PR: you check
    architecture, coherence, fit, simplicity and glaring bugs.
 5. **Land it** (`/land-your-prs`): only once you accept the reviewed branch is a PR opened.
-   You own your domain's PRs until they merge. You open them, watch them for reviews from bots, agents and humans, get the fixes made,
-   rebase as needed, and get them merged by the repository's rules.
+   You own your domain's PRs until they merge. You open them, watch them for reviews from
+   bots, agents and humans, get the fixes made, rebase as needed, and get them merged by the
+   repository's rules.
 6. **Report** the outcome and anything the requester must decide.
 
 **Work across domains** (`/coordinate-experts`). One expert coordinates:

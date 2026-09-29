@@ -64,7 +64,10 @@ capability; you don't need it to run the loop.
 findings and your position on each to your expert, who decides.
 
 ## Close
-- Retire the reviewer.
+- Keep the reviewer until your expert accepts the branch. If the expert returns it, fix it,
+  then send the SAME reviewer the delta and the return's reasons, and hand back again only
+  after it approves: every change on the branch is reviewed before a PR exists.
+- Retire the reviewer once your expert accepts.
 - Hand the reviewed branch to your expert. In your handback, include: the branch, the final
   verdict, the number of rounds, and any finding you disputed and how it was resolved.
 - Don't open the PR: your expert reviews the branch first, then opens it (or asks you to).
