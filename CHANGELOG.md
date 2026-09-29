@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 - 2026-09-29
+
+### Changed
+
+- Requires OATS 0.30.0 or later (was 0.29.0): the packaged soul now declares a launch preference, a 0.30 key that 0.29 refuses.
+- The packaged `code-reviewer` soul prefers Codex with `gpt-6-astra` (`launch: { harness: codex, model: gpt-6-astra }`), a different model family from the developers it reviews. A machine overrides it in `oats-local.yaml` `souls.launch`; spawn flags win over both.
+- Vendored OATS schemas refreshed from OATS v0.30.0.
+
 ## 1.1.0 - 2026-09-28
 
 ### Added

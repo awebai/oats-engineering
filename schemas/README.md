@@ -1,7 +1,7 @@
 # Vendored OATS schemas
 
-These schemas are vendored from `awebai/oats` main commit
-`53500f1cc34acbba63e81838f2b7af606fd5ca99`:
+These schemas are vendored from `awebai/oats` release v0.30.0 (commit
+`dec58082983a225d88db2c987d96924c27aa5211`):
 
 - `docs/capability-manifest.schema.json`
 - `docs/oats-package.schema.json`

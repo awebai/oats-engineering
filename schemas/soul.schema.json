@@ -7,12 +7,13 @@
   "required": ["schemaVersion", "name", "description", "work"],
   "additionalProperties": false,
   "properties": {
+    "launch": { "description": "The soul's launch preference (0.30; feature launch-preference): what the role should run on. Only harness and model: args, env, yolo and the executable stay host facts (launch configurations). A machine overrides it in oats-local.yaml souls.launch; explicit flags win over both. A committed soul gains it only when every deployment runs 0.30 (0.29 refuses the key).",  "type": "object", "additionalProperties": false, "required": ["harness"], "properties": { "harness": { "enum": ["pi", "claude", "codex"], "description": "The harness the role should run on." }, "model": { "type": "string", "minLength": 1, "pattern": "^[^\\s-][^\\s]*$", "description": "A model id for that harness; absent: the harness's own model." } } },
     "schemaVersion": { "const": 2 },
     "name": { "$ref": "#/$defs/slug" },
     "description": { "type": "string" },
     "work": { "enum": ["worktree", "checkout", "directory", "workspace"] },
     "private": { "type": "boolean", "deprecated": true,
-      "description": "Ignored since 0.26.0: souls have no private mode. Every soul of a confirmed member is listed and spawnable; discovery warns soul-private-ignored. Accepted so existing files still validate; remove it." },
+      "description": "Tolerated and ignored: souls have no private mode. Every soul of a confirmed member is listed and spawnable; discovery warns soul-private-ignored. Accepted so existing files still validate; remove it." },
     "capabilities": {
       "type": "object",
       "propertyNames": { "$ref": "#/$defs/capabilityName" },

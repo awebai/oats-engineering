@@ -9,3 +9,4 @@ knowledge: none
 # Only the reviewer's role and method; never the developer capability.
 capabilities:
   oats.code-review: { from: here }
+launch: { harness: codex, model: gpt-6-astra }   # the role's preference: a different model family from the developers; each machine may override it
