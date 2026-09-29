@@ -1,16 +1,20 @@
 ---
 name: run-the-review-loop
-description: The developer's side of adversarial code review. Spawn one code-reviewer per piece of work attached to your worktree, brief it without biasing it, iterate with the same instance until it approves, then retire it. Use when a piece of work is complete and verified and before presenting it to your expert.
+description: The developer's side of adversarial code review. Spawn one code-reviewer per piece of work attached to your worktree, brief it without biasing it, iterate with the same instance until it approves, then retire it. Use when a piece of work is complete and verified on your local branch, before presenting it to your expert and before any PR exists.
 ---
 
 # Run the review loop
 
 ## When
-Once per **piece of work** (a spec's worth, usually one PR), when it's complete and your
-own verification passes. Not per commit. Not before the work runs.
+Once per **piece of work** (a spec's worth, usually one future PR), when it's complete and
+your own verification passes. Not per commit. Not before the work runs.
+
+**On the local branch, before any PR.** The review loop is pre-PR: it runs on your
+worktree's branch, and no PR is opened for the work until the reviewer has approved AND your
+expert has accepted the reviewed branch. Never open a PR to get the review.
 
 **Consolidate first.** If the work ran across several worktrees, merge every path into ONE
-worktree (the one whose branch becomes the PR) and verify there before spawning the
+worktree (the one whose branch will later become the PR) and verify there before spawning the
 reviewer (`/worktrees`). The reviewer reviews one tree, and the whole piece of
 work is in it.
 
@@ -61,5 +65,6 @@ findings and your position on each to your expert, who decides.
 
 ## Close
 - Retire the reviewer.
-- In your handback, include: the final verdict, the number of rounds, and any finding you
-  disputed and how it was resolved.
+- Hand the reviewed branch to your expert. In your handback, include: the branch, the final
+  verdict, the number of rounds, and any finding you disputed and how it was resolved.
+- Don't open the PR: your expert reviews the branch first, then opens it (or asks you to).

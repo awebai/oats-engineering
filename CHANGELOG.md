@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 - 2026-09-29
+
+### Changed
+
+- Review happens before the PR, on local branches. The developer's adversarial loop with the `code-reviewer` runs on its consolidated local branch; the developer hands that reviewed branch (not a PR) to its expert; the expert reviews the branch (`verify-developer-work`); only when the expert accepts it is a PR opened (`land-your-prs`). Never open a PR to get a review. Stated in the developer, reviewer and expert instructions and in `run-the-review-loop`, `verify-developer-work` and `land-your-prs`.
+- Unchanged from 1.2.0: requires OATS 0.30.0 or later, and the packaged `code-reviewer` prefers Codex with `gpt-6-astra`.
+
 ## 1.2.0 - 2026-09-29
 
 ### Changed
