@@ -98,9 +98,13 @@ workspace: file://${workspaceBare}
 `);
   const bin = join(tmp, "bin");
   mkdirSync(bin);
-  const fakePi = join(bin, "pi");
-  writeFileSync(fakePi, "#!/usr/bin/env sh\necho fake pi for spawn-preview tests >&2\n");
-  chmodSync(fakePi, 0o755);
+  // Spawn previews refuse a harness whose binary is missing (E_HARNESS_UNAVAILABLE): pi is the
+  // default harness and codex is the packaged code-reviewer's launch preference.
+  for (const harness of ["pi", "codex"]) {
+    const fake = join(bin, harness);
+    writeFileSync(fake, `#!/usr/bin/env sh\necho fake ${harness} for spawn-preview tests >&2\n`);
+    chmodSync(fake, 0o755);
+  }
   return { deploy, env: { ...process.env, PATH: `${bin}:${process.env.PATH || ""}` } };
 }
 function kernelCli(t, label, ref) {
