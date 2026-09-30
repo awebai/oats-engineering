@@ -1,6 +1,6 @@
 {
   "package": "oats.engineering",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Engineering roles for OATS teams: experts who plan, spec, coordinate, verify and land; developers who evaluate specs, execute (preferring parallel dynamic workflows), consolidate and iterate with an adversarial code-reviewer; and the code-reviewer soul with its review capability (bugs, security, simplification).",
   "compatibility": {
     "oats": ">=0.30.0"
