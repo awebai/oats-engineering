@@ -119,7 +119,13 @@ async function checkKernel(t, label, ref) {
   const cli = kernelCli(t, label, ref);
   const versionResult = run(process.execPath, [cli, "version", "--json"]);
   const version = JSON.parse(versionResult.stdout);
-  assert.match(version.version, /^0\.30\./, `${label} kernel version ${version.version}`);
+  if (ref === "main") {
+    // main moves past each release; it must stay at or above the package's floor (>=0.30.0).
+    const [major, minor] = version.version.split(".").map(Number);
+    assert.ok(major > 0 || minor >= 30, `${label} kernel version ${version.version} is below 0.30.0`);
+  } else {
+    assert.equal(version.version, ref.replace(/^v/, ""), `${label} kernel version ${version.version}`);
+  }
 
   const { deploy, env } = makeDeployment(t);
   const sync = runJson(process.execPath, [cli, "sync", "--dir", deploy, "--json"], { timeout: 120_000, env });
