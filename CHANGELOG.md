@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0 - 2026-09-30
+
+### Changed
+
+- The developer's first two steps are REQUIRED before implementation starts: load `/understand-the-spec` and follow it, and load `/execution-strategy` and decide with it how the work will run. The developer instructions now say so in those two steps, instead of only naming the skills.
+- Unchanged from 1.3.0: requires OATS 0.30.0 or later; review happens on local branches, before the PR; the packaged `code-reviewer` prefers Codex with `gpt-6-astra`.
+
 ## 1.3.0 - 2026-09-29
 
 ### Changed
