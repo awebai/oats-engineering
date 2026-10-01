@@ -85,8 +85,13 @@ OATS ≥ 0.30.0. Works with any harness OATS supports (pi, Claude Code, Codex). 
 `code-reviewer` prefers Codex with `gpt-6-astra` (`launch:` in its soul); a machine overrides it
 in `oats-local.yaml` `souls.launch`, and spawn flags win over both. Developers use
 your harness's workflow tool for parallel work; where it has none, its subagents in the same
-pattern. They run a workflow without waiting for your opt-in as long as it stays under 10
-agents; for 10 or more they ask you first.
+pattern, keeping each workflow under 10 agents and asking you first for more. Where the
+harness requires your opt-in to run a workflow (Claude Code's workflow tool does), they
+ask for it once per task. To let them run workflows unattended, turn that opt-in on yourself
+in the harness: in Claude Code, `/effort ultracode` (or `claude --effort ultracode`) for a
+session, or `"ultracode": true` in your Claude Code settings for every session; its
+`workflowSizeGuideline` setting (default `medium`, under 10 agents) matches the cap
+([Claude Code workflows](https://code.claude.com/docs/en/workflows.md)).
 
 ## License
 MIT

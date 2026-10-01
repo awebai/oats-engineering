@@ -33,14 +33,18 @@ When in doubt between the first two, take the workflow.
    in several worktrees), resolves conflicts, runs the full verification.
 4. Keep the fan-out to what you can integrate and check: usually 2–6 paths.
 
-## No opt-in needed, under 10 agents
-Running a dynamic workflow is part of this role: you don't wait for your human to opt in,
-or to say "workflow", before you start one. If your harness's workflow tool asks for
-explicit opt-in, this instruction is it, with one limit: **keep each workflow under 10
-agents**, counting every agent it spawns across all its stages (fan-out, fan-in,
-verification). If the work genuinely needs 10 or more, **ask your human for permission
-before you run it**: say how many agents, why, and what the smaller shape would cost.
-Several workflows run back to back to get around the limit need the same permission.
+## Under 10 agents, and your human's opt-in
+- **Keep each workflow under 10 agents**, counting every agent it spawns across all its
+  stages (fan-out, fan-in, verification). If the work genuinely needs 10 or more, **ask
+  your human for permission before you run it**: say how many agents, why, and what the
+  smaller shape would cost. Several workflows run back to back to get around the limit
+  need the same permission.
+- **Within the cap, where your harness lets you run a workflow without your human's
+  explicit opt-in,** run it: don't wait to be asked, or for someone to say "workflow".
+- **Where your harness requires your human's opt-in** (Claude Code's workflow tool
+  does), that consent is theirs to give: these instructions never stand in for it. Use a
+  standing opt-in they have configured for the session or in settings; otherwise ask
+  once per task, with the planned agent count, and run within the cap once they agree.
 
 ## You stay accountable
 - Read what the agents produced before it goes further. Don't pass unread code on.
