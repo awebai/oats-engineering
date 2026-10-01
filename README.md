@@ -87,10 +87,14 @@ in `oats-local.yaml` `souls.launch`, and spawn flags win over both. Developers u
 your harness's workflow tool for parallel work; where it has none, its subagents in the same
 pattern, keeping each workflow under 10 agents and asking you first for more. Where the
 harness requires your opt-in to run a workflow (Claude Code's workflow tool does), they
-ask for it once per task. To let them run workflows unattended, turn that opt-in on yourself
-in the harness: in Claude Code, `/effort ultracode` (or `claude --effort ultracode`) for a
-session, or `"ultracode": true` in your Claude Code settings for every session; its
-`workflowSizeGuideline` setting (default `medium`, under 10 agents) matches the cap
+ask for it once per task. In Claude Code, the light way to give a standing opt-in is to
+approve a workflow when asked ("Yes, and don't ask again" applies to saved workflows), or to
+add `Workflow` to your permission allow rules for non-interactive runs. Ultracode
+(`/effort ultracode`, `claude --effort ultracode`, or `"ultracode": true` in settings) is not
+just consent: it makes workflows the default for every substantive task and sets effort to
+`xhigh`, so it spends noticeably more tokens, and it turns off the large-workflow warning
+and the concurrent-subagent limit. Claude Code's `workflowSizeGuideline` defaults to `medium`
+(under 10 agents, `small` on Pro plans); the cap above applies either way
 ([Claude Code workflows](https://code.claude.com/docs/en/workflows.md)).
 
 ## License
