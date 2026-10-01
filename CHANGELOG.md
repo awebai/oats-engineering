@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0 - 2026-10-01
+
+### Changed
+
+- Developers run dynamic workflows without waiting for their human's opt-in: the developer instructions and `/execution-strategy` say the role is that opt-in, including when a harness's workflow tool asks for explicit opt-in. The limit: each workflow stays under 10 agents, counting every agent across its stages; for 10 or more the developer asks its human for permission first, saying how many agents and why.
+- Unchanged from 1.4.0: requires OATS 0.30.0 or later; review happens on local branches, before the PR; the packaged `code-reviewer` prefers Codex with `gpt-6-astra`.
+
 ## 1.4.0 - 2026-09-30
 
 ### Changed

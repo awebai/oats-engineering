@@ -176,7 +176,7 @@ if (!existsSync(payloadRoot)) report("oats-package", "missing payload root");
 if (packageManifest && packageSchema) {
   for (const problem of validateAgainst(packageSchema, packageManifest)) report(`oats-package.json${problem.path}`, problem.message);
   if (packageManifest.package !== "oats.engineering") report("oats-package.json.package", "must be oats.engineering");
-  if (packageManifest.version !== "1.4.0") report("oats-package.json.version", "must be 1.4.0");
+  if (packageManifest.version !== "1.5.0") report("oats-package.json.version", "must be 1.5.0");
 }
 
 const rawFiles = walk(repoRoot, (p) => !p.includes(`${sep}.git${sep}`) && !p.includes(`${sep}node_modules${sep}`));
