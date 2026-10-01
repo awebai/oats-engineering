@@ -50,7 +50,7 @@ names, who merges) stay in your repository.
 1. **Declare the package** in your `oats-workspace.yaml`:
    ```yaml
    packages:
-     oats.engineering: v1.4.0
+     oats.engineering: v1.5.0
    ```
 2. **Give the capabilities to your souls** in each `soul.yaml`:
    ```yaml
@@ -85,7 +85,17 @@ OATS ≥ 0.30.0. Works with any harness OATS supports (pi, Claude Code, Codex). 
 `code-reviewer` prefers Codex with `gpt-6-astra` (`launch:` in its soul); a machine overrides it
 in `oats-local.yaml` `souls.launch`, and spawn flags win over both. Developers use
 your harness's workflow tool for parallel work; where it has none, its subagents in the same
-pattern.
+pattern, keeping each workflow under 10 agents and asking you first for more. Where the
+harness requires your opt-in to run a workflow (Claude Code's workflow tool does), they
+ask for it once per task. In Claude Code, the light way to give a standing opt-in is to
+approve a workflow when asked ("Yes, and don't ask again" applies to saved workflows), or to
+add `Workflow` to your permission allow rules for non-interactive runs. Ultracode
+(`/effort ultracode`, `claude --effort ultracode`, or `"ultracode": true` in settings) is not
+just consent: it makes workflows the default for every substantive task and sets effort to
+`xhigh`, so it spends noticeably more tokens, and it turns off the large-workflow warning
+and the concurrent-subagent limit. Claude Code's `workflowSizeGuideline` defaults to `medium`
+(under 10 agents, `small` on Pro plans); the cap above applies either way
+([Claude Code workflows](https://code.claude.com/docs/en/workflows.md)).
 
 ## License
 MIT
