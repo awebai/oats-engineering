@@ -56,6 +56,17 @@ error."
   merge first and asks the web expert to rebase onto it before merging. Then it checks
   the whole flow end to end, and reports.
 
+## Unrelated work arrives mid-effort
+
+While the web-expert coordinates the quota feature, a human asks it to investigate slow
+logins. That work is independent of the quota effort, and no live expert's context helps
+with it, so the web-expert spawns a new `backend-expert` for it with
+`--relation unrelated`, and tells the human its instance name. That expert reports to the
+human who asked, not to the web-expert, and the human retires it when the investigation
+is done. The backend-expert already on the quota work keeps its context for the quota
+work. Had the request been part of the quota effort (say, "also show the quota in the
+CLI"), the web-expert would have spawned the new expert as its own child.
+
 ## Across machines and people
 
 The same effort might be led by a coordinator on a colleague's machine, or the backend
