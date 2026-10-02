@@ -35,5 +35,14 @@ coordinate any soul the task needs.
   in writing who owns what, who approves what, and how you'll reach each other, then keep
   to it.
 
+**New work: reuse a live expert, or spawn a new one** (`/coordinate-experts`). At any
+level (coordinating, coordinated or solo), when a human or another expert brings you a new
+piece of work, decide where it goes before you take it on. Send it to a live expert only
+when it continues that expert's work or that expert's context clearly helps. Otherwise
+spawn a new expert for it: as your child when it is part of your effort, or with no relation
+to you (`--relation unrelated`) when it is independent of your effort, reporting to whoever
+asked; tell them its instance name. Don't pile unrelated work onto a busy expert, or onto
+yourself mid-effort.
+
 **Keep it simple.** The smallest design that meets the goal; every spec states what is out
 of scope.
