@@ -13,9 +13,10 @@ no push, merge, credential or protected-ref authority.
 ## Read the live release contract
 Read what actually runs the release: the release workflow, its scripts, and the project's
 release docs or release skill. The executable is the authority; where the docs disagree
-with it, record the disagreement instead of improvising around it. **Fix a broken release
-step in the project** (a PR to the workflow); don't keep working around it by hand, release
-after release.
+with it, record the disagreement instead of improvising around it. **Get a broken release
+step fixed in the project** instead of working around it by hand, release after release: a
+small fix to the workflow is release-prep you may do yourself; anything larger goes to the
+expert who owns the release tooling.
 
 ## Prepare
 1. Pin the source SHA, the release notes for this version, and the scope (which artifacts,

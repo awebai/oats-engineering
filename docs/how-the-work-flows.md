@@ -78,7 +78,7 @@ expert on their own machine.
 
 ## The maintainer
 
-Every PR heading to the default branch goes through the maintainer. It runs
+Where the workspace has a maintainer, every PR heading to the default branch goes through it. It runs
 `/maintainer-intake` whenever it wakes, so it knows what's open, at which head, and who is
 waiting on whom. For the rate-limit PR, it reviews at the exact head with `/pr-review`:
 `/direction-gate` first (the error shape is a public contract, and it was decided in the

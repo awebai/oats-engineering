@@ -42,7 +42,8 @@ that list. This skill doesn't know them.
 
 ## The release-prep PR
 The version bump and the assembled notes are your own small PR. It goes through review
-like any other, usually your peer's (`/cross-review-peer`), at an exact head.
+like any other, at an exact head: your peer's, or, without a peer, the reviewer you agreed
+with your human (`/cross-review-peer`).
 
 ## Write the plan down
 In your state file (`/maintainer-intake`): the version; PRs in, and those out with their

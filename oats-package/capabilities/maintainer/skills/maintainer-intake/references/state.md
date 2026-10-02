@@ -1,7 +1,8 @@
 # The maintainer's state file
 
-One file, rewritten on every intake, in this order. Empty sections stay, with "none", so a
-reader can tell "nothing" from "not checked".
+One file, rewritten on every intake, in this order. Keep it where your working state lives
+(your instance home, or wherever your soul says), not in the repository. Empty sections
+stay, with "none", so a reader can tell "nothing" from "not checked".
 
 ```markdown
 # Maintainer state: <repositories> (swept <date and time>)

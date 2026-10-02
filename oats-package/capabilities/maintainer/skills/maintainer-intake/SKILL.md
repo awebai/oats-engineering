@@ -52,5 +52,6 @@ End every intake with your knowledge (the maintainer inject says what it keeps):
 
 ## Then act
 Work the state top-down: unblock others first (reviews you owe, answers you owe), then
-merges that are ready, then releases, then cleanliness (`/keep-it-clean`). Mail only when
-it moves work: a verdict, a hold, a question, a decision.
+the merges you hold the authority for, then releases, then cleanliness
+(`/keep-it-clean`). Mail only when it moves work: a verdict, a hold, a question, a
+decision.

@@ -33,7 +33,7 @@ engineering organisation:
    └──────────────────────────────┘
 ```
 
-Every PR the experts land goes through a **maintainer**: it holds the overview, gates each
+Where a project has a **maintainer**, every PR the experts land goes through it: it holds the overview, gates each
 change on direction and architecture, reviews and merges at an exact head, plans and ships
 releases, and cross-reviews with its peer maintainers.
 
