@@ -16,6 +16,9 @@ member repositories are the kernel repository and one repository per official pa
 | Workspace config (`oats-setup-admin`, a developer-style soul) | the workspace's own config | `oats-workspace.yaml`, `souls/` |
 
 Every expert has `oats.engineering-expert`; every developer has `oats.developer`.
+`oats-expert` also has `oats.maintainer`: it is the maintainer and the lead expert in one
+soul. Two maintainers, each on their own machine and for their own human, cross-review
+each other's work, including the PRs each one lands as an expert.
 
 ## Its workspace-specific rules
 
@@ -27,6 +30,10 @@ experts. It carries what is specific to this project:
   developer's discipline including the review loop. Launching a developer stays the default;
 - **delivery:** every change reaches `main` by a PR; the owning expert verifies a developer's
   PR, and `oats-expert` (the maintainer) reviews and merges.
+
+What stays OATS-specific lives with the `oats-expert` soul, not in `oats.maintainer`: the
+framework's test gate and the consumers a review must read, the release lane and its
+scripts, and the Desktop's accepted CLI versions.
 
 ## A real piece of work: team model v2 (OATS 0.30)
 

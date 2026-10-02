@@ -176,7 +176,7 @@ if (!existsSync(payloadRoot)) report("oats-package", "missing payload root");
 if (packageManifest && packageSchema) {
   for (const problem of validateAgainst(packageSchema, packageManifest)) report(`oats-package.json${problem.path}`, problem.message);
   if (packageManifest.package !== "oats.engineering") report("oats-package.json.package", "must be oats.engineering");
-  if (packageManifest.version !== "1.6.0") report("oats-package.json.version", "must be 1.6.0");
+  if (packageManifest.version !== "1.7.0") report("oats-package.json.version", "must be 1.7.0");
 }
 
 const rawFiles = walk(repoRoot, (p) => !p.includes(`${sep}.git${sep}`) && !p.includes(`${sep}node_modules${sep}`));
@@ -279,7 +279,7 @@ for (const file of docs) {
     const code = match[1].trim();
     const candidates = [code, code.split(/\s*:\s*/)[0]];
     for (const id of candidates) {
-      if (/^oats\.(?:engineering(?:-[a-z]+)?|develop[a-z-]*|code-review)$/.test(id) || id === "code-reviewer") {
+      if (/^oats\.(?:engineering(?:-[a-z]+)?|develop[a-z-]*|code-review|maintainer)$/.test(id) || id === "code-reviewer") {
         if (!localIds.has(id)) report(rel, `package-local id ${id} is named in docs but not exported`);
       }
     }
