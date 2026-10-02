@@ -33,7 +33,7 @@ function mutate(t, relativePath, fn) {
 test("validator accepts the real package", () => {
   const result = runValidator();
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /3 capabilities, 14 skills, 1 package soul/);
+  assert.match(result.stdout, /4 capabilities, 21 skills, 1 package soul/);
 });
 
 test("validator rejects capability manifest schema violations", (t) => {
@@ -72,6 +72,12 @@ test("validator rejects unknown slash skill references", (t) => {
   const result = mutate(t, "oats-package/capabilities/developer/injects/developer.md", (text) => text.replace("/understand-the-spec", "/missing-skill"));
   assert.equal(result.status, 1);
   assert.match(result.stderr, /\/missing-skill names no package skill/);
+});
+
+test("validator rejects an inject that doesn't name one of its capability's skills", (t) => {
+  const result = mutate(t, "oats-package/capabilities/maintainer/injects/maintainer.md", (text) => text.replaceAll("`/keep-it-clean`", "the cleanliness skill"));
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /inject must name its skill \/keep-it-clean/);
 });
 
 test("validator rejects bare skill names in code spans", (t) => {

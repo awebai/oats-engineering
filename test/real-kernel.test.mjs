@@ -69,6 +69,7 @@ defaults:
   const memberSrc = join(tmp, "member-src");
   mkdirSync(join(memberSrc, "souls", "dev"), { recursive: true });
   mkdirSync(join(memberSrc, "souls", "expert"), { recursive: true });
+  mkdirSync(join(memberSrc, "souls", "maintainer"), { recursive: true });
   writeFileSync(join(memberSrc, "oats-membership.yaml"), `schemaVersion: 2
 workspace: file://${workspaceBare}
 `);
@@ -88,6 +89,16 @@ capabilities:
   oats.engineering-expert: { from: package }
 `);
   writeFileSync(join(memberSrc, "souls", "expert", "AGENTS.md"), "# expert\n");
+  // A maintainer that is also an expert: the two roles must compose without a skill clash.
+  writeFileSync(join(memberSrc, "souls", "maintainer", "soul.yaml"), `schemaVersion: 2
+name: maintainer
+description: Probe maintainer soul that also holds the expert role.
+work: directory
+capabilities:
+  oats.engineering-expert: { from: package }
+  oats.maintainer: { from: package }
+`);
+  writeFileSync(join(memberSrc, "souls", "maintainer", "AGENTS.md"), "# maintainer\n");
   makeRepo(memberSrc, "member");
   run("git", ["clone", "--bare", memberSrc, join(tmp, "member.git"), "-q"]);
 
@@ -129,7 +140,7 @@ async function checkKernel(t, label, ref) {
 
   const { deploy, env } = makeDeployment(t);
   const sync = runJson(process.execPath, [cli, "sync", "--dir", deploy, "--json"], { timeout: 120_000, env });
-  assert.deepEqual(sync.packages[0].capabilities.sort(), ["oats.code-review", "oats.developer", "oats.engineering-expert"]);
+  assert.deepEqual(sync.packages[0].capabilities.sort(), ["oats.code-review", "oats.developer", "oats.engineering-expert", "oats.maintainer"]);
   assert.deepEqual(sync.packages[0].souls, ["code-reviewer"]);
 
   const souls = runJson(process.execPath, [cli, "souls", "--dir", deploy, "--json"], { timeout: 120_000, env });
@@ -138,6 +149,13 @@ async function checkKernel(t, label, ref) {
   const expert = runJson(process.execPath, [cli, "spawn", "expert", "--dir", deploy, "--preview", "--json"], { timeout: 120_000, env });
   assert.deepEqual(expert.modules.map((m) => m.name), ["oats.engineering-expert"]);
   assert.ok(expert.skills.some((s) => s.name === "plan-and-spec"));
+  assert.equal(expert.skills.some((s) => s.name === "pr-review"), false, "an expert alone must not compose the maintainer's skills");
+
+  const maintainer = runJson(process.execPath, [cli, "spawn", "maintainer", "--dir", deploy, "--preview", "--json"], { timeout: 120_000, env });
+  assert.deepEqual(maintainer.modules.map((m) => m.name).sort(), ["oats.engineering-expert", "oats.maintainer"]);
+  const maintainerSkills = ["cross-review-peer", "direction-gate", "keep-it-clean", "maintainer-intake", "plan-release", "pr-review", "ship-release"];
+  for (const name of maintainerSkills) assert.ok(maintainer.skills.some((s) => s.name === name), `maintainer composes /${name}`);
+  assert.ok(maintainer.skills.some((s) => s.name === "land-your-prs"), "a maintainer that is also an expert keeps the expert's skills");
 
   const dev = runJson(process.execPath, [cli, "spawn", "dev", "--dir", deploy, "--preview", "--json"], { timeout: 120_000, env });
   assert.deepEqual(dev.modules.map((m) => m.name), ["oats.developer"]);

@@ -79,6 +79,27 @@ only what is specific to **this** domain and **this** repository: what to protec
 test commands, the branch rules. Don't restate the role; if the two disagree, agents get
 confused.
 
+**A maintainer** reviews, merges and releases what the experts land, and keeps the project
+coherent. It's often your lead expert, holding both roles; give it a knowledge base too,
+since what it keeps (the roadmap, architectural calls, coherence rules) is the point:
+
+```yaml
+# souls/lead-expert/soul.yaml
+schemaVersion: 2
+name: lead-expert
+description: Direction, architecture and maintainer review for the project.
+work: directory
+capabilities:
+  oats.engineering-expert: { from: package }
+  oats.maintainer: { from: package }
+```
+
+Maintainers usually work in pairs: two (or more) maintainers, often on different machines
+and for different humans, review each other's work. Put your project's own release lane and
+test gate in the soul's `AGENTS.md` or skills, or in your workspace's rules (section 3),
+under names of their own: a soul skill named like a capability skill (`pr-review`, say) is
+refused at spawn.
+
 ## 3. Add your workspace's own rules (optional)
 
 Some rules are about your workspace, not one soul: the surface map, whether experts may
@@ -110,7 +131,8 @@ capabilities:
 ## 5. Check it works
 
 1. `oats sync` then `oats spawn backend-expert --preview`: the expert shows the
-   `oats.engineering-expert` capability and its skills.
+   `oats.engineering-expert` capability and its skills (and `oats.maintainer` with its
+   skills, for your maintainer).
 2. Give an expert a small, real goal. Watch that it writes a spec, launches the developer,
    that the developer runs the review loop (one `code-reviewer`, several rounds), and that
    the expert verifies before reporting back.

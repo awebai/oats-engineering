@@ -76,6 +76,23 @@ approves shared contract changes, how they reach each other, and that hand-offs 
 commits and PR numbers. OATS itself is built this way by two maintainers, each with a lead
 expert on their own machine.
 
+## The maintainer
+
+Where the workspace has a maintainer, every PR heading to the default branch goes through it. It runs
+`/maintainer-intake` whenever it wakes, so it knows what's open, at which head, and who is
+waiting on whom. For the rate-limit PR, it reviews at the exact head with `/pr-review`:
+`/direction-gate` first (the error shape is a public contract, and it was decided in the
+spec, so it fits), then correctness, security and mergeability. It posts APPROVE at that
+head on the PR and merges with the head guard. Then it checks that the merged tree is the
+one it reviewed, and that the default branch is green on it.
+
+When enough has landed, it plans the release with its peer maintainer (`/plan-release`):
+the PRs in, the version, the notes and the merge order. Then it ships it and verifies the
+publication item by item (`/ship-release`). Its own release-prep PR is reviewed by the
+peer, as is anything it landed as an expert. Along the way it records what the next
+maintainer needs: the roadmap moved on, the decision that public error shapes are
+versioned, a coherence rule about where rate limits live.
+
 ## When the expert builds it itself
 
 Sometimes launching a developer costs more than the change: a one-line config fix, a

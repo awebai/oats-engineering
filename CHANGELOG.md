@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.7.0 - 2026-10-02
+
+### Added
+
+- **`oats.maintainer`**, a new capability for the whole maintainer job. It is generic: the project's own facts (test gate, release lane, roadmap, decisions) stay with the soul and its knowledge.
+  - Its always-loaded instructions name each skill with its load trigger. They also cover authority with a clear source, cross-review between peer maintainers as the normal practice (including for a soul that is also an expert), experts reporting to the maintainer, plain-text questions to humans, and CI as the gate.
+  - What the maintainer keeps in its knowledge: one living roadmap (superseded, not dated), each architectural or structural call with its reason and rejected alternatives, and the coherence rules it enforces. Not one-off patches.
+  - Skills:
+    - `/maintainer-intake`: the overview, rebuilt from the sources into a fixed state file, then the knowledge pass.
+    - `/direction-gate`: whether a change belongs and fits the roadmap; contracts decided before they're built; decisions recorded.
+    - `/pr-review`: four gates, a verdict bound to the exact head and posted on the PR, a head-guarded merge, and a check that what landed is what was reviewed.
+    - `/plan-release`: scope, version, notes, and merge order including shared notes files.
+    - `/ship-release`: exact artifacts under explicit authority, a verification checklist, and partial-publication rules.
+    - `/cross-review-peer`: the peer agreement, the unreachable-peer fallback, and verifying decisions passed on from a human.
+    - `/keep-it-clean`: follow-ups, docs in step, drift and duplication, and retiring what's dead.
+- The README, the setup guide, the work-flow guide and the OATS example describe the maintainer. A soul skill named like a capability skill is refused at spawn, so a project keeps its own release and review specifics under names of their own.
+- The package validator checks that every capability's inject names each of its skills, as a `/skill` code span.
+
+### Changed
+
+- `/run-the-review-loop`: when picking the reviewer's model, the developer reads both the reviewer soul's default (`launch.declared`) and what this machine will launch (`launch.effective`). When `launch.from` is `local`, the machine's `oats-local.yaml` `souls.launch` overrides the default. If the override is another harness than the developer's, the developer spawns the reviewer without `--harness`/`--model`, so the override applies. Only when the effective reviewer would run on the developer's own harness and model does it pick another.
+
+### Unchanged
+
+- Requires OATS 0.30.0 or later. The expert and code-review capabilities only change version.
+
 ## 1.6.0 - 2026-10-02
 
 ### Added

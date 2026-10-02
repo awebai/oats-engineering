@@ -176,7 +176,7 @@ if (!existsSync(payloadRoot)) report("oats-package", "missing payload root");
 if (packageManifest && packageSchema) {
   for (const problem of validateAgainst(packageSchema, packageManifest)) report(`oats-package.json${problem.path}`, problem.message);
   if (packageManifest.package !== "oats.engineering") report("oats-package.json.package", "must be oats.engineering");
-  if (packageManifest.version !== "1.6.0") report("oats-package.json.version", "must be 1.6.0");
+  if (packageManifest.version !== "1.7.0") report("oats-package.json.version", "must be 1.7.0");
 }
 
 const rawFiles = walk(repoRoot, (p) => !p.includes(`${sep}.git${sep}`) && !p.includes(`${sep}node_modules${sep}`));
@@ -202,12 +202,14 @@ for (const [index, capabilityDir] of (Array.isArray(packageManifest?.capabilitie
   for (const forbidden of ["team", "helperInjection", "global", "agent-types", "souls"]) if (Object.hasOwn(manifest, forbidden)) report(`${relative(payloadRoot, manifestPath)}.${forbidden}`, "not allowed in a capability manifest");
   if (manifest.version !== packageManifest?.version) report(`${relative(payloadRoot, manifestPath)}.version`, "must match package version");
   if (manifest.compatibility?.oats !== packageManifest?.compatibility?.oats) report(`${relative(payloadRoot, manifestPath)}.compatibility.oats`, "must match package compatibility");
+  const ownSkills = [];
   for (const [resourceIndex, resource] of (manifest.skills || []).entries()) {
     const resourcePath = safeResource(capabilityRoot, capabilityRoot, resource, `${relative(payloadRoot, manifestPath)}.skills[${resourceIndex}]`, "skill path");
     if (!resourcePath) continue;
     const skillFile = statSync(resourcePath).isDirectory() ? join(resourcePath, "SKILL.md") : resourcePath;
     if (!existsSync(skillFile)) { report(relative(repoRoot, resourcePath), "skill path has no SKILL.md"); continue; }
     const dirName = basename(dirname(skillFile));
+    ownSkills.push(dirName);
     const { frontmatter } = parseSkillFrontmatter(skillFile);
     if (!frontmatter) { report(relative(repoRoot, skillFile), "missing YAML frontmatter"); continue; }
     if (frontmatter.name !== dirName) report(relative(repoRoot, skillFile), `frontmatter name must equal directory (${dirName})`);
@@ -215,7 +217,14 @@ for (const [index, capabilityDir] of (Array.isArray(packageManifest?.capabilitie
     if (skillNames.has(dirName)) report(relative(repoRoot, skillFile), `duplicate skill name ${dirName} (also ${skillNames.get(dirName)})`);
     else skillNames.set(dirName, relative(repoRoot, skillFile));
   }
-  if (manifest.inject) safeResource(capabilityRoot, capabilityRoot, manifest.inject, `${relative(payloadRoot, manifestPath)}.inject`, "injection path");
+  if (manifest.inject) {
+    const injectPath = safeResource(capabilityRoot, capabilityRoot, manifest.inject, `${relative(payloadRoot, manifestPath)}.inject`, "injection path");
+    // The always-loaded inject is what makes an agent load its skills: it names every one.
+    if (injectPath && existsSync(injectPath)) {
+      const injectText = readFileSync(injectPath, "utf8");
+      for (const name of ownSkills) if (!injectText.includes(`\`/${name}\``)) report(relative(repoRoot, injectPath), `inject must name its skill /${name}`);
+    }
+  }
   for (const [name, command] of Object.entries(manifest.commands || {})) safeResource(capabilityRoot, capabilityRoot, commandEntrypoint(command), `${relative(payloadRoot, manifestPath)}.commands.${name}`, "command entrypoint");
   for (const [event, hook] of Object.entries(manifest.hooks || {})) safeResource(capabilityRoot, capabilityRoot, commandEntrypoint(hook), `${relative(payloadRoot, manifestPath)}.hooks.${event}`, "hook entrypoint");
 }
@@ -279,7 +288,7 @@ for (const file of docs) {
     const code = match[1].trim();
     const candidates = [code, code.split(/\s*:\s*/)[0]];
     for (const id of candidates) {
-      if (/^oats\.(?:engineering(?:-[a-z]+)?|develop[a-z-]*|code-review)$/.test(id) || id === "code-reviewer") {
+      if (/^oats\.(?:engineering(?:-[a-z]+)?|develop[a-z-]*|code-review|maintainer)$/.test(id) || id === "code-reviewer") {
         if (!localIds.has(id)) report(rel, `package-local id ${id} is named in docs but not exported`);
       }
     }
