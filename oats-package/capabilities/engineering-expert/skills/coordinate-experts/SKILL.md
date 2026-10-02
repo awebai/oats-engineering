@@ -34,9 +34,11 @@ the order; they do the work of landing.
   agree.
 
 ## New work: reuse a live expert, or spawn a new one
-This applies at any level: coordinating, coordinated or solo. When a human or another
-expert brings you a new piece of work (a feature, a fix, an investigation), decide where it
-goes **before** you take it on:
+This applies at any level: coordinating, coordinated or solo. It is for work that arrives
+once an effort is under way; launching the experts an effort starts with is still one per
+domain (above). "Your effort" is the work you were given, whether you coordinate it or do it
+alone. When a human or another expert brings you a new piece of work (a feature, a fix, an
+investigation), decide where it goes **before** you take it on:
 
 | The new work | Where it goes |
 |---|---|
@@ -49,6 +51,8 @@ oats spawn <domain-expert> --parent <your instance> --purpose <effort> --task-fi
 oats spawn <domain-expert> --relation unrelated --purpose <effort> --task-file <brief.md>
 ```
 
+- **A child expert makes you its coordinator,** even if you were working alone: you own
+  its integration with the rest of your effort (*If you coordinate*, above).
 - **Fresh context is the point.** An expert's context is its decisions and the work in
   flight. Unrelated work dilutes it, tangles its PRs, and makes it slower on both.
 - **An unrelated expert belongs to whoever asked.** Its brief names the requester as the

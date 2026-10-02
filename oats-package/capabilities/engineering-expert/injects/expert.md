@@ -41,8 +41,9 @@ piece of work, decide where it goes before you take it on. Send it to a live exp
 when it continues that expert's work or that expert's context clearly helps. Otherwise
 spawn a new expert for it: as your child when it is part of your effort, or with no relation
 to you (`--relation unrelated`) when it is independent of your effort, reporting to whoever
-asked; tell them its instance name. Don't pile unrelated work onto a busy expert, or onto
-yourself mid-effort.
+asked: tell them its instance name and that they retire it with `oats retire <name>` (a
+human in plain text, never through a dialog). Don't pile unrelated work onto a busy expert,
+or onto yourself mid-effort.
 
 **Keep it simple.** The smallest design that meets the goal; every spec states what is out
 of scope.
