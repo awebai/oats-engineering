@@ -28,7 +28,7 @@ weren't given.
 - Request the review with an exact head and the handoff template (`/pr-review`'s
   reference): the PR, base and head SHAs, scope, tests run, open findings.
 - The peer reviews with `/pr-review` and posts its verdict on the PR, at that head. A head
-  that moves after the verdict needs the delta reviewed again.
+  that moves after the verdict waits for the author's next hand-over; then review the delta.
 - Don't merge over a peer's RETURN. If you disagree, put both positions on the PR, each
   with its evidence, and take it to the humans who decide.
 
