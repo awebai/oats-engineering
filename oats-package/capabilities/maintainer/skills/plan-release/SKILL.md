@@ -32,7 +32,8 @@ merge order, the notes and the version all tell the same story.
 ## Hotfixes and backports
 - **A hotfix** is a patch release for a break in the current version: only the fix and its
   notes, planned like any release but small, and reviewed by your peer like any other.
-  It doesn't wait for the planned release, and the freeze below doesn't hold it back.
+  It doesn't wait for the planned release, and the rule below that new PRs wait for the
+  next release doesn't hold it back.
 - **A backport** to an older supported line goes on that line's branch, from the fix
   already merged on the default branch, and gets its own patch version and notes. Which
   lines are supported is your project's decision; record it in your knowledge.
