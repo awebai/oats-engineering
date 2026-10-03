@@ -29,16 +29,17 @@ error."
      replicas allow 200/min; proven with the replica test) and a security major (the key
      is logged in the 429 path). One simplification: drop a config option nothing sets.
    - **Round 2:** the developer fixes both and takes the simplification; the same reviewer
-     re-checks the delta: `APPROVE`. The developer retires it.
+     re-checks the delta: `APPROVE`. The developer keeps it until the expert accepts.
 8. **Handback to the expert:** what was done against "done when", the test and run results,
    "adversarial review: APPROVE after 2 rounds", and what's out of scope.
 9. **The expert verifies** (`/verify-developer-work`): the design matches (shared
    bucket store, as specified); it fits the middleware pattern; it's simple; nothing
    glaring. It accepts.
 10. **The expert lands the PR** (`/land-your-prs`): it opens it, answers a bot's
-    finding and a teammate's review comment (the developer fixes one; the expert replies to
-    the other with the reason), keeps it rebased, merges it by the repository's rules,
-    checks main's CI, and retires the developer.
+    finding and a teammate's review comment (the developer fixes one and takes the delta
+    through its review loop; the expert replies to the other with the reason), keeps it
+    rebased, merges it by the repository's rules, checks main's CI, and retires the
+    developer.
 
 ## A feature across domains
 
@@ -90,7 +91,9 @@ who asked and that decision, and tells the requester the expert's name. The back
 leads from there, as in the first section. Had a human started the backend-expert directly,
 the expert would have told the maintainer what it was starting.
 
-For the rate-limit PR, it reviews at the exact head with `/pr-review`:
+For the rate-limit PR, it waits for the backend-expert's hand-over (the developer's loop
+converged, the expert verified it, CI green at the head), then reviews at that exact head
+with `/pr-review`:
 `/direction-gate` first (the error shape is a public contract, and it was decided in the
 spec, so it fits), then correctness, security and mergeability. It posts APPROVE at that
 head on the PR and merges with the head guard. Then it checks that the merged tree is the
