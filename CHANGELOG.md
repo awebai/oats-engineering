@@ -13,6 +13,7 @@
 - `/pr-review` stands on its own for any project: read the PR as a whole (the description matches the diff, scope, links); check that the pre-PR review and the expert's acceptance were at this head, or review the delta; find the consumers of every changed export, shape, key, flag, error code and format by searching this repository and its dependents.
 - `/verify-developer-work`: verify at the handover's pinned head; read the recorded decisions and coherence rules first; check the evidence of a real run when the spec asks for one.
 - The examples in `/plan-and-spec` and `/understand-the-spec` no longer come from the OATS codebase.
+- `/pr-review` also covers PRs from forks and first-time contributors (CI with secrets, workflow and permission changes), new or bumped dependencies, unresolved review threads, drafts and PRs too large to review. `/ship-release` says what to do when a published release is bad; `/plan-release` covers hotfixes and backports.
 
 ### Added
 
