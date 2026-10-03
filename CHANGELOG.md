@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.8.0 - 2026-10-03
+
+### Changed
+
+- **A maintainer is not an expert.** Don't give one soul both `oats.maintainer` and `oats.engineering-expert`; the maintainer instructions no longer mention holding the expert role.
+- **The maintainer launches work and doesn't lead it.** It stays an individual instance and never spawns experts or developers as its children. When asked to start work, it either delegates to a live expert whose work it continues, or spawns one independent lead expert (`--relation unrelated`) for the effort. That lead plans the work and coordinates developers and other experts under itself.
+- **Consult the soul's knowledge first, and keep the instance state accurate.** Both are stressed for maintainers (before every decision, review, release plan and launch; the state updated whenever the maintainer acts) and for experts (the inject, `/plan-and-spec`, `/coordinate-developers`, `/land-your-prs`). Layer-neutral: no knowledge-layer commands.
+- **Experts tell a standing maintainer what they start** when they lead an effort no maintainer launched or delegated (a human started them directly, or another expert spawned them unrelated). Their brief, soul or workspace rules name the maintainer; a maintainer that launched the work gets no notice. `/maintainer-intake` adds those efforts to the overview, flags idle ones, and its state file gains an "Efforts in flight" table. When an effort is done, the maintainer asks the requester whether to retire its lead.
+- `/coordinate-experts`: an expert launched by a maintainer as an effort's lead coordinates it, reports on the work to whoever asked, and sends its PRs to the maintainer.
+- `/cross-review-peer` and `/plan-release`: peers review each other's release-prep PRs; landing your own release-prep PR is spelled out.
+- `/pr-review` stands on its own for any project: read the PR as a whole (the description matches the diff, scope, links); check that the pre-PR review and the expert's acceptance were at this head, or review the delta; find the consumers of every changed export, shape, key, flag, error code and format by searching this repository and its dependents.
+- `/verify-developer-work`: verify at the handover's pinned head; read the recorded decisions and coherence rules first; check the evidence of a real run when the spec asks for one.
+- The examples in `/plan-and-spec` and `/understand-the-spec` no longer come from the OATS codebase.
+- `/pr-review` also covers PRs from forks and first-time contributors (CI with secrets, workflow and permission changes), new or bumped dependencies, unresolved review threads, drafts and PRs too large to review. `/ship-release` says what to do when a published release is bad; `/plan-release` covers hotfixes and backports.
+
+### Added
+
+- `/launch-work` (in `oats.maintainer`): understand the request and consult knowledge; find the domain and the live experts; delegate or spawn one independent lead; brief it (goal, who asked, the decisions it must respect, delivery to the maintainer); tell the requester its name; track it in the state file.
+
 ## 1.7.0 - 2026-10-02
 
 ### Added

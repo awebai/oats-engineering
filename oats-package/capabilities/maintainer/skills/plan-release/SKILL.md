@@ -29,6 +29,15 @@ merge order, the notes and the version all tell the same story.
   - leave the notes to the release-prep PR, written by you from the merged PRs.
   Say which in the plan, and keep to it.
 
+## Hotfixes and backports
+- **A hotfix** is a patch release for a break in the current version: only the fix and its
+  notes, planned like any release but small, and reviewed by your peer like any other.
+  It doesn't wait for the planned release, and the rule below that new PRs wait for the
+  next release doesn't hold it back.
+- **A backport** to an older supported line goes on that line's branch, from the fix
+  already merged on the default branch, and gets its own patch version and notes. Which
+  lines are supported is your project's decision; record it in your knowledge.
+
 ## Order
 - Consumers that accept a new shape land before the producers that emit it.
 - A PR that others rebase onto goes first; say who rebases after each merge.
@@ -41,8 +50,9 @@ generated files: list them once in your project's own release skill or docs, and
 that list. This skill doesn't know them.
 
 ## The release-prep PR
-The version bump and the assembled notes are your own small PR. It goes through review
-like any other, at an exact head: your peer's, or, without a peer, the reviewer you agreed
+The version bump and the assembled notes are your own small PR: open it, keep it green and
+up to date, answer its review, and merge it only once reviewed. It goes through review like
+any other, at an exact head: your peer's, or, without a peer, the reviewer you agreed
 with your human (`/cross-review-peer`).
 
 ## Write the plan down

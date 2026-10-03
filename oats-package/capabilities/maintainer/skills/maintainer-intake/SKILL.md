@@ -9,6 +9,10 @@ Your overview is only as good as its last sweep. Memory drifts, a compacted cont
 detail, and a wake can change three things at once. Rebuild the overview from the sources,
 write it down in one fixed shape, and only then decide what to do next.
 
+## Start from your knowledge
+Read the living roadmap, the open decisions and the coherence rules first, so the sweep is
+read against the direction, not just listed.
+
 ## Sweep the sources
 For each repository you maintain:
 1. **Open PRs:** number, author or owning expert, the exact head SHA, CI state, review
@@ -23,7 +27,9 @@ For each repository you maintain:
 
 Then the people:
 5. **Experts' reports and messages:** what each says it's doing, at which head, and what
-   it's waiting on. A report that names a head you can't find, or work you can't see, is
+   it's waiting on, including the start notices of efforts launched without you (a human
+   started the expert directly): add each one to your overview. Flag every effort in
+   flight with no activity since the last sweep, and ask its lead. A report that names a head you can't find, or work you can't see, is
    a question to ask, not a fact to record.
 6. **Your peer maintainer:** open cross-reviews in either direction, and agreements still
    to keep (`/cross-review-peer`).
@@ -37,7 +43,8 @@ repeat it.
 
 ## Write the state
 Keep one state file in the shape of [references/state.md](references/state.md), rewritten
-on every sweep. Its order is its priority: what others wait on from you comes first.
+on every sweep and updated between sweeps whenever you act (a verdict, a merge, a launch, a
+hold, a decision). Its order is its priority: what others wait on from you comes first.
 Every line names its exact reference (`repo#PR @ sha`, a message id, an issue), and every
 hold says its reason and its scope.
 

@@ -49,6 +49,15 @@ errors" is not verification.
   flag is not permission to replace unknown content.
 - Authentication, runner and protected-ref faults go to your human or the operator.
 
+## If the release is bad
+A published release that breaks users is fixed forward, never rewritten:
+- Stop the spread first: move the channel tag (for example `latest`) back to the last good
+  version, or deprecate or yank the bad one where the registry allows it, with a message
+  saying what to use instead.
+- Ship a fixed version through the normal plan, quickly (`/plan-release`, as a hotfix).
+- Tell the users and your human what broke, who is affected and what to do. Record what
+  happened in your state, and a coherence rule if it can happen again.
+
 ## Close
 Record the outcome under "Since the last sweep" in your state file (`/maintainer-intake`).
 Tell the experts and your human it's out, with the version and what users must do.

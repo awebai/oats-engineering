@@ -89,13 +89,12 @@ capabilities:
   oats.engineering-expert: { from: package }
 `);
   writeFileSync(join(memberSrc, "souls", "expert", "AGENTS.md"), "# expert\n");
-  // A maintainer that is also an expert: the two roles must compose without a skill clash.
+  // A maintainer is a soul of its own: it never also holds the expert role.
   writeFileSync(join(memberSrc, "souls", "maintainer", "soul.yaml"), `schemaVersion: 2
 name: maintainer
-description: Probe maintainer soul that also holds the expert role.
+description: Probe maintainer soul.
 work: directory
 capabilities:
-  oats.engineering-expert: { from: package }
   oats.maintainer: { from: package }
 `);
   writeFileSync(join(memberSrc, "souls", "maintainer", "AGENTS.md"), "# maintainer\n");
@@ -152,10 +151,9 @@ async function checkKernel(t, label, ref) {
   assert.equal(expert.skills.some((s) => s.name === "pr-review"), false, "an expert alone must not compose the maintainer's skills");
 
   const maintainer = runJson(process.execPath, [cli, "spawn", "maintainer", "--dir", deploy, "--preview", "--json"], { timeout: 120_000, env });
-  assert.deepEqual(maintainer.modules.map((m) => m.name).sort(), ["oats.engineering-expert", "oats.maintainer"]);
-  const maintainerSkills = ["cross-review-peer", "direction-gate", "keep-it-clean", "maintainer-intake", "plan-release", "pr-review", "ship-release"];
-  for (const name of maintainerSkills) assert.ok(maintainer.skills.some((s) => s.name === name), `maintainer composes /${name}`);
-  assert.ok(maintainer.skills.some((s) => s.name === "land-your-prs"), "a maintainer that is also an expert keeps the expert's skills");
+  assert.deepEqual(maintainer.modules.map((m) => m.name), ["oats.maintainer"]);
+  assert.deepEqual(maintainer.skills.map((s) => s.name).sort(), ["cross-review-peer", "direction-gate", "keep-it-clean", "launch-work", "maintainer-intake", "plan-release", "pr-review", "ship-release"]);
+  assert.equal(maintainer.skills.some((s) => s.name === "coordinate-developers"), false, "a maintainer doesn't lead efforts: no expert skills");
 
   const dev = runJson(process.execPath, [cli, "spawn", "dev", "--dir", deploy, "--preview", "--json"], { timeout: 120_000, env });
   assert.deepEqual(dev.modules.map((m) => m.name), ["oats.developer"]);

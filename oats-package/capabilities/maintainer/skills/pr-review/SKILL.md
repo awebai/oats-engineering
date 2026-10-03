@@ -10,23 +10,41 @@ Pin the base and head SHAs before you read a line. Read
 hold applies, or you are about to merge.
 
 Ask for the author's evidence first: what the change was verified with, and, where the
-project uses one, the verdict and rounds of its pre-PR review loop. That review informs
-yours and doesn't replace it: the four gates below are your judgement.
+project uses them, the verdict and rounds of its pre-PR code review and the owning expert's
+acceptance. Check that they were given **at this head**; if the head moved since, review the
+delta they didn't see. Those reviews inform yours and don't replace it: the four gates
+below are your judgement.
+
+**Read the PR as a whole first.** Does the description's claim match the diff? Is the
+scope what was asked, or did unrelated changes ride along? Are the issue, the spec and the
+PRs it depends on linked?
 
 ## Four gates
 1. **Direction** (`/direction-gate`). Does the change belong where it is and move the
    roadmap? Is a contract change in it decided? Compare the stated outcome with the full
    diff.
-2. **Correctness.** Read the whole diff and the code that consumes what changed, not only
-   the newest fix. Review from an exact-commit checkout of your own, never from another
-   agent's work tree. A behaviour change updates its tests in the same change; an
-   assertion is never weakened to make a change pass.
+2. **Correctness.** Read the whole diff, not only the newest fix, and **find the consumers
+   of everything it changes:** search for each changed export, function signature, output
+   or message shape, config key, flag, error code and file format, in this repository and
+   in the repositories that depend on it, and read how each consumer uses it. Your
+   project's own review notes may list the usual consumers; the search still runs. Review
+   from an exact-commit checkout of your own, never from another agent's work tree. A
+   behaviour change updates its tests in the same change; an assertion is never weakened
+   to make a change pass.
 3. **Security.** Where data becomes execution (commands, paths, queries, templates), trust
    and integrity checks, path containment, identity and authorisation, secrets, and how
-   user content is rendered.
+   user content is rendered. Also:
+   - **PRs from forks or first-time contributors:** CI that would run their code with
+     secrets or write permissions, and any change to CI workflows, permissions or secrets
+     handling, are reviewed before CI runs them.
+   - **Dependencies:** every new or bumped dependency is a supply-chain change. Check that
+     it's needed, where it comes from, that the version is pinned, and that the lockfile
+     change matches the manifest change and nothing else.
 4. **Mergeability.** The head, the base and the checks are the ones you reviewed; no
-   conflicts (the author resolves them); docs and release notes cover the change
-   (`/keep-it-clean`); it's in the plan for the next release (`/plan-release`).
+   conflicts (the author resolves them); no unresolved review threads, and other
+   reviewers' and bots' comments answered; not a draft. Docs and release notes cover the
+   change (`/keep-it-clean`), and it's in the plan for the next release
+   (`/plan-release`). A PR too large to review well is split before it's reviewed.
 
 **CI is the gate.** Don't ask for a full local run. Reproduce locally only what you need to
 confirm a finding, and say what you ran.
