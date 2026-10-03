@@ -5,7 +5,7 @@ member repositories are the kernel repository and one repository per official pa
 
 ## Domains, surfaces and souls
 
-| Domain (expert) | Surface (developer) | Paths |
+| Role or domain (soul) | Surface (developer) | Paths |
 |---|---|---|
 | Maintainer: direction, architecture, launching work, review, releases (`oats-expert`) | — (launches the others' work) | the whole repository |
 | Kernel & CLI (`oats-kernel-expert`) | kernel & CLI (`oats-kernel-developer`) | `lib/`, `bin/`, the schemas |
@@ -18,8 +18,8 @@ member repositories are the kernel repository and one repository per official pa
 Every domain expert has `oats.engineering-expert`; every developer has `oats.developer`.
 `oats-expert` is the maintainer: it has `oats.maintainer`, not the expert role. It launches
 each new effort to the domain expert best suited to lead it, as an independent instance,
-and reviews and lands what comes back. Two maintainers, each on their own machine and for
-their own human, cross-review each other's work.
+and reviews and lands what comes back. Its maintainers, each an instance of `oats-expert` on
+their own machine and for their own human, cross-review each other's work.
 
 ## Its workspace-specific rules
 

@@ -73,7 +73,7 @@ The same effort might be led by a coordinator on a colleague's machine, or the b
 expert might belong to another team's human. Neither side can spawn or direct the other's
 agents, so they agree at the start, in writing: who owns which domains and PRs, who
 approves shared contract changes, how they reach each other, and that hand-offs name exact
-commits and PR numbers. OATS itself is built this way by two maintainers, each on their own
+commits and PR numbers. OATS itself is built this way by its maintainers, each on their own
 machine.
 
 ## The maintainer
@@ -88,7 +88,9 @@ earlier decision) and launches the work with `/launch-work`. No live expert is o
 gateway, so it spawns a `backend-expert` with `--relation unrelated`, briefed with the goal,
 who asked and that decision, and tells the requester the expert's name. The backend-expert
 leads from there, as in the first section. Had a human started the backend-expert directly,
-the expert would have told the maintainer what it was starting. For the rate-limit PR, it reviews at the exact head with `/pr-review`:
+the expert would have told the maintainer what it was starting.
+
+For the rate-limit PR, it reviews at the exact head with `/pr-review`:
 `/direction-gate` first (the error shape is a public contract, and it was decided in the
 spec, so it fits), then correctness, security and mergeability. It posts APPROVE at that
 head on the PR and merges with the head guard. Then it checks that the merged tree is the

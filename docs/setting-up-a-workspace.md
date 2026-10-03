@@ -99,8 +99,8 @@ Its `AGENTS.md` names the experts it launches for each domain (or your workspace
 do, section 3). Experts that a human starts directly tell the maintainer what they start,
 so its overview stays complete.
 
-Maintainers usually work in pairs: two (or more) maintainers, often on different machines
-and for different humans, review each other's work. Put your project's own release lane and
+Maintainers usually work with peers, often on different machines and for different
+humans, and review each other's work. Put your project's own release lane and
 test gate in the soul's `AGENTS.md` or skills, or in your workspace's rules (section 3),
 under names of their own: a soul skill named like a capability skill (`pr-review`, say) is
 refused at spawn.

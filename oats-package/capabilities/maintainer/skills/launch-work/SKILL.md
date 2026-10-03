@@ -19,15 +19,16 @@ from you.
 
 ## 2. Find the expert
 - **The domain:** from your knowledge and the expert map your soul or workspace keeps
-  (which expert soul owns which area). For work across domains, pick the domain where most
-  of the risk or the design sits: its expert leads, and brings in the others.
+  (which expert soul owns which area); with no map, ask your human. For work across
+  domains, pick the domain where most of the risk or the design sits: its expert leads,
+  and brings in the others.
 - **The live instances:** who is running now and on what (your state file, your OATS
   status, your messaging roster).
 
 ## 3. Delegate or spawn
 | The work | Do |
 |---|---|
-| Continues what a live expert is doing, or that expert's context (its decisions, open PRs, the code it has loaded) clearly helps | **Delegate it to that expert** by message, with the brief below. It decides with its own requester how it fits its effort. |
+| Continues what a live expert is doing, or that expert's context (its decisions, open PRs, the code it has loaded) clearly helps | **Delegate it to that expert** by message, with the brief below: it leads this as an effort of its own, launched by you. It confirms it takes it, and tells its own coordinator, if it has one. If it can't take it, spawn a new lead. |
 | Anything else | **Spawn a new instance of the domain's expert, independent of you:** `oats spawn <expert> --relation unrelated --purpose <slug> --task-file <brief.md>` |
 
 - **One lead per effort,** never one per domain: the lead brings in the other experts as
@@ -38,18 +39,22 @@ from you.
 
 ## 4. Brief the lead
 The brief holds:
-1. **The goal** and why, in a few sentences, and what "done" means to the requester.
-2. **Who asked,** and that the lead reports on the work to them.
-3. **What your knowledge says** that bears on it: the decisions and coherence rules it
+1. **That it leads this effort,** launched by you, so it sends you no start notice.
+2. **The goal** and why, in a few sentences, and what "done" means to the requester.
+3. **Who asked,** and that the lead reports on the work to them.
+4. **What your knowledge says** that bears on it: the decisions and coherence rules it
    must respect, and where it sits on the roadmap.
-4. **Delivery:** its PRs come to you for review (and to your peer, where the agreement
+5. **Delivery:** its PRs come to you for review (and to your peer, where the agreement
    says so).
 
 Don't split the work by domain or surface for it, and don't write its specs: planning and
 coordination are the lead's role.
 
 ## 5. Close the loop
-- Tell the requester the lead's instance name and how to reach it; retiring it is the
-  requester's call. A human is told in plain text, never through a dialog.
+- Tell the requester the lead's instance name and how to reach it. A human is told in
+  plain text, never through a dialog.
 - Add it to your state file: the effort, its lead, who asked, and what you're waiting for.
 - From then on the lead reports PRs to you like any expert (`/pr-review`).
+- **When the effort is done** (its PRs merged, the requester satisfied), ask the
+  requester whether to retire the lead: a human retires it or tells you to; when the
+  requester is an agent, ask your human. Then close the row in your state file.

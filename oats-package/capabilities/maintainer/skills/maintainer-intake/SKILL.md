@@ -28,7 +28,8 @@ For each repository you maintain:
 Then the people:
 5. **Experts' reports and messages:** what each says it's doing, at which head, and what
    it's waiting on, including the start notices of efforts launched without you (a human
-   started the expert directly): add each one to your overview. A report that names a head you can't find, or work you can't see, is
+   started the expert directly): add each one to your overview. Flag every effort in
+   flight with no activity since the last sweep, and ask its lead. A report that names a head you can't find, or work you can't see, is
    a question to ask, not a fact to record.
 6. **Your peer maintainer:** open cross-reviews in either direction, and agreements still
    to keep (`/cross-review-peer`).

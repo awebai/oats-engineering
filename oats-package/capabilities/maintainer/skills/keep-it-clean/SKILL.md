@@ -33,7 +33,8 @@ Record the shape as a coherence rule.
 ## Retire what's dead
 - Stale PRs: ask the owner whether to finish, hand over or close; close with a note.
 - Merged or abandoned branches, idle instances you launched, obsolete docs and skills,
-  issues nobody will do: close or retire them with a one-line reason.
+  issues nobody will do: close or retire them with a one-line reason. A lead you launched
+  for a requester is retired on the requester's word (`/launch-work`).
 - Ask before retiring what someone else owns.
 
 ## The knowledge pass

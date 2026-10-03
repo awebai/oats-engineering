@@ -60,7 +60,8 @@ oats spawn <domain-expert> --relation unrelated --purpose <effort> --task-file <
   is the requester's call. OATS records no link from it to the requester, so tell the
   requester its instance name (its messaging alias) and that they retire it with
   `oats retire <name>`. When the requester is a human, tell them in plain text in your
-  reply, never through a dialog or question prompt.
+  reply, never through a dialog or question prompt. Its brief also names your workspace's
+  maintainer, if there is one, so the new expert sends it the start notice.
 - **The same holds for you.** Don't take on unrelated work yourself mid-effort; spawn an
   expert for it and go on with yours.
 - **When a maintainer launches you** as an effort's lead, you are its coordinator: plan it,

@@ -76,7 +76,8 @@ names, who merges) stay in your repository.
      oats.maintainer: { from: package }
    ```
 3. **Sync and spawn:** `oats sync`, then `oats spawn <expert> --task "<goal>"`. The expert
-   takes it from there.
+   takes it from there (and, where you have a maintainer, tells it what it started). Or ask
+   your maintainer, which launches the right expert for you.
 
 A messaging capability (for example `oats.aweb`) is strongly recommended: experts,
 developers and reviewers coordinate by mail. Without one, reports land in session
