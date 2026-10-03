@@ -50,8 +50,7 @@ converges.
   the review loop converged (the developer's, or yours for a fix you made), you verified
   it, and CI is green on that exact head.
 - Don't push to a PR under the maintainer's review without telling it. Batch the review's
-  fixes, let the developer's loop converge again, then hand over the new head with the
-  delta.
+  fixes, let the loop converge again, then hand over the new head with the delta.
 
 ## Merge
 - Merge by the repository's rules: required approvals, required checks, and who presses the

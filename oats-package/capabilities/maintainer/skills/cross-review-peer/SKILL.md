@@ -24,7 +24,8 @@ weren't given.
 
 ## Reviewing each other
 - The `/pr-review` rule holds between peers: review only a PR its author has handed over
-  as converged, at an exact head with CI green on it.
+  per that rule (including a PR with no owning expert), at an exact head with CI green on
+  it.
 - Request the review with an exact head and the handoff template (`/pr-review`'s
   reference): the PR, base and head SHAs, scope, tests run, open findings.
 - The peer reviews with `/pr-review` and posts its verdict on the PR, at that head. A head
