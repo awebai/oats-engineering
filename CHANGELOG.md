@@ -10,6 +10,9 @@
 - **Experts tell a standing maintainer what they start** when they lead an effort no maintainer launched or delegated (a human started them directly, or another expert spawned them unrelated). Their brief, soul or workspace rules name the maintainer; a maintainer that launched the work gets no notice. `/maintainer-intake` adds those efforts to the overview, flags idle ones, and its state file gains an "Efforts in flight" table. When an effort is done, the maintainer asks the requester whether to retire its lead.
 - `/coordinate-experts`: an expert launched by a maintainer as an effort's lead coordinates it, reports on the work to whoever asked, and sends its PRs to the maintainer.
 - `/cross-review-peer` and `/plan-release`: peers review each other's release-prep PRs; landing your own release-prep PR is spelled out.
+- `/pr-review` stands on its own for any project: read the PR as a whole (the description matches the diff, scope, links); check that the pre-PR review and the expert's acceptance were at this head, or review the delta; find the consumers of every changed export, shape, key, flag, error code and format by searching this repository and its dependents.
+- `/verify-developer-work`: verify at the handover's pinned head; read the recorded decisions and coherence rules first; check the evidence of a real run when the spec asks for one.
+- The examples in `/plan-and-spec` and `/understand-the-spec` no longer come from the OATS codebase.
 
 ### Added
 

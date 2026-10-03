@@ -10,16 +10,25 @@ Pin the base and head SHAs before you read a line. Read
 hold applies, or you are about to merge.
 
 Ask for the author's evidence first: what the change was verified with, and, where the
-project uses one, the verdict and rounds of its pre-PR review loop. That review informs
-yours and doesn't replace it: the four gates below are your judgement.
+project uses them, the verdict and rounds of its pre-PR code review and the owning expert's
+acceptance. Check that they were given **at this head**; if the head moved since, review the
+delta they didn't see. Those reviews inform yours and don't replace it: the four gates
+below are your judgement.
+
+**Read the PR as a whole first.** Does the description's claim match the diff? Is the
+scope what was asked, or did unrelated changes ride along? Are the issue, the spec and the
+PRs it depends on linked?
 
 ## Four gates
 1. **Direction** (`/direction-gate`). Does the change belong where it is and move the
    roadmap? Is a contract change in it decided? Compare the stated outcome with the full
    diff.
-2. **Correctness.** Read the whole diff and the code that consumes what changed, not only
-   the newest fix. Review from an exact-commit checkout of your own, never from another
-   agent's work tree. A behaviour change updates its tests in the same change; an
+2. **Correctness.** Read the whole diff, not only the newest fix, and **find the consumers
+   of everything it changes:** search for each changed export, function signature, output
+   or message shape, config key, flag, error code and file format, in this repository and
+   in the repositories that depend on it, and read how each consumer uses it. Your
+   project's own review notes may list the usual consumers; the search still runs. Review
+   from an exact-commit checkout of your own, never from another agent's work tree. A behaviour change updates its tests in the same change; an
    assertion is never weakened to make a change pass.
 3. **Security.** Where data becomes execution (commands, paths, queries, templates), trust
    and integrity checks, path containment, identity and authorisation, secrets, and how

@@ -10,8 +10,8 @@ meant. If they would have to guess, the spec is not done.
 
 ## 1. Frame the goal
 - **The problem**, in one or two sentences, and who has it.
-- **Done means:** observable outcomes, not activities ("`oats teams add` refuses a
-  duplicate label with E_TEAM_EXISTS", not "improve team handling").
+- **Done means:** observable outcomes, not activities ("creating a key with a name that
+  already exists returns 409 with `key_exists`", not "improve key handling").
 - **Constraints:** compatibility promises, contracts other parts rely on, security
   boundaries, performance limits, deadlines.
 - **Out of scope:** what this work deliberately does not do.
