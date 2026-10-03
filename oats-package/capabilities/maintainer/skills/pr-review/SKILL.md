@@ -28,14 +28,23 @@ PRs it depends on linked?
    or message shape, config key, flag, error code and file format, in this repository and
    in the repositories that depend on it, and read how each consumer uses it. Your
    project's own review notes may list the usual consumers; the search still runs. Review
-   from an exact-commit checkout of your own, never from another agent's work tree. A behaviour change updates its tests in the same change; an
-   assertion is never weakened to make a change pass.
+   from an exact-commit checkout of your own, never from another agent's work tree. A
+   behaviour change updates its tests in the same change; an assertion is never weakened
+   to make a change pass.
 3. **Security.** Where data becomes execution (commands, paths, queries, templates), trust
    and integrity checks, path containment, identity and authorisation, secrets, and how
-   user content is rendered.
+   user content is rendered. Also:
+   - **PRs from forks or first-time contributors:** CI that would run their code with
+     secrets or write permissions, and any change to CI workflows, permissions or secrets
+     handling, are reviewed before CI runs them.
+   - **Dependencies:** every new or bumped dependency is a supply-chain change. Check that
+     it's needed, where it comes from, that the version is pinned, and that the lockfile
+     change matches the manifest change and nothing else.
 4. **Mergeability.** The head, the base and the checks are the ones you reviewed; no
-   conflicts (the author resolves them); docs and release notes cover the change
-   (`/keep-it-clean`); it's in the plan for the next release (`/plan-release`).
+   conflicts (the author resolves them); no unresolved review threads, and other
+   reviewers' and bots' comments answered; not a draft. Docs and release notes cover the
+   change (`/keep-it-clean`), and it's in the plan for the next release
+   (`/plan-release`). A PR too large to review well is split before it's reviewed.
 
 **CI is the gate.** Don't ask for a full local run. Reproduce locally only what you need to
 confirm a finding, and say what you ran.
