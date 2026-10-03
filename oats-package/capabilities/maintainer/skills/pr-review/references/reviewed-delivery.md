@@ -3,7 +3,7 @@
 1. Identify the repository, the PR, the base ref and the head ref. Observe the remote SHA;
    `git ls-remote` doesn't refresh a local tracking ref.
 2. Fetch the head ref and compare the fetched commit with what you observed. If they
-   differ, report the movement and repin before reviewing. Inspect explicit SHAs with
+   differ, report the movement and wait for the owner's next hand-over before reviewing. Inspect explicit SHAs with
    `git show <sha>:<path>` and `git diff <base-sha>...<head-sha> -- <paths>`.
 3. After a force push, don't assume the old head is an ancestor: check
    `git merge-base --is-ancestor <old-sha> <head-sha>` and report the result. A grep that

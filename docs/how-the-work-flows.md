@@ -90,7 +90,9 @@ who asked and that decision, and tells the requester the expert's name. The back
 leads from there, as in the first section. Had a human started the backend-expert directly,
 the expert would have told the maintainer what it was starting.
 
-For the rate-limit PR, it reviews at the exact head with `/pr-review`:
+For the rate-limit PR, it waits for the backend-expert's hand-over (the developer's loop
+converged, the expert verified it, CI green at the head), then reviews at that exact head
+with `/pr-review`:
 `/direction-gate` first (the error shape is a public contract, and it was decided in the
 spec, so it fits), then correctness, security and mergeability. It posts APPROVE at that
 head on the PR and merges with the head guard. Then it checks that the merged tree is the

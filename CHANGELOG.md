@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.1 - 2026-10-03
+
+### Changed
+
+- **A PR is reviewed only after its owner says the developer's review loop converged.** `/pr-review` starts only on the owner's hand-over: the loop converged (its final verdict and rounds), the exact head, and CI green on that head. Until then: no review, no reviewers or subagents on it, no findings. A head that moves after the hand-over waits for the next hand-over; then only the delta is reviewed and the verdict re-bound. `/cross-review-peer` applies the same rule between peers.
+- `/verify-developer-work`: verify only after the developer reports convergence at a named head, never a branch still changing.
+- `/land-your-prs`: hand a PR to the maintainer only when the developer's loop converged, you verified it and CI is green on that exact head, and say all three with the head. Don't push to a PR under the maintainer's review without telling it: batch the fixes, let the developer's loop converge again, then hand over the new head with the delta.
+- `/coordinate-developers` and `/run-the-review-loop`: a developer reports once, when its loop has converged, with the final verdict, its rounds and the head; no intermediate heads.
+
 ## 1.8.0 - 2026-10-03
 
 ### Changed
