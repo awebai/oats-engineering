@@ -7,7 +7,7 @@ member repositories are the kernel repository and one repository per official pa
 
 | Domain (expert) | Surface (developer) | Paths |
 |---|---|---|
-| Direction, architecture, maintainer review (`oats-expert`) | — (coordinates the others) | the whole repository |
+| Maintainer: direction, architecture, launching work, review, releases (`oats-expert`) | — (launches the others' work) | the whole repository |
 | Kernel & CLI (`oats-kernel-expert`) | kernel & CLI (`oats-kernel-developer`) | `lib/`, `bin/`, the schemas |
 | Desktop (`oats-desktop-expert`) | app & server (`oats-desktop-developer`) | `packages/desktop/` |
 |  | design (`oats-desktop-designer`) | `packages/desktop/renderer/` views, styles, copy |
@@ -15,10 +15,11 @@ member repositories are the kernel repository and one repository per official pa
 | Deployments (`oats-operator-expert`) | — | onboarding, rebuilds, cutovers |
 | Workspace config (`oats-setup-admin`, a developer-style soul) | the workspace's own config | `oats-workspace.yaml`, `souls/` |
 
-Every expert has `oats.engineering-expert`; every developer has `oats.developer`.
-`oats-expert` also has `oats.maintainer`: it is the maintainer and the lead expert in one
-soul. Two maintainers, each on their own machine and for their own human, cross-review
-each other's work, including the PRs each one lands as an expert.
+Every domain expert has `oats.engineering-expert`; every developer has `oats.developer`.
+`oats-expert` is the maintainer: it has `oats.maintainer`, not the expert role. It launches
+each new effort to the domain expert best suited to lead it, as an independent instance,
+and reviews and lands what comes back. Two maintainers, each on their own machine and for
+their own human, cross-review each other's work.
 
 ## Its workspace-specific rules
 

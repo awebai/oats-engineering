@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.8.0 - 2026-10-03
+
+### Changed
+
+- **A maintainer is not an expert.** Don't give one soul both `oats.maintainer` and `oats.engineering-expert`; the maintainer instructions no longer mention holding the expert role.
+- **The maintainer launches work and doesn't lead it.** It stays an individual instance and never spawns experts or developers as its children. When asked to start work, it either delegates to a live expert whose work it continues, or spawns one independent lead expert (`--relation unrelated`) for the effort. That lead plans the work and coordinates developers and other experts under itself.
+- **Consult the soul's knowledge first, and keep the instance state accurate.** Both are stressed for maintainers (before every decision, review, release plan and launch; the state updated whenever the maintainer acts) and for experts (the inject, `/plan-and-spec`, `/coordinate-developers`, `/land-your-prs`). Layer-neutral: no knowledge-layer commands.
+- **Experts tell a standing maintainer what they start** when they lead an effort the maintainer didn't launch (a human started them directly). `/maintainer-intake` adds those efforts to the overview, and its state file gains an "Efforts in flight" table.
+- `/coordinate-experts`: an expert launched by a maintainer as an effort's lead coordinates it, reports on the work to whoever asked, and sends its PRs to the maintainer.
+- `/cross-review-peer` and `/plan-release`: peers review each other's release-prep PRs; landing your own release-prep PR is spelled out.
+
+### Added
+
+- `/launch-work` (in `oats.maintainer`): understand the request and consult knowledge; find the domain and the live experts; delegate or spawn one independent lead; brief it (goal, who asked, the decisions it must respect, delivery to the maintainer); tell the requester its name; track it in the state file.
+
 ## 1.7.0 - 2026-10-02
 
 ### Added

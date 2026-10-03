@@ -1,6 +1,6 @@
 {
   "name": "@awebai/oats-engineering",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Official OATS engineering-role capability package.",
   "license": "MIT",
   "type": "module",

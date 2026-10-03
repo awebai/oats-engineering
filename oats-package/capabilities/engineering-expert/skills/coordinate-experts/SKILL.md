@@ -63,6 +63,9 @@ oats spawn <domain-expert> --relation unrelated --purpose <effort> --task-file <
   reply, never through a dialog or question prompt.
 - **The same holds for you.** Don't take on unrelated work yourself mid-effort; spawn an
   expert for it and go on with yours.
+- **When a maintainer launches you** as an effort's lead, you are its coordinator: plan it,
+  and spawn the developers and other experts it needs as your children. You report on the
+  work to whoever asked for it, and your PRs go to the maintainer for review.
 - **When in doubt, ask the requester** whether the work belongs to your effort. Don't
   guess the relation.
 

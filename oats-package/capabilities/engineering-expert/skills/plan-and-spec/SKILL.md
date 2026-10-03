@@ -17,6 +17,9 @@ meant. If they would have to guess, the spec is not done.
 - **Out of scope:** what this work deliberately does not do.
 
 ## 2. Design at your level
+- **Read your knowledge first:** the accepted decisions, constraints and lessons for this
+  area. A design that contradicts a recorded decision either changes, or says why the
+  decision should, and to whom.
 - Choose the design. Record the alternatives you rejected and why, in one line each.
 - Name every contract the change touches (APIs, file formats, CLI output, env vars,
   events) and whether it changes. A contract change needs its consumers named and an
@@ -51,3 +54,5 @@ Delivery:        <branch, PR target, who reviews>
 - Every "done when" is covered by some spec's tests.
 - No two developers edit the same files without an agreed order.
 - The riskiest assumption is tested first (a spike, a real run), not last.
+- The plan and each spec are in your instance state, and the design decision, with the
+  alternatives rejected, is in your knowledge.

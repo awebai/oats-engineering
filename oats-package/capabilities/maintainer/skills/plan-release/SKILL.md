@@ -41,8 +41,9 @@ generated files: list them once in your project's own release skill or docs, and
 that list. This skill doesn't know them.
 
 ## The release-prep PR
-The version bump and the assembled notes are your own small PR. It goes through review
-like any other, at an exact head: your peer's, or, without a peer, the reviewer you agreed
+The version bump and the assembled notes are your own small PR: open it, keep it green and
+up to date, answer its review, and merge it only once reviewed. It goes through review like
+any other, at an exact head: your peer's, or, without a peer, the reviewer you agreed
 with your human (`/cross-review-peer`).
 
 ## Write the plan down

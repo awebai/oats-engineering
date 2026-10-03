@@ -79,20 +79,25 @@ only what is specific to **this** domain and **this** repository: what to protec
 test commands, the branch rules. Don't restate the role; if the two disagree, agents get
 confused.
 
-**A maintainer** reviews, merges and releases what the experts land, and keeps the project
-coherent. It's often your lead expert, holding both roles; give it a knowledge base too,
-since what it keeps (the roadmap, architectural calls, coherence rules) is the point:
+**A maintainer** launches new work, reviews, merges and releases what the experts land, and
+keeps the project coherent. It is a soul of its own, never also an expert: it hands each
+new effort to one lead expert, independent of it, and stays an individual instance. Give it
+a knowledge base too, since what it consults and keeps (the roadmap, architectural calls,
+coherence rules, who owns which domain) is the point:
 
 ```yaml
-# souls/lead-expert/soul.yaml
+# souls/maintainer/soul.yaml
 schemaVersion: 2
-name: lead-expert
-description: Direction, architecture and maintainer review for the project.
+name: maintainer
+description: Direction, architecture, launching work, maintainer review and releases.
 work: directory
 capabilities:
-  oats.engineering-expert: { from: package }
   oats.maintainer: { from: package }
 ```
+
+Its `AGENTS.md` names the experts it launches for each domain (or your workspace's rules
+do, section 3). Experts that a human starts directly tell the maintainer what they start,
+so its overview stays complete.
 
 Maintainers usually work in pairs: two (or more) maintainers, often on different machines
 and for different humans, review each other's work. Put your project's own release lane and

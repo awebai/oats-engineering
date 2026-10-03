@@ -1,20 +1,19 @@
 ---
 name: cross-review-peer
-description: Work with one or more peer maintainers - the written agreement on what needs both of you, cross-reviewing each other's work (including what one of you lands as an expert and its own release-prep PRs) at exact heads, splitting incoming reviews, disagreeing well, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever a peer maintainer is involved.
+description: Work with one or more peer maintainers - the written agreement on what needs both of you, cross-reviewing each other's work (including each other's release-prep PRs) at exact heads, splitting incoming reviews, disagreeing well, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever a peer maintainer is involved.
 ---
 
 # Cross-review with your peers
 
 Maintainers usually work in pairs or more, often on different machines and for different
 humans. Each reviews the other's work: that's the normal practice, and it's what lets a
-maintainer who also builds (as an expert, or in a release-prep PR) land its own work with
-a second pair of eyes.
+maintainer land its own release-prep PRs with a second pair of eyes.
 
 ## The agreement
 Write it down where both of you can read it, and keep to it:
 - **Who:** the peers, their humans, and how you reach each other (messaging, PR comments).
-- **What needs both of you:** for example, every PR either of you authored or landed as an
-  expert, every contract change, every release plan and release-prep PR. Everything else
+- **What needs both of you:** for example, every PR either of you authored, every contract
+  change, every release plan and release-prep PR. Everything else
   needs one maintainer's review.
 - **Who takes which incoming reviews,** so no PR is reviewed twice by accident or not at
   all.

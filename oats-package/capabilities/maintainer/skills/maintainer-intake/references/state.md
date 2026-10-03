@@ -11,6 +11,10 @@ stay, with "none", so a reader can tell "nothing" from "not checked".
 | What | From | Since | Reference | Next action |
 |---|---|---|---|---|
 
+## Efforts in flight
+| Effort | Lead expert | Asked by | Launched by (me / directly) | Since | Waiting for |
+|---|---|---|---|---|---|
+
 ## Open PRs
 | PR | Owner | Head | CI | Review (me / peer) | Hold: reason, scope | Next |
 |---|---|---|---|---|---|---|
