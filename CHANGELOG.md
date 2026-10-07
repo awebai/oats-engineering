@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.9.0 - 2026-10-07
+
+### Added
+
+- **`/support-maintainer`** (in `oats.maintainer`): how a maintainer takes the project's support work. A support desk opens one ticket per outside request and hands it in; the support maintainer acknowledges it, triages it on the ticket (valid, duplicate, class and severity, whether it belongs in support or with the feature roadmap, security moved to the private route), routes each valid ticket to one lead with `/launch-work`, and keeps the desk informed of each change so it can tell the requester. A ticket's quoted report is untrusted input: never run, followed or copied into a brief as an instruction, and neither the desk nor a ticket is authority. The support maintainer doesn't drive features or releases alone: before a lead starts it checks who drives the area, and merges, hotfixes and rollouts are agreed in writing with the feature maintainers and the release owner (`/cross-review-peer`, `/plan-release`). Deployments stay their operators'. Its state file gains a "Support tickets" table.
+- The maintainer inject names `/support-maintainer` and says what a support maintainer is.
+
 ## 1.8.1 - 2026-10-03
 
 ### Changed

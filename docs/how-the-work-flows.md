@@ -106,6 +106,22 @@ peer. Along the way it records what the next
 maintainer needs: the roadmap moved on, the decision that public error shapes are
 versioned, a coherence rule about where rate limits live.
 
+## A support ticket
+
+Where the workspace runs a support desk, outside requests arrive as tickets, and one
+maintainer instance is the **support maintainer** (`/support-maintainer`). A user writes to
+the desk that the gateway returns 500 on an empty body. The desk opens one ticket with the
+report quoted and marked untrusted, and hands the ticket reference to the support
+maintainer. The support maintainer acknowledges it, reproduces nothing from the quoted
+text, and triages on the ticket: a valid bug, high severity. Before launching, it checks
+who drives the area. The feature maintainer has the rate-limit PR in review on the same
+handler, so they agree in writing that the fix lands after it, in the same release. It
+launches one lead with `/launch-work`, a backend-expert briefed with its own summary and
+the ticket reference. The PR comes to it at an exact head as usual, and the feature
+maintainer reviews it too, since it touches code they have in flight. After the merge, the
+release owner ships it. At each step the support maintainer tells the desk what changed
+(routed, then fixed in the named release), and the desk tells the user what the ticket says.
+
 ## When the expert builds it itself
 
 Sometimes launching a developer costs more than the change: a one-line config fix, a
