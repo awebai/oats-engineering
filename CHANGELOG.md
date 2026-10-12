@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.9.1 - 2026-10-12
+
+### Fixed
+
+- **`/run-the-review-loop`: the reviewer's spawn command shows `--parent "$OATS_INSTANCE"` and `--repo <repository>`.** Without them, a developer whose consolidated worktree is an extra worktree of its home (`<home>/.work-<purpose>`) was refused twice by released kernels: first for the repository, then for the owner (awebai/oats#958). `<repository>` is the absolute path of the clone the worktree belongs to, and the skill says where a developer reads it. A developer gives both flags for `<home>/work` and for an extra worktree alike.
+- **`/worktrees`: before removing a worktree, a developer retires every instance attached to it**, usually the reviewer. Removing a worktree with an instance attached left that instance with a work link to a path that is gone (awebai/oats#964).
+- **Handing back and removing worktrees no longer contradict each other.** `/worktrees` and the developer inject said to remove every extra worktree before handing back, and `/run-the-review-loop` said to keep the reviewer until the expert accepts; with the reviewer attached to an extra worktree, both could not be done. Now a developer removes before handing back only the extra worktrees no instance is attached to. A worktree with an instance attached stays; once the expert accepts, the developer retires the reviewer and then removes that worktree. For a reviewer attached to `<home>/work` the order is as before: it is retired after acceptance, and nothing is removed.
+
+### Unchanged
+
+- Requires OATS 0.30.0 or later. The expert, code-review and maintainer capabilities only change version.
+
 ## 1.9.0 - 2026-10-07
 
 ### Added
