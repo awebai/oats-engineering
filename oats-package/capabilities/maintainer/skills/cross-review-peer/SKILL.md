@@ -1,14 +1,15 @@
 ---
 name: cross-review-peer
-description: Work with one or more peer maintainers, each in a lane of its own - the written lane map (what belongs to each lane, its maintainer, its second reader), one second reader per PR asked once at the head the lane's maintainer approved, the few things peers message each other for, holds as a label on the forge, a lane changing hands, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever a peer maintainer is involved, and before you message one.
+description: Work with one or more peer maintainers, each in a lane of its own - the written lane map (what belongs to each lane, its maintainer, its second reader), one second reader for every PR, asked once at the head the lane's maintainer approved, the few things peers message each other for, holds as a label on the forge, a lane changing hands, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever a peer maintainer is involved, and before you message one.
 ---
 
 # Work in lanes with your peers
 
 Maintainers usually work in pairs or more, often on different machines and for different
 humans. Each holds a **lane**: a share of the project's work that it alone reviews, merges
-and tracks. A PR that needs a second pair of eyes still gets one. What peers don't do is
-keep each other's picture, or tell each other what the forge already shows.
+and tracks. Every PR still gets a second pair of eyes: one second reader, not every peer.
+What peers don't do is keep each other's picture, or tell each other what the forge already
+shows.
 
 ## The lane map
 Write it down where all of you can read it (an issue or a file on the forge), and keep to it:
@@ -16,9 +17,6 @@ Write it down where all of you can read it (an issue or a file on the forge), an
   or whose requests), its maintainer, its second reader, and their humans.
 - **How a PR shows its lane:** a label (`lane:<name>`), put on by its owner or by the first
   maintainer who sees it without one. Every effort and PR is in exactly one lane.
-- **What needs a second reader:** for example, every PR; or only contract changes,
-  release-prep PRs and the PRs a maintainer authored. Everything else needs its lane's
-  maintainer alone.
 - **The hold label** (`hold`, unless you agree another).
 - **Who owns the next release** and tags it (`/plan-release`).
 - **How you reach each other.**
@@ -37,8 +35,9 @@ weren't given.
   decides direction, whatever lane it is in.
 
 ## One second reader per PR
-A PR that needs a second reader gets one, not a read from every maintainer. This replaces
-the practice of every peer reading every PR.
+Every PR gets one second reader: one, not a read from every maintainer. This supersedes
+the earlier pairing practice, in which every peer reviewed every PR in parallel and every
+verdict was bound again at every head.
 - **Who:** the second reader its lane names. A PR that changes something another lane's
   code or text reads (a contract, an answer, a sentence a test reads) names that lane on
   the PR, and that lane's maintainer is its second reader. It replaces the lane's usual
@@ -46,13 +45,15 @@ the practice of every peer reading every PR.
 - **When:** after the lane's maintainer. You review first (`/pr-review`); at the head you
   approve, you ask the second reader once, with the handoff template (`/pr-review`'s
   reference). A second reader doesn't read a head its lane's maintainer hasn't approved: a
-  head that is then returned would be read twice.
+  head that is then returned would be read twice. The one exception is a PR the lane's
+  maintainer authored (**Your own PRs**, below).
 - **The second reader** reviews with `/pr-review`, posts its verdict on the PR at that head,
   and tells you in one line.
 - **A head that moves after the verdicts:** `/pr-review` says when both verdicts carry (the
   branch was only brought up to date) and when the delta goes back to both readers.
-- **Your own PRs** (a release-prep PR, a small fix) are in your lane. Their second reader is
-  their reviewer: you don't approve your own.
+- **Your own PRs** (a release-prep PR, a small fix) are in your lane, and you don't approve
+  your own. Their second reader is their reviewer: ask it when the PR is ready, at a named
+  head with CI green, and it reviews without waiting for an approval of yours.
 - Don't merge over a second reader's RETURN. If you disagree, put both positions on the PR,
   each with its evidence, and take it to the humans who decide.
 
@@ -97,8 +98,8 @@ flight with their leads.
 
 ## Without a peer
 A maintainer working alone has one lane, the whole project. It agrees with its human who
-reads its own work and what else needs a second reader (the human, or another named
-reviewer), writes that down, and applies the same rules: an exact head, the verdict on the
+reviews its own work (the human, or another named reviewer), writes that down, and applies
+the same rules: an exact head, the verdict on the
 PR, and the human's direct go for anything outside the agreement.
 
 ## Decisions passed on from a human

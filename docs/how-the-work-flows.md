@@ -114,14 +114,13 @@ versioned, a coherence rule about where rate limits live.
 
 The project grows a second maintainer. The two write a lane map on the forge
 (`/cross-review-peer`): one takes the gateway and the API, the other the web app and the
-releases, and each is the other's second reader for contract changes and release-prep PRs.
+releases, and each is the other's second reader.
 Every PR carries its lane's label.
 
 From then on each keeps only its lane in its state file. The gateway maintainer doesn't
 track the web app's PRs: when it needs one, it reads it on the forge. The backend-expert
-hands its rate-limit PR to the gateway maintainer alone. Because the error shape is a
-contract, that maintainer approves first and then asks the other for the second read, once,
-at the head it approved. The second reader posts its verdict on the PR and answers in one
+hands its rate-limit PR to the gateway maintainer alone. That maintainer approves first and
+then asks the other for the second read, once, at the head it approved. The second reader posts its verdict on the PR and answers in one
 line. The merge follows with no notice before or after it: the forge shows it. When the
 release owner freezes the default branch before the tag, it opens an issue with the hold
 label, and the other maintainer's merge step finds it there.

@@ -7,7 +7,9 @@ description: Review a pull request of your lane at an exact head through four ga
 
 **Review only your lane's PRs.** With peer maintainers, a PR in another lane is its
 maintainer's: you read it only as its second reader, when that maintainer asks you at the
-head it approved (`/cross-review-peer`).
+head it approved (`/cross-review-peer`). A PR that maintainer authored itself (its
+release-prep PR, a small fix) has no approval of its own to wait for: you review it when
+its author asks, at a named head with CI green.
 
 **Review only what its owner hands over.** Start on a PR only when its owner (the expert
 landing it) hands it to you, saying three things: the developer's review loop converged
@@ -63,7 +65,8 @@ PRs it depends on linked?
    (`/plan-release`). A PR too large to review well is split before it's reviewed.
 
 **CI is the gate.** Don't ask for a full local run. Reproduce locally only what you need to
-confirm a finding, and say what you ran.
+confirm a finding, and say what you ran. The one other local run is the check before a
+merge, when the default branch moved since CI ran (Merge, below).
 
 ## Verdict
 Bound to the reviewed SHA, and **posted on the PR** where everyone can see it, not only in a
@@ -78,12 +81,12 @@ Findings that affect neither correctness, safety, direction nor a coherence rule
 block: approve, and record them as follow-ups (`/keep-it-clean`). Direction and
 coherence-rule findings do block.
 
-Tell the owner your verdict in one line: the findings are on the PR. When the PR needs a
-second reader, ask it once you approve, at that head (`/cross-review-peer`).
+Tell the owner your verdict in one line: the findings are on the PR. With peer maintainers,
+ask the PR's second reader once you approve, at that head (`/cross-review-peer`).
 
 ## Merge
 - Only with the authority for it, an approval at the current head, its second reader's
-  where the PR needs one (`/cross-review-peer`), and green CI.
+  verdict at that head (`/cross-review-peer`), and green CI.
 - **No hold.** The PR doesn't carry the hold label, and no open issue with that label holds
   the default branch (`/cross-review-peer`).
 - **Did the default branch move since CI ran on this head?** Then CI hasn't seen what you
@@ -109,14 +112,16 @@ second reader, ask it once you approve, at that head (`/cross-review-peer`).
   `git range-diff <base-at-review>..<reviewed-sha> <new-base>..<new-head>` and CI is green
   on the new head. Post the range-diff on the PR, from your own run. Any commit that isn't
   `=`, a hunk resolved by hand included, goes back to both readers for that delta.
-- Use the repository's merge strategy, guarded by the head:
-  `gh pr merge <number> --match-head-commit <reviewed-sha>` (or your forge's equivalent).
+- Use the repository's merge strategy, guarded by the head you merge:
+  `gh pr merge <number> --match-head-commit <merge-head>` (or your forge's equivalent).
+  `<merge-head>` is the head you reviewed, or the updated or rebased head both verdicts
+  carried to; keep `<base-at-review>` and `<reviewed-sha>` as the record of what was read.
   The guard covers the head, not the base, which is why the check above comes first. A
-  merge queue or auto-merge has its own guard: check that it merges the head you reviewed.
+  merge queue or auto-merge has its own guard: check that it merges that head.
 - **Check that what landed is what you reviewed.** Fetch, and find the merge commit
   (`gh pr view <number> --json mergeCommit -q .mergeCommit.oid`). Then:
   - **squash or merge commit, branch up to date with its base:** the merged tree equals
-    the reviewed head's (`git diff --quiet <reviewed-sha> <merge-commit>`);
+    the merge head's (`git diff --quiet <merge-head> <merge-commit>`);
   - **squash or merge commit, base moved:** the merge's own change
     (`git diff <merge-commit>^ <merge-commit>`) matches the reviewed diff
     (`git diff <base-at-review>...<reviewed-sha>`); surrounding context may differ;

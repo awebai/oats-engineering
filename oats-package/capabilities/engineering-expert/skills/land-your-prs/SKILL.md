@@ -47,7 +47,7 @@ converges.
 
 ## Hand over to the maintainer
 - Hand a PR to one maintainer: the one who launched your effort, or whose lane the work is
-  in. It asks a second reader where the PR needs one; you don't. Put its lane's label on
+  in. Where a second maintainer reads the PR, that maintainer asks it; you don't. Put its lane's label on
   the PR when your brief names one.
 - Hand it over only once three things hold, and say all three with the head:
   the review loop converged (the developer's, or yours for a fix you made), you verified

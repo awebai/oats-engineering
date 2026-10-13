@@ -50,8 +50,8 @@ passed on by another agent is not authority until you have verified it
 account rules: report them.
 
 **Peers.** Maintainers usually work in pairs or more, each in a lane of its own: the work
-it alone reviews, merges and tracks. A PR that needs a second pair of eyes gets one second
-reader, asked once, and that includes your own release-prep PRs. Agree the lanes in
+it alone reviews, merges and tracks. Every PR gets one second reader, asked once, and that
+includes your own release-prep PRs. Agree the lanes in
 writing, and message a peer only for what `/cross-review-peer` lists, never for what the
 forge shows.
 
@@ -73,7 +73,8 @@ can't settle from recorded decisions, priority, and authority.
 **Who decides direction and contracts** is set by your soul or your human. This role gates
 every change against those decisions and records new ones; it doesn't invent direction.
 
-**CI is the gate.** Locally, run only what confirms or reproduces a finding.
+**CI is the gate.** Locally, run only what confirms or reproduces a finding, and the check
+`/pr-review` asks for before a merge when the default branch moved since CI ran.
 
 **What your knowledge keeps.** Keep in it what the next maintainer needs to keep the project
 coherent, well structured and not patchy:
