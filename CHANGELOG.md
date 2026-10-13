@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.10.0 - 2026-10-13
+
+Maintainers work in lanes, without keeping each other's picture and without a message per
+event (awebai/oats#1103). Two maintainers on one repository each swept every open PR on
+every wake, kept the peer's review of each in their own state, and told each other before
+and after every merge.
+
+### Changed
+
+- **A lane has one maintainer** (`/cross-review-peer`, rewritten). The peers' written agreement is a lane map: for each lane what belongs to it, its maintainer and its second reader; the label a PR shows its lane with; what needs a second reader; the hold label; who owns the next release. Every effort and PR is in exactly one lane. A maintainer alone has one lane, the whole project, and nothing changes for it but the sweep below.
+- **The forge is the one copy of a PR's state.** A maintainer's state file holds its own lane only; another lane's PRs, verdicts and holds are read on the forge when needed and never copied. The state shape's review column is "me / second reader", its header names the lane, and "Release in flight" holds the plan only for the release owner.
+- **`/maintainer-intake` no longer sweeps on every wake.** A full sweep runs at session start, after a compaction and at least weekly, over the maintainer's lane. On a wake the maintainer handles the event and updates the rows it touches. A PR with no lane is given one from the map; only its lane's maintainer takes it. An effort with no activity is read on the forge and in its lead's status first, and its lead is asked only when something waits on it: never for a progress report.
+- **One second reader per PR, asked once.** This replaces every peer reading every PR. The lane's maintainer reviews first and asks the second reader at the head it approved; the second reader posts its verdict on the PR and answers in one line. A PR that changes something another lane's code or text reads has that lane's maintainer as its second reader, in place of the usual one. Unchanged: a contract change is decided before it is built, by everyone who decides direction.
+- **Peers message each other for five things:** a second read, a hold that must stop work in flight, the release plan, a lane changing hands, and a request that belongs to the peer's lane. No notice before or after a merge or a tag. A human's word is recorded once where it applies, and passed on only when the human asks or the peer must act on it and can't read it anywhere. A go passed on by another agent is still not authority until verified.
+- **A hold is a label on the forge:** on the PR it holds, or on an open issue for a hold on the default branch, each with its reason, scope and who lifts it. `/pr-review`'s merge step reads both.
+- **`/pr-review`, before a merge:** when the default branch moved since CI ran on the head, the merging maintainer runs, on a trial merge, the test files changed or added by the PR and by what merged since its base; when those are more than a couple, or the host lacks something, it brings the branch up to date and lets CI run. Two changes that share no file can still break each other.
+- **The merging maintainer brings a branch up to date itself,** with the forge's update of the PR branch (a merge of the default branch, never a force-push). Both verdicts carry when the PR's own change is unchanged and CI is green on the updated head; a conflict goes back to the owner. A head its owner rebased carries both verdicts when every commit is `=` in the range-diff and CI is green; any other commit goes back to both readers for that delta. With a merge queue, the maintainer enqueues the approved head and none of this is used.
+- **`/pr-review` reviews only the maintainer's own lane,** tells the owner its verdict and the merge in one line each, and asks the second reader once it approves.
+- **`/launch-work`:** a request for another lane's work goes to that lane's maintainer once; the brief names one maintainer for the lead's PRs and the lane's label; the maintainer doesn't ask a lead for progress.
+- **`/plan-release`:** one maintainer owns a release and writes its plan on the forge, where peers answer it; a freeze is a hold on the default branch. **`/ship-release`:** a published release is told once to those who must act on it.
+- **`/support-maintainer`:** support is a lane whose second reader is the feature maintainer driving the area; its verdict on the PR is the written agreement a support merge needs. A support merge needs no notice.
+- **Experts hand over to one maintainer** (the expert inject, `/land-your-prs`): the one whose lane the work is in, never all of them, and the maintainer asks the second reader. After the hand-over the expert leaves the branch alone: the maintainer brings it up to date.
+- `docs/how-the-work-flows.md` gains "Two maintainers, two lanes".
+
+### What to do
+
+- **Peer maintainers:** rewrite your agreement as a lane map (`/cross-review-peer`), create the lane labels and the hold label on your forge, and drop each other's PRs from your state files.
+- **A maintainer alone:** nothing.
+
+### Unchanged
+
+- Requires OATS 0.30.0 or later. No skill is added or removed. The developer and code-review capabilities only change version.
+
 ## 1.9.1 - 2026-10-12
 
 ### Fixed
