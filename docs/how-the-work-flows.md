@@ -114,8 +114,7 @@ versioned, a coherence rule about where rate limits live.
 
 The project grows a second maintainer. The two write a lane map on the forge
 (`/cross-review-peer`): one takes the gateway and the API, the other the web app and the
-releases, and each is the other's second reader.
-Every PR carries its lane's label.
+releases, and each is the other's second reader. Every PR carries its lane's label.
 
 From then on each keeps only its lane in its state file. The gateway maintainer doesn't
 track the web app's PRs: when it needs one, it reads it on the forge. The backend-expert
