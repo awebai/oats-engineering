@@ -80,9 +80,10 @@ machine.
 ## The maintainer
 
 Where the workspace has a maintainer, new work often starts with it, and every PR heading to
-the default branch goes through it. It runs `/maintainer-intake` whenever it wakes: it reads
-its knowledge first (the roadmap, the decisions), then rebuilds what's open, at which head,
-and who is waiting on whom.
+the default branch goes through it. It runs `/maintainer-intake` when its session starts
+and after a compaction: it reads its knowledge first (the roadmap, the decisions), then
+rebuilds what's open, at which head, and who is waiting on whom. When a message wakes it, it
+handles that message and updates what it touches; it doesn't sweep again.
 
 Asked for the rate limit, it consults its knowledge (rate limits sit in the gateway, by an
 earlier decision) and launches the work with `/launch-work`. No live expert is on the
@@ -96,15 +97,32 @@ converged, the expert verified it, CI green at the head), then reviews at that e
 with `/pr-review`:
 `/direction-gate` first (the error shape is a public contract, and it was decided in the
 spec, so it fits), then correctness, security and mergeability. It posts APPROVE at that
-head on the PR and merges with the head guard. Then it checks that the merged tree is the
-one it reviewed, and that the default branch is green on it.
+head on the PR and tells the backend-expert in one line. Before it merges it checks that
+nothing holds the PR or the default branch, and that the default branch hasn't moved since
+CI ran on that head; had it moved, the maintainer would bring the branch up to date itself
+and let CI run again, without a new review. It merges with the head guard. Then it checks
+that the merged tree is the one it reviewed, and that the default branch is green on it.
 
-When enough has landed, it plans the release with its peer maintainer (`/plan-release`):
-the PRs in, the version, the notes and the merge order. Then it ships it and verifies the
-publication item by item (`/ship-release`). Its own release-prep PR is reviewed by the
-peer. Along the way it records what the next
+When enough has landed, it plans the release (`/plan-release`): the PRs in, the version,
+the notes and the merge order. Then it ships it and verifies the publication item by item
+(`/ship-release`). Its own release-prep PR is reviewed by its second reader. Along the way
+it records what the next
 maintainer needs: the roadmap moved on, the decision that public error shapes are
 versioned, a coherence rule about where rate limits live.
+
+## Two maintainers, two lanes
+
+The project grows a second maintainer. The two write a lane map on the forge
+(`/cross-review-peer`): one takes the gateway and the API, the other the web app and the
+releases, and each is the other's second reader. Every PR carries its lane's label.
+
+From then on each keeps only its lane in its state file. The gateway maintainer doesn't
+track the web app's PRs: when it needs one, it reads it on the forge. The backend-expert
+hands its rate-limit PR to the gateway maintainer alone. That maintainer approves first and
+then asks the other for the second read, once, at the head it approved. The second reader posts its verdict on the PR and answers in one
+line. The merge follows with no notice before or after it: the forge shows it. When the
+release owner freezes the default branch before the tag, it opens an issue with the hold
+label, and the other maintainer's merge step finds it there.
 
 ## A support ticket
 
