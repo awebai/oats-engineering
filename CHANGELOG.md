@@ -1,5 +1,48 @@
 # Changelog
 
+## 1.11.0 - 2026-10-23
+
+The release lane holds the final say, and a new maintainer joins a lane before it acts.
+
+### Added
+
+- **The release lane** (`/cross-review-peer`, the maintainer inject). One lane is the
+  release lane. Its maintainer owns, plans and tags every release and keeps the lane map
+  unless the map names another keeper. The map says, for each other lane, when a merge
+  needs its sign-off: on every merge, or only on a significant one (a product decision,
+  the roadmap, a contract, or what the lane's maintainer judges important). The lane's
+  maintainer asks for the sign-off once, at the head both readers approved, and merges once
+  it is on the PR; when the release lane's maintainer is already the second reader, its
+  verdict is the sign-off. A lane that merges on its own still agrees its releases with the
+  release lane, on the release plan, and never tags. A maintainer alone holds the release
+  lane too.
+- **Joining as a new maintainer** (`/cross-review-peer`, `/maintainer-intake`, the inject). A
+  maintainer the lane map doesn't name, whether a new spawn, a new machine or a successor,
+  asks the map's keeper once for its lane, and until the map names it reviews, merges,
+  tags and launches nothing. A successor takes a lane only when the map or the hand-over
+  says so.
+- **A maintainer's harvest checkpoints** (the inject): a feature ready, a release or deploy
+  shipped, and a direction decision with the human. The maintainer runs its knowledge
+  layer's harvest procedure at each one instead of waiting for a task to finish.
+
+### Changed
+
+- `/pr-review`'s merge step checks the release lane's sign-off at the head when the map asks
+  for one. `/plan-release`: the release owner is the release lane's maintainer. Peers
+  message each other for two more things: a sign-off and joining.
+- `docs/how-the-work-flows.md`: the lanes example gains the sign-off and a joining maintainer.
+
+### What to do
+
+- **Peer maintainers:** name the release lane in your map, say for each other lane whether
+  every merge or only a significant one needs its sign-off, and name who keeps the map.
+- **A maintainer alone:** nothing.
+
+### Unchanged
+
+- Requires OATS 0.30.0 or later. No skill is added or removed. The developer, expert and
+  code-review capabilities only change version.
+
 ## 1.10.0 - 2026-10-13
 
 Maintainers work in lanes, without keeping each other's picture and without a message per
