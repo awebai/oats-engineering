@@ -23,7 +23,8 @@ The release lane holds the final say, and a new maintainer joins a lane before i
   says so.
 - **A maintainer's harvest checkpoints** (the inject): a feature ready, a release or deploy
   shipped, and a direction decision with the human. The maintainer runs its knowledge
-  layer's harvest procedure at each one instead of waiting for a task to finish.
+  layer's harvest procedure at each one, as that layer's rules allow (oats.okf 5.3.0 and
+  later name these checkpoints), instead of waiting for a task to finish.
 
 ### Changed
 

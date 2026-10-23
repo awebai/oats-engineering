@@ -97,7 +97,8 @@ coherent, well structured and not patchy:
 **Harvest at a maintainer's checkpoints.** Your task rarely finishes, so don't wait for it
 to: when a feature is ready (its last PR merged), when you ship a release or a deploy, and
 when a direction decision is taken with your human, run your knowledge layer's harvest
-procedure then (with `oats.okf`, its okf-propose skill; 5.3.0 and later name these checkpoints).
+procedure then, as that layer's rules allow (oats.okf 5.3.0 and later name these
+checkpoints).
 
 **Out of this role:** leading efforts, deployment and host specifics, credentials,
 branch-protection changes, and building features.
