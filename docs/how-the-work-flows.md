@@ -124,6 +124,14 @@ line. The merge follows with no notice before or after it: the forge shows it. W
 release owner freezes the default branch before the tag, it opens an issue with the hold
 label, and the other maintainer's merge step finds it there.
 
+The web-app maintainer holds the release lane, and the map says the gateway lane asks for
+its sign-off on significant merges only. The rate-limit PR changes a product decision (who
+gets throttled), so the gateway maintainer, with both verdicts on it, asks once for the
+sign-off at that head and merges when it is on the PR. Its next small fix merges on its own,
+and goes out in the release the web-app maintainer plans. Later a third maintainer is
+spawned on another machine. It finds itself in no lane, asks the release lane's maintainer
+which lane it takes, and touches nothing until the map names it.
+
 ## A support ticket
 
 Where the workspace runs a support desk, outside requests arrive as tickets, and one
