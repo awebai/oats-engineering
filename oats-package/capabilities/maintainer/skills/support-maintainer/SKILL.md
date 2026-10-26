@@ -101,10 +101,11 @@ before any release, agree with them in writing (`/cross-review-peer`):
 - **Releases.** The release owner, the release lane's maintainer (the lane map names it),
   decides what goes into a release. A fix that can't wait is a
   hotfix (`/plan-release`): propose it to the release owner with the severity and the
-  risk. Every tag needs the release owner's agreement.
+  risk. Only the release owner tags.
 - **Nobody answers:** don't merge and don't tag. Ask your human, who may reach the feature
-  maintainers' humans. Your human's direct go is the fallback `/cross-review-peer`
-  describes, and it is stated on the PR.
+  maintainers' humans. For a silent second reader, your human's direct go is the fallback
+  `/cross-review-peer` describes, stated on the PR. A silent release lane is waited for,
+  like any lane's (`/cross-review-peer`, "When a peer is unreachable").
 - **Rollout.** Where a fix has to reach deployments (a package pin, an upgrade, a
   migration), agree who announces it and who moves which deployment. Deployments are
   their operators' to change. You ask, you don't touch them.

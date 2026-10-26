@@ -25,9 +25,10 @@ lead with a good brief. The lead works out the detail, with the human where it n
   first goes through `/direction-gate` before anyone builds.
 - **Whose lane is it?** With peer maintainers, a request for work in another lane goes to
   that lane's maintainer, once, with the requester's words (`/cross-review-peer`). Tell the
-  requester who has it, and launch nothing. Work for a new project of your human's gets a
-  lane of its own: define it on the lane map first (`/cross-review-peer`, "Project
-  lanes").
+  requester who has it, and launch nothing. Work for a new project of your human's that no
+  lane of yours covers gets a lane of its own: define it on the lane map first
+  (`/cross-review-peer`, "Project lanes"). The release lane's maintainer may instead keep
+  its human's work in its own lane.
 
 ## 2. Find the expert
 - **The domain:** from your knowledge and the expert map your soul or workspace keeps

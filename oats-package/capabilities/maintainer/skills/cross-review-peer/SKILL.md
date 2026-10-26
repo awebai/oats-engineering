@@ -16,9 +16,12 @@ Write it down where all of you can read it (an issue or a file on the forge), an
 - **The release lane:** its label, its maintainer and their human (below).
 - **A line per project lane:** its name and label, what it covers (the project: areas of
   the repository, kinds of work, or whose requests), its maintainers and their human, its
-  second reader, and its arrangement when it isn't the default (below).
+  second reader, and its arrangement when it isn't the default (below). A lane with one
+  maintainer names the release lane's maintainer as its second reader, or another peer.
 - **How a PR shows its lane:** a label (`lane:<name>`), put on by its owner or by the first
-  maintainer who sees it without one. Every effort and PR is in exactly one lane.
+  maintainer who sees it without one. Every effort and PR is in exactly one lane: the lane
+  of the effort that produced it. A new lane's line names its project, not another lane's
+  areas.
 - **The hold label** (`hold`, unless you agree another).
 - **How you reach each other.**
 
@@ -35,6 +38,10 @@ counts. Its maintainer:
   branch;
 - **keeps the lane map.**
 
+The release lane may hold work of its own too: its release-prep PRs, and the work its human
+keeps in it. Those PRs get their second reader like any other, and its maintainer merges
+them.
+
 Every lane releases through it: whatever its arrangement, a lane agrees with the release
 lane's maintainer what goes into a release and when, on the release plan (`/plan-release`),
 and never tags. A maintainer alone holds the release lane, and its lane is the whole
@@ -46,8 +53,8 @@ Every lane other than the release lane is a project lane: one per project.
   nobody's sign-off: it adds the lane's line to the map, creates its label, and puts the
   label on the lane's PRs.
 - **Several maintainers may share a lane,** and a human may launch maintainers into one. A
-  maintainer may launch another maintainer into its lane too, independent of itself, never
-  as its child (`/launch-work`). Each maintainer in a shared lane reviews the PRs handed to
+  maintainer launches another maintainer into a lane only when its human asks for one,
+  independent of itself, never as its child (`/launch-work`). Each maintainer in a shared lane reviews the PRs handed to
   it and tracks the efforts it launched; another maintainer of the lane is the natural
   second reader.
 - **Inside the lane,** its maintainers launch the work, with experts leading it
@@ -56,8 +63,9 @@ Every lane other than the release lane is a project lane: one per project.
   CI green, the lane's maintainer hands the PR to the release lane's maintainer once, with
   `/pr-review`'s handoff template. The release lane reviews it at that head (`/pr-review`),
   and merges it or returns it to the lane's maintainer, who takes the findings to the PR's
-  owner. When the release lane's maintainer is already the PR's second reader, its review
-  is the final review: one read, not two.
+  owner. When the release lane's maintainer is the PR's second reader, the second-read
+  request is the hand-over: it reviews once, as the final review, and merges or returns
+  it.
 
 ### A lane's arrangement
 The hand-over above is the default, and a new lane starts with it. The map may record

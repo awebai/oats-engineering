@@ -8,7 +8,8 @@ description: Review a pull request of your lane at an exact head through four ga
 **Review only your lane's PRs.** With peer maintainers, a PR in another lane is its
 maintainer's: you read it only as its second reader, when that maintainer asks you at the
 head it approved (`/cross-review-peer`), or, as the release lane's maintainer, for its
-final review when the lane hands it to you (Hand over, below). A PR that maintainer
+final review when the lane hands it to you (Hand over, below) or for a sign-off its lane's
+arrangement asks for. A PR that maintainer
 authored itself (its release-prep PR, a small fix) has no approval of its own to wait for:
 you review it when its author asks, at a named head with CI green.
 
@@ -89,7 +90,8 @@ ask the PR's second reader once you approve, at that head (`/cross-review-peer`)
 In a project lane with the default arrangement, you don't merge: the release lane does
 (`/cross-review-peer`, "Project lanes").
 - **When:** your approval and the second reader's verdict are on the PR at the same head,
-  CI is green on it, and no hold applies.
+  CI is green on it, and no hold applies. When the second reader is the release lane's
+  maintainer, your request for its second read is the hand-over: it reads once.
 - **How:** once, to the release lane's maintainer, with the handoff template
   ([references/reviewed-delivery.md](references/reviewed-delivery.md)): the PR, the
   approved head, both verdicts, and anything it should know that the PR doesn't say.
@@ -102,15 +104,15 @@ with the four gates, as its final reader: the lane's reviews inform yours and do
 it. Post your verdict on the PR at that head. Merge it (below), or RETURN it and tell the
 lane's maintainer in one line: it takes the findings to the PR's owner and hands the PR to
 you again at the fixed head. When you were already the PR's second reader, that verdict is
-your final review.
+your final review: merge or return it then, with no second message.
 
 Where your lane's arrangement lets you merge, with or without the release lane's sign-off,
 skip the hand-over and merge as below.
 
 ## Merge
-- **Who merges:** the release lane's maintainer, for a PR handed to it; the lane's
-  maintainer, where its lane's arrangement lets it merge (`/cross-review-peer`, "A lane's
-  arrangement").
+- **Who merges:** the release lane's maintainer, for a PR handed to it and for its own
+  lane's PRs (a maintainer alone merges every PR); a project lane's maintainer, where its
+  lane's arrangement lets it merge (`/cross-review-peer`, "A lane's arrangement").
 - Only with the authority for it, an approval at the current head, its second reader's
   verdict at that head (`/cross-review-peer`), and green CI. For a PR handed to the release
   lane, its own final verdict at that head too.

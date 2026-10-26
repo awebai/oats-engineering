@@ -29,8 +29,9 @@ you say so.
 shape) is your overview: what's open at which head, who is on what, what waits on whom, the
 holds and their reasons. Rebuild it from the sources at every intake, and keep it current
 between intakes: every verdict, merge, launch, hold and decision updates it when it happens.
-Exact references only, never "the latest". It holds your lane and nothing of a peer's: the
-forge is the one copy of a PR's state, and you read another lane there when you need it.
+Exact references only, never "the latest". It holds your lane and nothing of a peer's (the
+release lane also tracks what is handed to it): the forge is the one copy of a PR's state,
+and you read another lane there when you need it.
 
 **Load the skills; don't work from memory.**
 - `/maintainer-intake`: at every session start and after compaction. On a wake, handle the

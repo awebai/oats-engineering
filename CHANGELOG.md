@@ -15,8 +15,10 @@ work.
 - **The hand-over to the release lane** (`/cross-review-peer`, `/pr-review`). By default a
   project lane launches its work, reviews it and gives each PR its one second reader, then
   hands the PR at the approved head to the release lane, which does the final review and
-  merges. When the release lane's maintainer is the PR's second reader, its read is the
-  final review.
+  merges. When the release lane's maintainer is the PR's second reader, the second-read
+  request is the hand-over and its one read is the final review. The release lane may hold
+  work of its own (its release-prep PRs, its human's work) and merges those PRs; a PR is in
+  the lane of the effort that produced it.
 - **A lane's arrangement** (`/cross-review-peer`). The map may record another arrangement
   for a lane, such as sign-off on every merge or only on significant ones, and the map's
   arrangement is the authority. A new lane starts with the default; another arrangement
