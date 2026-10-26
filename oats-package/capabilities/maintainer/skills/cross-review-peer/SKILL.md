@@ -13,7 +13,8 @@ shows.
 
 ## The lane map
 Write it down where all of you can read it (an issue or a file on the forge), and keep to it:
-- **The release lane:** its label, its maintainer and their human (below).
+- **The release lane:** its label, its maintainer and their human, and the second reader
+  of its own PRs (below).
 - **A line per project lane:** its name and label, what it covers (the project: areas of
   the repository, kinds of work, or whose requests), its maintainers and their human, its
   second reader, and its arrangement when it isn't the default (below). A lane with one
@@ -54,9 +55,9 @@ Every lane other than the release lane is a project lane: one per project.
   label on the lane's PRs.
 - **Several maintainers may share a lane,** and a human may launch maintainers into one. A
   maintainer launches another maintainer into a lane only when its human asks for one,
-  independent of itself, never as its child (`/launch-work`). Each maintainer in a shared lane reviews the PRs handed to
-  it and tracks the efforts it launched; another maintainer of the lane is the natural
-  second reader.
+  independent of itself, never as its child (`/launch-work`). Each maintainer in a shared
+  lane reviews the PRs handed to it and tracks the efforts it launched; another maintainer
+  of the lane is the natural second reader.
 - **Inside the lane,** its maintainers launch the work, with experts leading it
   (`/launch-work`), review each PR (`/pr-review`) and give it its one second reader.
 - **The hand-over.** At the head the lane's maintainer and the second reader approved, with
