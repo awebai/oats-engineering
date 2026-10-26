@@ -85,8 +85,9 @@ and after a compaction: it reads its knowledge first (the roadmap, the decisions
 rebuilds what's open, at which head, and who is waiting on whom. When a message wakes it, it
 handles that message and updates what it touches; it doesn't sweep again.
 
-Asked for the rate limit, it consults its knowledge (rate limits sit in the gateway, by an
-earlier decision) and launches the work with `/launch-work`. No live expert is on the
+A human asks it, in one sentence, to rate-limit the public API. That is enough: the
+maintainer doesn't ask for a spec or write one. It consults its knowledge (rate limits sit
+in the gateway, by an earlier decision) and launches the work with `/launch-work`. No live expert is on the
 gateway, so it spawns a `backend-expert` with `--relation unrelated`, briefed with the goal,
 who asked and that decision, and tells the requester the expert's name. The backend-expert
 leads from there, as in the first section. Had a human started the backend-expert directly,
@@ -110,27 +111,33 @@ it records what the next
 maintainer needs: the roadmap moved on, the decision that public error shapes are
 versioned, a coherence rule about where rate limits live.
 
-## Two maintainers, two lanes
+## A release lane and project lanes
 
-The project grows a second maintainer. The two write a lane map on the forge
-(`/cross-review-peer`): one takes the gateway and the API, the other the web app and the
-releases, and each is the other's second reader. Every PR carries its lane's label.
+The project grows. The web-app maintainer holds the **release lane**: it does the final
+review and the merge, plans and tags every release, and keeps the lane map on the forge
+(`/cross-review-peer`). A second human wants the gateway and the API worked on, so their
+maintainer defines a **project lane** for it, with nobody's sign-off: it adds the lane's
+line to the map (`lane:gateway`, what it covers, its maintainer, their human, its second
+reader: the release lane's maintainer) and puts the label on its PRs.
 
 From then on each keeps only its lane in its state file. The gateway maintainer doesn't
 track the web app's PRs: when it needs one, it reads it on the forge. The backend-expert
 hands its rate-limit PR to the gateway maintainer alone. That maintainer approves first and
-then asks the other for the second read, once, at the head it approved. The second reader posts its verdict on the PR and answers in one
-line. The merge follows with no notice before or after it: the forge shows it. When the
-release owner freezes the default branch before the tag, it opens an issue with the hold
-label, and the other maintainer's merge step finds it there.
+then asks for the second read, once, at the head it approved. The second reader is the
+release lane's maintainer, so its read is also the final review: it posts its verdict on
+the PR, merges, and tells the gateway maintainer in one line. When it freezes the default
+branch before the tag, it opens an issue with the hold label, and every lane's merge step
+finds it there.
 
-The web-app maintainer holds the release lane, and the map says the gateway lane asks for
-its sign-off on significant merges only. The rate-limit PR changes a product decision (who
-gets throttled), so the gateway maintainer, with both verdicts on it, asks once for the
-sign-off at that head and merges when it is on the PR. Its next small fix merges on its own,
-and goes out in the release the web-app maintainer plans. Later a third maintainer is
-spawned on another machine. It finds itself in no lane, asks the release lane's maintainer
-which lane it takes, and touches nothing until the map names it.
+Later the gateway lane's human launches a second maintainer into the lane, on another
+machine. It reads the map, adds itself to the gateway line, and takes the PRs handed to it.
+The two gateway maintainers are now each other's second reader. At the head both approved,
+the PR's maintainer hands it to the release lane once; the release lane reviews it as its
+final reader and merges. The gateway lane's human then asks to move faster, and the release
+lane agrees to another arrangement, recorded on the map: the gateway lane merges on its own
+and asks for the release lane's sign-off only on significant merges (a product decision,
+the roadmap, a contract). Its next small fix merges on its own, and goes out in the release
+the release lane plans.
 
 ## A support ticket
 

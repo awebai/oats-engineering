@@ -92,12 +92,14 @@ before any release, agree with them in writing (`/cross-review-peer`):
 - **Who drives the area.** Before the lead starts, check whether a feature maintainer
   already has an effort, an open PR or a hold in the same area or release. If one does,
   agree how the fix fits: folded into their effort, landed before theirs, or after it.
-- **Merges.** Support is a lane, and its second reader is the feature maintainer who
-  drives the area: every support merge needs that maintainer's verdict on the PR, beyond
-  your own review. A fix that touches a contract, or code a feature PR has in review, is
-  read by the maintainer of that lane. Never merge over a peer's hold or their RETURN.
-- **Releases.** The release owner, the maintainer planning the next release (ask the
-  feature maintainers who it is), decides what goes into it. A fix that can't wait is a
+- **Merges.** Support is a project lane like any other (`/cross-review-peer`), and its
+  second reader is the feature maintainer who drives the area: every support PR needs that
+  maintainer's verdict on the PR, beyond your own review. A fix that touches a contract, or
+  code a feature PR has in review, is read by the maintainer of that lane. Then it goes to
+  the release lane as the support lane's arrangement says. Never merge over a peer's hold
+  or their RETURN.
+- **Releases.** The release owner, the release lane's maintainer (the lane map names it),
+  decides what goes into a release. A fix that can't wait is a
   hotfix (`/plan-release`): propose it to the release owner with the severity and the
   risk. Every tag needs the release owner's agreement.
 - **Nobody answers:** don't merge and don't tag. Ask your human, who may reach the feature

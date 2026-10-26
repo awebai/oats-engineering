@@ -1,5 +1,59 @@
 # Changelog
 
+## Unreleased
+
+One release lane, and one lane per project. Humans give the picture; maintainers launch the
+work.
+
+### Added
+
+- **Project lanes** (`/cross-review-peer`, the maintainer inject). Every lane other than the
+  release lane is a project lane. A maintainer defines one when its human's work needs it,
+  with nobody's sign-off, by adding its line to the lane map: name, label, what it covers,
+  its maintainers and their human, its second reader. A human may launch maintainers into a
+  lane, several maintainers may share one, and a finished project's lane is marked closed.
+- **The hand-over to the release lane** (`/cross-review-peer`, `/pr-review`). By default a
+  project lane launches its work, reviews it and gives each PR its one second reader, then
+  hands the PR at the approved head to the release lane, which does the final review and
+  merges. When the release lane's maintainer is the PR's second reader, its read is the
+  final review.
+- **A lane's arrangement** (`/cross-review-peer`). The map may record another arrangement
+  for a lane, such as sign-off on every merge or only on significant ones, and the map's
+  arrangement is the authority. A new lane starts with the default; another arrangement
+  needs the release lane's agreement, and changing one takes the lane's humans and the
+  release lane.
+- **A human's high-level picture is the maintainer's normal intake** (the inject,
+  `/launch-work`). The maintainer clarifies only what changes who leads the work, writes the
+  brief and launches the right expert, one per independent effort; the expert writes the
+  spec and plan. The maintainer never writes specs.
+- **Launching a maintainer into a lane** (`/launch-work`), when a human asks for one:
+  independent of the launcher, briefed with the lane and its human.
+
+### Changed
+
+- **Joining** (`/cross-review-peer`, `/maintainer-intake`, the inject). A new maintainer reads
+  the map and takes the lane its human or launcher names, or defines one. This replaces
+  asking the map's keeper which lane is its own and acting on nothing until the map names
+  it.
+- `/maintainer-intake` and its state file: in a shared lane, a maintainer tracks the efforts
+  it launched and the PRs handed to it; the release lane also tracks the PRs handed to it
+  and the sign-offs asked of it. `/plan-release`: every lane agrees its releases with the
+  release lane on its plan. `/support-maintainer`: support is a project lane, and the
+  release owner is the release lane's maintainer.
+- `README.md` and `docs/how-the-work-flows.md` describe the release lane and project lanes.
+
+### Unchanged
+
+- Contracts are decided before they're built, whatever the lane (`/direction-gate`); every
+  lane agrees with the release lane what goes into a release, and only the release lane
+  tags; each PR gets one second reader; nobody merges over a RETURN or a hold.
+
+### What to do
+
+- **Peer maintainers:** in your lane map, call one lane the release lane, give each other
+  lane its line, and record any lane whose arrangement isn't the default hand-over.
+- **A maintainer alone:** nothing.
+
 ## 1.11.0 - 2026-10-23
 
 The release lane holds the final say, and a new maintainer joins a lane before it acts.
