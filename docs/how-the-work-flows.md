@@ -88,8 +88,9 @@ handles that message and updates what it touches; it doesn't sweep again.
 A human asks it, in one sentence, to rate-limit the public API. That is enough: the
 maintainer doesn't ask for a spec or write one. It consults its knowledge (rate limits sit
 in the gateway, by an earlier decision) and launches the work with `/launch-work`. No live expert is on the
-gateway, so it spawns a `backend-expert` with `--relation unrelated`, briefed with the goal,
-who asked and that decision, and tells the requester the expert's name. The backend-expert
+gateway, so it spawns a `backend-expert` as its child (`--parent`), briefed with the goal,
+who asked and that decision, and tells the requester the expert's name. The maintainer is
+its parent, not its coordinator: the expert leads. The backend-expert
 leads from there, as in the first section. Had a human started the backend-expert directly,
 the expert would have told the maintainer what it was starting.
 
@@ -138,6 +139,15 @@ lane agrees to another arrangement, recorded on the map: the gateway lane merges
 and asks for the release lane's sign-off only on significant merges (a product decision,
 the roadmap, a contract). Its next small fix merges on its own, and goes out in the release
 the release lane plans.
+
+Later the gateway lane narrows to the API, and the release lane opens `lane:proxy` on the
+map for the gateway proxy, with no maintainer yet. The gateway maintainer relabels the open
+proxy PRs: their verdicts carry, since a label change is not a new head, and the new lane
+keeps the gateway lane's arrangement, as the release lane agrees. When a human asks the
+web-app maintainer for a proxy fix, it launches nothing: the proxy lane has no maintainer,
+so it spawns one, independent of itself, briefed with the lane and the human's words, and
+tells the human its instance name, its lane and how to reach it. The new maintainer claims
+the lane by adding itself to its line, and launches the fix.
 
 ## A support ticket
 

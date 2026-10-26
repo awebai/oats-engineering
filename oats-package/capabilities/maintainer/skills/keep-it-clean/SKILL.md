@@ -1,6 +1,6 @@
 ---
 name: keep-it-clean
-description: Keep the project clean as it grows - an honest follow-up list, docs and release notes in step with every merge, drift and duplication across experts caught and consolidated, and dead PRs, branches, instances, docs and issues closed or retired - plus the knowledge pass that keeps the roadmap, architectural calls and coherence rules current. Use before every task boundary, and when an intake shows things piling up.
+description: Keep the project clean as it grows - an honest follow-up list, docs and release notes in step with every merge, drift and duplication across experts caught and consolidated, dead PRs, branches, instances, docs and issues closed or retired, and a cancelled effort that leaves nothing half-done - plus the knowledge pass that keeps the roadmap, architectural calls and coherence rules current. Use before every task boundary, when an intake shows things piling up, and when an effort is cancelled.
 ---
 
 # Keep it clean
@@ -36,6 +36,15 @@ Record the shape as a coherence rule.
   issues nobody will do: close or retire them with a one-line reason. A lead you launched
   for a requester is retired on the requester's word (`/launch-work`).
 - Ask before retiring what someone else owns.
+
+## A cancelled effort
+An effort cancelled partway leaves nothing half-done:
+- **Code merged but not yet released** that would ship inert (unused, or behind a switch
+  nothing turns on): revert it, rather than carry it into the next release.
+- **Its decision in your knowledge:** mark it deferred or superseded, with the reason,
+  rather than leave it in force.
+- **Its design record** (the issue, the spec, the proposal): close it with the reason.
+- **Its instances:** retire them, the lead and what it launched (`/launch-work`).
 
 ## The knowledge pass
 At the same boundary, keep your knowledge current (the maintainer inject says what it
