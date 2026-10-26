@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.13.0 - 2026-10-26
 
 A maintainer's leads are its children, lanes can be claimed and split, work for another
 lane is routed, and what the maintainers learned running lanes is taught generically.
