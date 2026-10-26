@@ -1,66 +1,108 @@
 ---
 name: cross-review-peer
-description: Work with one or more peer maintainers, each in a lane of its own - the written lane map (what belongs to each lane, its maintainer, its second reader), the release lane that holds the final say on merges and releases, joining as a new maintainer, one second reader for every PR, asked once at the head the lane's maintainer approved, the few things peers message each other for, holds as a label on the forge, a lane changing hands, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever a peer maintainer is involved, and before you message one.
+description: Work with peer maintainers in lanes - one release lane that does the final review and merge, owns every release and keeps the lane map, and one project lane per project, which any maintainer defines when its human's work needs it, with nobody's sign-off - the written lane map and each lane's arrangement, joining or defining a lane as a new maintainer, maintainers sharing a lane, the hand-over of an approved PR to the release lane, one second reader for every PR, the few things peers message each other for, holds as a label on the forge, a lane changing hands or closing, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever you join or define a lane, whenever a peer maintainer is involved, and before you message one.
 ---
 
 # Work in lanes with your peers
 
-Maintainers usually work in pairs or more, often on different machines and for different
-humans. Each holds a **lane**: a share of the project's work that it alone reviews, merges
-and tracks. Every PR still gets a second pair of eyes: one second reader, not every peer.
+Maintainers usually work several to a project, often on different machines and for
+different humans. The work is split into **lanes**: one release lane, and one lane per
+project. Every PR still gets a second pair of eyes: one second reader, not every peer.
 What peers don't do is keep each other's picture, or tell each other what the forge already
 shows.
 
 ## The lane map
 Write it down where all of you can read it (an issue or a file on the forge), and keep to it:
-- **The lanes.** For each one: what belongs to it (areas of the repository, kinds of work,
-  or whose requests), its maintainer, its second reader, and their humans.
+- **The release lane:** its label, its maintainer and their human, and the second reader
+  of its own PRs (below).
+- **A line per project lane:** its name and label, what it covers (the project: areas of
+  the repository, kinds of work, or whose requests), its maintainers and their human, its
+  second reader, and its arrangement when it isn't the default (below). A lane with one
+  maintainer names the release lane's maintainer as its second reader, or another peer.
 - **How a PR shows its lane:** a label (`lane:<name>`), put on by its owner or by the first
-  maintainer who sees it without one. Every effort and PR is in exactly one lane.
+  maintainer who sees it without one. Every effort and PR is in exactly one lane: the lane
+  of the effort that produced it. A new lane's line names its project, not another lane's
+  areas.
 - **The hold label** (`hold`, unless you agree another).
-- **The release lane** and its maintainer (below), and for each other lane when a merge
-  needs its sign-off: on every merge, or only on a significant one.
-- **Who keeps the map:** the release lane's maintainer, unless you agree another.
 - **How you reach each other.**
 
-When the map doesn't cover a question, ask the peer it concerns; don't assume authority you
-weren't given.
+The release lane's maintainer keeps the map, unless it names another keeper. Each project
+lane's maintainers write and update their own line. When the map doesn't cover a question,
+ask the peer it concerns; don't assume authority you weren't given.
 
 ## The release lane
-One lane is the **release lane**, and its maintainer holds the final say on what reaches
-the default branch and a release:
-- **It owns every release:** it plans it, tags it and tells whoever deploys it
+One lane is the **release lane**. Your project may call it something else; the role is what
+counts. Its maintainer:
+- **does the final review and the merge** of what the project lanes hand it (below);
+- **owns every release:** it plans it, tags it and tells whoever deploys it
   (`/plan-release`, `/ship-release`). A freeze before a tag is its hold on the default
-  branch.
-- **The map says, for each other lane, when a merge needs its sign-off:**
-  - **every merge:** the lane merges nothing without it;
-  - **a significant merge only:** the lane merges on its own, and asks for the sign-off
-    on a PR that changes a product decision, the roadmap or a contract, or that its
-    maintainer judges important. In doubt, ask.
+  branch;
+- **keeps the lane map.**
 
-  The lane's maintainer asks for it once, at the head it and the second reader approved,
-  and merges only once the sign-off is on the PR at that head (`/pr-review`). When the
-  release lane's maintainer is already that PR's second reader, its verdict is the
-  sign-off: one read, not two.
-- **Every lane releases through it.** A lane that merges on its own still agrees with the
-  release lane's maintainer what goes into a release and when, on the release plan
-  (`/plan-release`); it never tags.
-- **It keeps the lane map** unless the map names another keeper, and gives lanes to new
-  maintainers (below).
+The release lane may hold work of its own too: its release-prep PRs, and the work its human
+keeps in it. Those PRs get their second reader like any other, and its maintainer merges
+them.
 
-A maintainer alone holds the release lane too.
+Every lane releases through it: whatever its arrangement, a lane agrees with the release
+lane's maintainer what goes into a release and when, on the release plan (`/plan-release`),
+and never tags. A maintainer alone holds the release lane, and its lane is the whole
+project.
+
+## Project lanes
+Every lane other than the release lane is a project lane: one per project.
+- **Defining one.** A maintainer defines a lane when its human's work needs one, with
+  nobody's sign-off: it adds the lane's line to the map, creates its label, and puts the
+  label on the lane's PRs.
+- **Several maintainers may share a lane,** and a human may launch maintainers into one. A
+  maintainer launches another maintainer into a lane only when its human asks for one,
+  independent of itself, never as its child (`/launch-work`). Each maintainer in a shared
+  lane reviews the PRs handed to it and tracks the efforts it launched; another maintainer
+  of the lane is the natural second reader.
+- **Inside the lane,** its maintainers launch the work, with experts leading it
+  (`/launch-work`), review each PR (`/pr-review`) and give it its one second reader.
+- **The hand-over.** At the head the lane's maintainer and the second reader approved, with
+  CI green, the lane's maintainer hands the PR to the release lane's maintainer once, with
+  `/pr-review`'s handoff template. The release lane reviews it at that head (`/pr-review`),
+  and merges it or returns it to the lane's maintainer, who takes the findings to the PR's
+  owner. When the release lane's maintainer is the PR's second reader, the second-read
+  request is the hand-over: it reviews once, as the final review, and merges or returns
+  it.
+
+### A lane's arrangement
+The hand-over above is the default, and a new lane starts with it. The map may record
+another arrangement for a lane, and the map's arrangement for a lane is the authority. Two
+common ones:
+- **Sign-off on every merge:** the lane merges its own PRs, each only once the release
+  lane's sign-off is on the PR at the head being merged.
+- **Sign-off on significant merges only:** the lane merges on its own, and asks for the
+  sign-off on a PR that changes a product decision, the roadmap or a contract, or that its
+  maintainer judges important. In doubt, ask.
+
+A sign-off is asked once, at the head the lane's maintainer and the second reader
+approved, and the lane merges only once it is on the PR at that head (`/pr-review`). When
+the release lane's maintainer is already the PR's second reader, its verdict is the
+sign-off.
+
+An arrangement other than the default goes on the map only with the release lane's
+agreement, since it hands over the final merge. Changing a lane's arrangement takes its
+humans and the release lane.
+
+### A lane that's done
+When its project is finished, the lane's maintainer marks its line closed on the map, once
+its PRs are merged or closed. A closed lane's label stays on its old PRs.
 
 ## Joining as a new maintainer
-A maintainer instance new to the project holds no lane until the map gives it one. That
-covers a new spawn, a new machine and a successor alike.
-1. Read the lane map first, and find the release lane's maintainer.
-2. Ask the map's keeper once which lane is yours: a lane the map hands to you (a successor
-   is named in it, or in its predecessor's hand-over), a lane with no live maintainer, or a
-   new one. The keeper updates the map.
-3. Until the map names you, review, merge, tag and launch nothing. Read what you need.
+A maintainer instance new to the project (a new spawn, a new machine, a successor) holds no
+lane until it takes one:
+1. Read the lane map, and find the release lane's maintainer.
+2. Take the lane your human or your launcher names, and add yourself to its line. With no
+   lane named, define one for your human's work (above), or ask your human which lane is
+   yours.
+3. Until you have a lane, review, merge, tag and launch nothing. Read what you need.
 
-A successor takes its predecessor's lane only when the map or the predecessor's hand-over
-says so: a similar name is not a lane.
+A successor takes its predecessor's place in a lane only when the map, its human or the
+predecessor's hand-over says so: a similar name is not a lane. A lane's arrangement doesn't
+change because a maintainer joins it.
 
 ## What you share, and what you don't
 - **The forge is the one copy of a PR's state:** its lane, head, CI, verdicts and holds.
@@ -76,10 +118,10 @@ says so: a similar name is not a lane.
 Every PR gets one second reader: one, not a read from every maintainer. This supersedes
 the earlier pairing practice, in which every peer reviewed every PR in parallel and every
 verdict was bound again at every head.
-- **Who:** the second reader its lane names. A PR that changes something another lane's
-  code or text reads (a contract, an answer, a sentence a test reads) names that lane on
-  the PR, and that lane's maintainer is its second reader. It replaces the lane's usual
-  second reader; it doesn't add a third.
+- **Who:** the second reader its lane names, or another maintainer of a shared lane. A PR
+  that changes something another lane's code or text reads (a contract, an answer, a
+  sentence a test reads) names that lane on the PR, and that lane's maintainer is its
+  second reader. It replaces the lane's usual second reader; it doesn't add a third.
 - **When:** after the lane's maintainer. You review first (`/pr-review`); at the head you
   approve, you ask the second reader once, with the handoff template (`/pr-review`'s
   reference). A second reader doesn't read a head its lane's maintainer hasn't approved: a
@@ -87,29 +129,31 @@ verdict was bound again at every head.
   maintainer authored (**Your own PRs**, below).
 - **The second reader** reviews with `/pr-review`, posts its verdict on the PR at that head,
   and tells you in one line.
-- **A head that moves after the verdicts:** `/pr-review` says when both verdicts carry (the
-  branch was only brought up to date) and when the delta goes back to both readers.
+- **A head that moves after the verdicts:** `/pr-review` says when the verdicts carry (the
+  branch was only brought up to date) and when the delta goes back to the readers.
 - **Your own PRs** (a release-prep PR, a small fix) are in your lane, and you don't approve
   your own. Their second reader is their reviewer: ask it when the PR is ready, at a named
   head with CI green, and it reviews without waiting for an approval of yours.
-- Don't merge over a second reader's RETURN. If you disagree, put both positions on the PR,
-  each with its evidence, and take it to the humans who decide.
+- Don't merge over a RETURN. If you disagree, put both positions on the PR, each with its
+  evidence, and take it to the humans who decide.
 
 ## What you message a peer for
 Each of these once, to the one peer it is for:
 - **a second read:** the request at an exact head, and its verdict in one line;
+- **a hand-over to the release lane,** or a sign-off where the lane's arrangement asks for
+  one, at an exact head, and its verdict in one line;
 - **a hold that must stop work already in flight** (below);
 - **the release plan,** where the peer's lane has PRs in it or left out of it
   (`/plan-release`);
 - **a lane changing hands** (below);
 - **a request that belongs to the peer's lane,** passed on with the requester's words;
-- **a sign-off from the release lane,** where the map asks for one, at an exact head;
-- **joining:** a new maintainer asking the map's keeper for its lane.
+- **an arrangement other than the default,** proposed to the release lane's maintainer.
 
 Not these: a notice before or after a merge or a tag (the forge shows it, and `/pr-review`'s
-checks before the merge protect it), the state of your lane, or a human's word the peer
-doesn't have to act on. A published release is told once to whoever deploys it
-(`/ship-release`): they must act, and nothing else wakes them.
+checks before the merge protect it), a new lane or a maintainer joining one (the map shows
+it), the state of your lane, or a human's word the peer doesn't have to act on. A published
+release is told once to whoever deploys it (`/ship-release`): they must act, and nothing
+else wakes them.
 
 ## Holds
 A hold is the hold label on the forge, never a message alone:
@@ -123,10 +167,10 @@ A hold is the hold label on the forge, never a message alone:
   you need a confirmation; the peer answers in one line.
 
 ## A lane changes hands
-When a maintainer leaves a lane (it is retired, overloaded, or a human says so), update the
-lane map, and hand over once what the forge doesn't show: the decisions asked for and not
-yet had, the authority given and its scope, the reason behind each hold, and the efforts in
-flight with their leads.
+When a maintainer leaves a lane (it is retired, overloaded, or a human says so), update its
+line on the map, and hand over once what the forge doesn't show: the decisions asked for
+and not yet had, the authority given and its scope, the reason behind each hold, and the
+efforts in flight with their leads.
 
 ## When a peer is unreachable
 - **The second reader:** wait, or ask your human. Merging without its read is a fallback
@@ -135,12 +179,14 @@ flight with their leads.
   record of it.
 - **A lane's maintainer:** its lane waits. Don't review or merge in it; ask the humans to
   give the lane to someone (above).
+- **The release lane's maintainer:** the hand-overs and sign-offs wait. Ask your human, who
+  may reach the release lane's human. Don't merge around it.
 
 ## Without a peer
-A maintainer working alone has one lane, the whole project. It agrees with its human who
-reviews its own work (the human, or another named reviewer), writes that down, and applies
-the same rules: an exact head, the verdict on the
-PR, and the human's direct go for anything outside the agreement.
+A maintainer working alone holds the release lane, and its lane is the whole project. It
+agrees with its human who reviews its own work (the human, or another named reviewer),
+writes that down, and applies the same rules: an exact head, the verdict on the PR, and the
+human's direct go for anything outside the agreement.
 
 ## Decisions passed on from a human
 A decision you didn't hear from the human directly is a claim until you've checked it:
