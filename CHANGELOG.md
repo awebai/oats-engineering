@@ -2,28 +2,34 @@
 
 ## Unreleased
 
-A maintainer's leads are its children, lanes can be claimed and split, and what the
-maintainers learned running lanes is taught generically.
+A maintainer's leads are its children, lanes can be claimed and split, work for another
+lane is routed, and what the maintainers learned running lanes is taught generically.
 
 ### Added
 
-- **Claiming a lane** (`/cross-review-peer`, the inject). A maintainer may claim a project
-  lane that has no active maintainer, or join one, with nobody's sign-off, by adding itself
-  to the lane's line on the map, alongside defining a new lane. The release lane may open a
-  lane with no maintainer yet, for one to claim. An unreachable maintainer still holds its
-  lane, and the release lane is never claimed.
+- **Taking and claiming a lane** (`/cross-review-peer`, the inject). A maintainer takes a
+  lane when it holds none, or when its human asks it to take one on: it defines a new one,
+  or claims a project lane with no active maintainer by adding itself to the lane's line,
+  with nobody's sign-off. The release lane may open a lane with no maintainer yet, for one
+  to claim. Only the leaving maintainer, its human, or the map's keeper on that human's
+  word marks a maintainer as left; an unreachable maintainer still holds its lane; a
+  closed lane and the release lane are never claimed. Joining a lane that has an active
+  maintainer takes its human launching you into it, or the agreement of its maintainer or
+  its human.
 - **Work for another lane** (`/launch-work`, the inject). A maintainer launches only work in
   a lane it holds. Work a human asks for in another lane goes to that lane's maintainer, or,
   when the lane has no maintainer or doesn't exist yet, to a maintainer it spawns for that
-  lane, independent of itself. It tells the human plainly who has the work now.
-- **A lane that splits** (`/cross-review-peer`). The map records both lines, open PRs whose
-  area moved are relabelled, and their verdicts carry, since a label change is not a new
-  head. The new lane's arrangement is agreed with the release lane; keeping the old one for
-  the same work is the natural default.
-- **Exceptions to a hold** (`/cross-review-peer`, `/pr-review`, `/plan-release`). A comment
-  on the hold names the PR and the authority for it. A freeze before a tag carries over to
-  a patch release the human picks, and each change the human named gets an exception,
-  quoting the human.
+  lane, independent of itself, when its human asks for the work. It tells the human
+  plainly who has the work now, and how to retire a maintainer it spawned.
+- **A lane that splits** (`/cross-review-peer`). The lane's maintainers or humans split it.
+  The map records both lines; efforts move whole, with their leads and PRs, by hand-over;
+  a moved PR keeps its verdicts, since a label change is not a new head; another lane's PRs
+  keep their lane. The new lane's arrangement is agreed with the release lane; keeping the
+  old one for the same work is the natural default.
+- **Exceptions to a hold** (`/cross-review-peer`, `/pr-review`, `/plan-release`). Whoever
+  can lift the hold writes the exception on it, naming the PR, its head and the authority.
+  A freeze before a tag carries over to a patch release the human picks: each change the
+  human named, and the release-prep PR, gets an exception, quoting the human.
 - **A cancelled effort leaves nothing half-done** (`/keep-it-clean`, `/launch-work`): revert
   merged but unreleased code that would ship inert, mark its decision deferred or
   superseded, close its design record with the reason, and retire its instances.
@@ -31,16 +37,17 @@ maintainers learned running lanes is taught generically.
 ### Changed
 
 - **A maintainer's leads are its children** (the inject, `/launch-work`,
-  `/support-maintainer`). Work launched in a lane the maintainer holds is spawned as its
-  child (`--parent "$OATS_INSTANCE"`); the maintainer is its parent, not its coordinator.
-  Retiring the maintainer stops its leads first, and refuses (`E_CHILDREN_RUNNING`) while
-  one won't stop, so it is retired once its efforts are done or handed over, and a
-  successor takes its leads over in the hand-over. This replaces "never as your child". A
-  maintainer launched into a lane stays independent: a peer, not a child.
+  `/support-maintainer`, `/coordinate-experts`). Work launched in a lane the maintainer
+  holds is spawned as its child (`--parent "$OATS_INSTANCE"`); the maintainer is its
+  parent, not its coordinator. This replaces "never as your child". Stopping or retiring
+  the maintainer stops its leads first. A retire stops every lead that is its child,
+  handed over or not, keeps their homes and moves them to its own parent, so a maintainer
+  is retired once its efforts are done or a successor has taken them over and can start
+  them again. A maintainer launched into a lane stays independent: a peer, not a child.
 - **Another lane's code** (`/cross-review-peer`, `/pr-review`). A PR that changes code
-  another lane holds gets that lane's maintainer as its second reader, before the release
-  lane's final review, which doesn't skip it. A PR that changes only docs in an area the
-  release lane holds may take the release lane's final read as its second read.
+  another project lane holds gets that lane's maintainer as its second reader, before the
+  release lane's final review, which doesn't skip it. Where the area is the release
+  lane's own (its docs, for example), the release lane's one read is both.
 - **The release lane's final review is a full review** (`/pr-review`): all four gates, at
   the head handed over. A rebase with a hunk resolved by hand goes back to the lane's
   readers for that delta.
@@ -49,11 +56,13 @@ maintainers learned running lanes is taught generically.
   A peer writing it on the PR is a record, not a confirmation.
 - **Superseding a decision a human accepted** (`/direction-gate`) needs that human's own
   confirmation, cited exactly, before the knowledge change merges.
-- **Partial or failed publication** (`/ship-release`): re-run only the failed step from the
-  same tag, never retag; a credential fault goes to the human who owns the credential.
-  Installing from the artifacts CI built while publication is blocked is the human's call,
-  and the skill says what differs.
-- `README.md`, `docs/how-the-work-flows.md` and `docs/setting-up-a-workspace.md` follow.
+- **Partial or failed publication** (`/ship-release`): once the cause outside the tag is
+  fixed, re-run only the failed step from the same tag, never retag; a fault in the tagged
+  source ships as the next version. A credential fault goes to the human who owns the
+  credential. Installing from the artifacts CI built while publication is blocked is the
+  human's call, and the skill says what differs.
+- `README.md`, `docs/how-the-work-flows.md`, `docs/setting-up-a-workspace.md` and
+  `docs/example-oats.md` follow.
 
 ### Unchanged
 
@@ -64,9 +73,10 @@ maintainers learned running lanes is taught generically.
 ### What to do
 
 - **Maintainers with leads launched before this version:** nothing. Those leads stay
-  independent; new leads are spawned as children.
-- **Peer maintainers:** a lane with no active maintainer can be claimed on the map; mark a
-  maintainer that leaves a lane as left on its line.
+  independent; new leads are spawned as children. Before stopping a maintainer, know that
+  its leads stop with it.
+- **Peer maintainers:** a lane with no active maintainer can be claimed on the map. A
+  maintainer that leaves a lane, or its human, marks it as left on the lane's line.
 
 ## 1.12.0 - 2026-10-26
 

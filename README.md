@@ -33,13 +33,14 @@ engineering organisation:
    └──────────────────────────────┘
 ```
 
-Where a project has a **maintainer**, it launches each new effort to one lead expert, its
-child, and every PR the experts land goes through it. It holds the overview, gates each
-change on direction and architecture, reviews and merges at an exact head, plans and ships
-releases, and works in lanes with its peer maintainers: one release lane for the final
-review, merge and tags, and one lane per project, each PR getting one second reader. A
-human gives it the high-level picture; it briefs and launches the expert who writes the
-spec and plan. A maintainer is not an expert: it doesn't lead efforts.
+Where a project has a **maintainer**, it launches each new effort to one lead expert,
+spawned as its child or delegated, and every PR the experts land goes through it. It holds
+the overview, gates each change on direction and architecture, reviews and merges at an
+exact head, plans and ships releases, and works in lanes with its peer maintainers: one
+release lane for the final review, merge and tags, and one lane per project, each PR
+getting one second reader. A human gives it the high-level picture; it briefs and launches
+the expert who writes the spec and plan. A maintainer is not an expert: it doesn't lead
+efforts.
 
 ## What's in the package
 

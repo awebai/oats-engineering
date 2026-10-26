@@ -72,7 +72,7 @@ hold on the default branch (`/cross-review-peer`), not a message.
 ## A freeze carries to a patch release
 When the human picks a patch release (x.y.1) with named changes while a freeze is on, the
 freeze stays. Each named change gets an exception on the hold: a comment that names the PR
-and quotes the human (`/cross-review-peer`, "Holds"). Nothing else merges until the hold is
-lifted.
+and its head and quotes the human who can lift the freeze (`/cross-review-peer`, "Holds").
+The patch's release-prep PR gets one too. Nothing else merges until the hold is lifted.
 
 When the plan is done, ship it with `/ship-release`.

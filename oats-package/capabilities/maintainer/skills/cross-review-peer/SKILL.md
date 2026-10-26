@@ -41,8 +41,8 @@ counts. Its maintainer:
 - **keeps the lane map.**
 
 The release lane may hold work of its own too: its release-prep PRs, and the work its human
-keeps in it. Those PRs get their second reader like any other, and its maintainer merges
-them.
+keeps in it that no project lane covers. Those PRs get their second reader like any other,
+and its maintainer merges them.
 
 Every lane releases through it: whatever its arrangement, a lane agrees with the release
 lane's maintainer what goes into a release and when, on the release plan (`/plan-release`),
@@ -51,16 +51,23 @@ project.
 
 ## Project lanes
 Every lane other than the release lane is a project lane: one per project.
-- **Defining one.** A maintainer defines a lane when its human's work needs one, with
-  nobody's sign-off: it adds the lane's line to the map, creates its label, and puts the
-  label on the lane's PRs. The release lane may also open a lane on the map with no
-  maintainer yet, for one to claim.
-- **Claiming or joining one.** A maintainer may claim a project lane that has no active
-  maintainer, or join one, with nobody's sign-off, by adding itself to the lane's line. A
-  lane has no active maintainer when its line names none, or the one it names has left the
-  lane (retired, or marked as left on the map). An unreachable maintainer still holds its
-  lane (When a peer is unreachable, below). The release lane is never claimed: it changes
-  hands only as its humans say.
+- **Taking one.** A maintainer takes a lane when it holds none yet (Joining as a new
+  maintainer, below), or when its human asks it to take one on. Otherwise work for another
+  lane is routed, not taken (`/launch-work`).
+- **Defining one.** A maintainer defines a lane for its human's work with nobody's
+  sign-off: it adds the lane's line to the map, creates its label, and puts the label on
+  the lane's PRs. The release lane may also open a lane on the map with no maintainer yet,
+  for one to claim.
+- **Claiming one.** A maintainer may claim a project lane that has no active maintainer,
+  with nobody's sign-off, by adding itself to the lane's line. A lane has no active
+  maintainer when its line names none, or the one it names has left the lane. Only the
+  leaving maintainer, its human, or the map's keeper on that human's word marks it as left;
+  a retired maintainer has left once the map or its human records it. An unreachable
+  maintainer still holds its lane (When a peer is unreachable, below). A closed lane isn't
+  claimed: new work defines a new lane, or the lane's humans reopen it. The release lane is
+  never claimed: it changes hands only as its humans say.
+- **Joining one** that has an active maintainer takes its human launching you into it, or
+  the agreement of the lane's maintainer or its human.
 - **Several maintainers may share a lane,** and a human may launch maintainers into one. A
   maintainer launches another maintainer into a lane only when its human asks for one, or
   asks for work in a lane that has no maintainer or no lane yet; the new maintainer is
@@ -98,11 +105,19 @@ humans and the release lane.
 
 ### A lane that splits
 When a lane narrows (its project shrinks to part of what it covered) and the rest moves to a
-new lane or an existing one:
-- the map records both lines: what each covers now, and its maintainers;
-- open PRs whose area moved are relabelled to their new lane. Their verdicts carry: a label
-  change is not a new head;
-- the new lane's arrangement is agreed with the release lane. Keeping the old lane's
+new lane or an existing one. The lane's maintainers or its humans split it, or the release
+lane on their word; never another maintainer.
+- **The map records both lines:** what each covers now, and its maintainers.
+- **Efforts move whole,** relabelled by effort, not by file. An effort in flight in the
+  part that moved goes, with its lead and all its PRs, to the other lane's maintainer by
+  hand-over (A lane changes hands). Until that lane has a maintainer, it stays with the
+  maintainer that launched it.
+- **A moved PR keeps its verdicts:** a label change is not a new head. Its hand-over comes
+  from whoever holds it now.
+- **Another lane's PRs keep their lane,** since the lane of the effort that produced a PR
+  decides first. The new lane's maintainer becomes their second reader where they change
+  what it now holds.
+- **The new lane's arrangement is agreed with the release lane.** Keeping the old lane's
   arrangement for the same work is the natural default.
 
 ### A lane that's done
@@ -114,8 +129,8 @@ A maintainer instance new to the project (a new spawn, a new machine, a successo
 lane until it takes one:
 1. Read the lane map, and find the release lane's maintainer.
 2. Take the lane your human or your launcher names, and add yourself to its line. With no
-   lane named, claim a lane that has no active maintainer, join one, or define one for your
-   human's work (Project lanes, above), or ask your human which lane is yours.
+   lane named, claim a lane that has no active maintainer or define one for your human's
+   work (Project lanes, above), or ask your human which lane is yours.
 3. Until you have a lane, review, merge, tag and launch nothing. Read what you need.
 
 A successor takes its predecessor's place in a lane only when the map, its human or the
@@ -141,10 +156,12 @@ verdict was bound again at every head.
 - **Another lane's code.** A PR that changes code another lane holds (another package or
   area), or something another lane's code or text reads (a contract, an answer, a sentence
   a test reads), names that lane on the PR, and that lane's maintainer is its second
-  reader. It replaces the lane's usual second reader; it doesn't add a third. It reads
-  before the release lane's final review, and the release lane doesn't skip it or read in
-  its place. The one exception: a PR that changes only docs in an area the release lane
-  holds, where the release lane's final read is also the second read.
+  reader. It replaces the lane's usual second reader; it doesn't add a third.
+  - When that lane is a project lane, its maintainer reads before the release lane's final
+    review, and the release lane doesn't skip that read or give it in its place.
+  - When the area is one the release lane holds (its own docs, for example), the release
+    lane's maintainer is that second reader, and its one read is also the final review
+    (Project lanes, "The hand-over").
 - **When:** after the lane's maintainer. You review first (`/pr-review`); at the head you
   approve, you ask the second reader once, with the handoff template (`/pr-review`'s
   reference). A second reader doesn't read a head its lane's maintainer hasn't approved: a
@@ -186,9 +203,12 @@ A hold is the hold label on the forge, never a message alone:
   label, saying the same three things.
 - The merge step reads both (`/pr-review`), so a hold binds every maintainer without a
   message. Whoever the hold names lifts it, by removing the label or closing the issue.
-- **An exception** lets one named PR through a hold that stays: a comment on the hold that
-  names the PR and the authority for it, with the human's words quoted when a human gave it
-  (`/plan-release`, "A freeze carries to a patch release").
+- **An exception** lets one named PR through a hold that stays: a comment on the hold, by
+  whoever the hold names as able to lift it, on authority confirmed as Decisions passed on
+  from a human says. It names the PR, the head it covers and the authority, with the
+  human's words quoted when a human gave it (`/plan-release`, "A freeze carries to a patch
+  release"). A later head needs the exception again, unless the verdicts carry to it
+  (`/pr-review`).
 - Message a peer about a hold only when it must stop something already in flight. Say that
   you need a confirmation; the peer answers in one line.
 
@@ -196,10 +216,12 @@ A hold is the hold label on the forge, never a message alone:
 When a maintainer leaves a lane (it is retired, overloaded, or a human says so), update its
 line on the map, and hand over once what the forge doesn't show: the decisions asked for
 and not yet had, the authority given and its scope, the reason behind each hold, and the
-efforts in flight with their leads. The successor takes those leads over: they report to
-it from then on. Retiring the leaving maintainer stops the leads that are its children, and
-keeps them. So it is retired once their efforts are done or the successor has taken them
-over, and the successor starts each stopped lead again in its home.
+efforts in flight with their leads. The successor takes those leads over as their
+maintainer: they report to it from then on. It doesn't become their parent in OATS:
+retiring the leaving maintainer stops every lead that is its child, handed over or not,
+keeps their homes, and moves them to its own parent (top level when it has none). So retire
+it once the successor has taken the efforts over; then the successor, or the human whose
+machine runs them, starts each stopped lead again (`oats session start --home <home>`).
 
 ## When a peer is unreachable
 - **The second reader:** wait, or ask your human. Merging without its read is a fallback

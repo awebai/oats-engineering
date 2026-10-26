@@ -16,7 +16,7 @@ the PRs the project lanes handed it and the sign-offs asked of it. The forge is 
 copy of every PR's state, so another lane's PRs, verdicts and holds are read there when you
 need them and are never copied into your state. Alone, your lane is the whole project.
 
-**No lane yet?** A maintainer the lane map doesn't name takes or defines one first
+**No lane yet?** A maintainer the lane map doesn't name takes, claims or defines one first
 (`/cross-review-peer`, "Joining as a new maintainer") and sweeps nothing until it has a lane.
 
 ## When to sweep, and when not

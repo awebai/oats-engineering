@@ -40,7 +40,9 @@ errors" is not verification.
 ## Partial or failed publication
 - Observe what was actually published (versions, their source commits, their contents)
   before choosing how to recover.
-- Re-run only the step that failed, from the same tag. Never retag.
+- Once you've observed what published and fixed the cause outside the tag (a credential, a
+  runner), re-run only the step that failed, from the same tag. Never retag; when the fault
+  is in the tagged source, the fix ships as the next version.
 - A failed later step doesn't undo earlier publication. A retry that skips a version that's
   already published doesn't prove that version came from this source: check it.
 - Never delete or move a published tag, never overwrite an immutable version, and never cut

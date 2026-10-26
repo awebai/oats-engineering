@@ -17,8 +17,8 @@ member repositories are the kernel repository and one repository per official pa
 
 Every domain expert has `oats.engineering-expert`; every developer has `oats.developer`.
 `oats-expert` is the maintainer: it has `oats.maintainer`, not the expert role. It launches
-each new effort to the domain expert best suited to lead it, as an independent instance,
-and reviews and lands what comes back. Its maintainers, each an instance of `oats-expert` on
+each new effort to the domain expert best suited to lead it, spawned as its child, and
+reviews and lands what comes back. Its maintainers, each an instance of `oats-expert` on
 their own machine and for their own human, cross-review each other's work.
 
 ## Its workspace-specific rules

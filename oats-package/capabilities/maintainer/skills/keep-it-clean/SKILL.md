@@ -42,9 +42,11 @@ An effort cancelled partway leaves nothing half-done:
 - **Code merged but not yet released** that would ship inert (unused, or behind a switch
   nothing turns on): revert it, rather than carry it into the next release.
 - **Its decision in your knowledge:** mark it deferred or superseded, with the reason,
-  rather than leave it in force.
+  rather than leave it in force. If a human accepted it, that human confirms
+  (`/direction-gate`).
 - **Its design record** (the issue, the spec, the proposal): close it with the reason.
-- **Its instances:** retire them, the lead and what it launched (`/launch-work`).
+- **Its instances:** the lead retires what it launched first; then retire the lead on the
+  requester's word (`/launch-work`), and anything that retire stopped and kept.
 
 ## The knowledge pass
 At the same boundary, keep your knowledge current (the maintainer inject says what it
