@@ -125,7 +125,7 @@ skip the hand-over and merge as below.
   this merge: on every merge, or on a significant one. It is on the PR, from the release
   lane's maintainer; a sign-off at an earlier head carries only as the verdicts do.
 - **No hold.** The PR doesn't carry the hold label, and no open default-branch hold
-  applies to it: none is open, or the open one names an exception for this PR at this head
+  applies to it: none is open, or each open one names an exception for this PR at this head
   (`/cross-review-peer`, "Holds").
 - **Did the default branch move since CI ran on this head?** Then CI hasn't seen what you
   are about to merge, and two changes that share no file can still break each other: one

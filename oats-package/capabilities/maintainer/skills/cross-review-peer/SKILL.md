@@ -1,6 +1,6 @@
 ---
 name: cross-review-peer
-description: Work with peer maintainers in lanes - one release lane that does the final review and merge, owns every release and keeps the lane map, and one project lane per project, which any maintainer defines when its human's work needs it, with nobody's sign-off - the written lane map and each lane's arrangement, claiming, joining or defining a lane, maintainers sharing a lane, a lane that splits, the hand-over of an approved PR to the release lane, one second reader for every PR (another lane's maintainer when the PR changes code that lane holds), the few things peers message each other for, holds as a label on the forge and their named exceptions, a lane changing hands or closing, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever you claim, join, define or split a lane, whenever a peer maintainer is involved, and before you message one.
+description: Work with peer maintainers in lanes - one release lane that does the final review and merge, owns every release and keeps the lane map, and one project lane per project, which a maintainer defines or claims, with nobody's sign-off, when it holds none or its human asks - the written lane map and each lane's arrangement, claiming, joining or defining a lane, maintainers sharing a lane, a lane that splits, the hand-over of an approved PR to the release lane, one second reader for every PR (another lane's maintainer when the PR changes code that lane holds), the few things peers message each other for, holds as a label on the forge and their named exceptions, a lane changing hands or closing, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever you claim, join, define or split a lane, whenever a peer maintainer is involved, and before you message one.
 ---
 
 # Work in lanes with your peers
@@ -68,7 +68,8 @@ Every lane other than the release lane is a project lane: one per project.
   never claimed: it changes hands only as its humans say.
 - **Joining one** that has an active maintainer takes its human launching you into it, or
   the agreement of the lane's maintainer or its human.
-- **Several maintainers may share a lane,** and a human may launch maintainers into one. A
+- **Several maintainers may share a lane,** and a lane's human may launch maintainers into
+  it. A
   maintainer launches another maintainer into a lane only when its human asks for one, or
   asks for work in a lane that has no maintainer or no lane yet; the new maintainer is
   independent of it, never its child (`/launch-work`). Each maintainer in a shared
@@ -105,13 +106,14 @@ humans and the release lane.
 
 ### A lane that splits
 When a lane narrows (its project shrinks to part of what it covered) and the rest moves to a
-new lane or an existing one. The lane's maintainers or its humans split it, or the release
-lane on their word; never another maintainer.
+new lane or an existing one, its maintainers or its humans split it, or the release lane on
+their word; never another maintainer.
 - **The map records both lines:** what each covers now, and its maintainers.
 - **Efforts move whole,** relabelled by effort, not by file. An effort in flight in the
   part that moved goes, with its lead and all its PRs, to the other lane's maintainer by
   hand-over (A lane changes hands). Until that lane has a maintainer, it stays with the
-  maintainer that launched it.
+  maintainer that launched it. The lead stays that maintainer's child in OATS: its stop or
+  retire still stops the lead, so it tells the new maintainer before either.
 - **A moved PR keeps its verdicts:** a label change is not a new head. Its hand-over comes
   from whoever holds it now.
 - **Another lane's PRs keep their lane,** since the lane of the effort that produced a PR
@@ -128,8 +130,8 @@ its PRs are merged or closed. A closed lane's label stays on its old PRs.
 A maintainer instance new to the project (a new spawn, a new machine, a successor) holds no
 lane until it takes one:
 1. Read the lane map, and find the release lane's maintainer.
-2. Take the lane your human or your launcher names, and add yourself to its line. With no
-   lane named, claim a lane that has no active maintainer or define one for your human's
+2. Take the lane your human or your launcher names, and add yourself to its line (a lane
+   with an active maintainer: as "Joining one" says, above). With no lane named, claim a lane that has no active maintainer or define one for your human's
    work (Project lanes, above), or ask your human which lane is yours.
 3. Until you have a lane, review, merge, tag and launch nothing. Read what you need.
 

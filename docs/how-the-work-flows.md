@@ -145,11 +145,11 @@ lane opens a proxy lane (`lane:proxy`) on the map, with no maintainer yet. The g
 maintainer keeps its proxy effort in flight until the proxy lane has a maintainer, then
 hands it over whole, its lead and its PRs relabelled: their verdicts carry, since a label
 change is not a new head. The new lane keeps the gateway lane's arrangement, as the release
-lane agrees. When a human asks the
-web-app maintainer for a proxy fix, it launches nothing: the proxy lane has no maintainer,
-so it spawns one, independent of itself, briefed with the lane and the human's words, and
-tells the human its instance name, its lane, how to reach it and how to retire it. The new maintainer claims
-the lane by adding itself to its line, and launches the fix.
+lane agrees. When its human asks the web-app maintainer for a proxy fix, it launches
+nothing: the proxy lane has no maintainer, so it spawns one, independent of itself, briefed
+with the lane and the human's words, and tells the human its instance name, its lane, how
+to reach it and how to retire it. The new maintainer claims the lane by adding itself to
+its line, and launches the fix.
 
 ## A support ticket
 

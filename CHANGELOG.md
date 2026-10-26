@@ -73,8 +73,8 @@ lane is routed, and what the maintainers learned running lanes is taught generic
 ### What to do
 
 - **Maintainers with leads launched before this version:** nothing. Those leads stay
-  independent; new leads are spawned as children. Before stopping a maintainer, know that
-  its leads stop with it.
+  independent; new leads are spawned as children.
+- **Whoever stops a maintainer:** its leads stop with it, unless the stop is non-recursive.
 - **Peer maintainers:** a lane with no active maintainer can be claimed on the map. A
   maintainer that leaves a lane, or its human, marks it as left on the lane's line.
 

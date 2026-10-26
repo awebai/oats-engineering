@@ -1,6 +1,6 @@
 ---
 name: launch-work
-description: Turn the work someone asks the maintainer for into launched work, without leading it - usually a human's high-level picture of what they want (a feature, a fix, an investigation, a project) - clarify only what changes who leads it, find the lane (or define one) and the best-suited expert, delegate to a live expert whose work it continues or spawn one lead expert per independent effort as your child, brief it, tell the requester, track it in the state file, and retire it when it is done or cancelled; also launching another maintainer into a lane, independent of you. Use whenever a human describes work they want, or anyone asks you to start, launch or hand off work.
+description: Turn the work someone asks the maintainer for into launched work, without leading it - usually a human's high-level picture of what they want (a feature, a fix, an investigation, a project) - clarify only what changes who leads it, find the lane (routing work for another lane to its maintainer, or to one you spawn) and the best-suited expert, delegate to a live expert whose work it continues or spawn one lead expert per independent effort as your child, brief it, tell the requester, track it in the state file, and retire it when it is done or cancelled; also launching another maintainer into a lane, independent of you. Use whenever a human describes work they want, or anyone asks you to start, launch or hand off work.
 ---
 
 # Launch work
@@ -56,10 +56,9 @@ lead with a good brief. The lead works out the detail, with the human where it n
 - **One lead per effort,** never one per domain: the lead brings in the other experts as
   its children if it needs them. Several independent efforts get one lead each.
 - **Never a developer directly:** specs and builds are the lead's job.
-- **Your child, and what that means.** Retiring you stops your leads, and theirs, first, and
-  refuses (`E_CHILDREN_RUNNING`) while one won't stop. So you are retired only once your
-  efforts are done or handed over, and a successor maintainer takes your leads over in the
-  hand-over (`/cross-review-peer`, "A lane changes hands").
+- **Your child, and what that means:** stopping or retiring you stops your leads, and
+  theirs, first, and a retire moves them to your own parent. The inject says what follows,
+  and `/cross-review-peer` ("A lane changes hands") how a successor takes them over.
 - Don't pile unrelated work onto a busy expert, to save a spawn.
 
 ## 4. Brief the lead
