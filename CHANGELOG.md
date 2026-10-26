@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.12.0 - 2026-10-26
 
 One release lane, and one lane per project. Humans give the picture; maintainers launch the
 work.
