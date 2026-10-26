@@ -87,10 +87,11 @@ handles that message and updates what it touches; it doesn't sweep again.
 
 A human asks it, in one sentence, to rate-limit the public API. That is enough: the
 maintainer doesn't ask for a spec or write one. It consults its knowledge (rate limits sit
-in the gateway, by an earlier decision) and launches the work with `/launch-work`. No live expert is on the
-gateway, so it spawns a `backend-expert` with `--relation unrelated`, briefed with the goal,
-who asked and that decision, and tells the requester the expert's name. The backend-expert
-leads from there, as in the first section. Had a human started the backend-expert directly,
+in the gateway, by an earlier decision) and launches the work with `/launch-work`. No live
+expert is on the gateway, so it spawns a `backend-expert` as its child (`--parent`),
+briefed with the goal, who asked and that decision, and tells the requester the expert's
+name. The maintainer is its parent, not its coordinator: the backend-expert leads from
+there, as in the first section. Had a human started the backend-expert directly,
 the expert would have told the maintainer what it was starting.
 
 For the rate-limit PR, it waits for the backend-expert's hand-over (the developer's loop
@@ -138,6 +139,17 @@ lane agrees to another arrangement, recorded on the map: the gateway lane merges
 and asks for the release lane's sign-off only on significant merges (a product decision,
 the roadmap, a contract). Its next small fix merges on its own, and goes out in the release
 the release lane plans.
+
+Later the gateway lane's human narrows it to the API, and on that human's word the release
+lane opens a proxy lane (`lane:proxy`) on the map, with no maintainer yet. The gateway
+maintainer keeps its proxy effort in flight until the proxy lane has a maintainer, then
+hands it over whole, its lead and its PRs relabelled: their verdicts carry, since a label
+change is not a new head. The new lane keeps the gateway lane's arrangement, as the release
+lane agrees. When its human asks the web-app maintainer for a proxy fix, it launches
+nothing: the proxy lane has no maintainer, so it spawns one, independent of itself, briefed
+with the lane and the human's words, and tells the human its instance name, its lane, how
+to reach it and how to retire it. The new maintainer claims the lane by adding itself to
+its line, and launches the fix.
 
 ## A support ticket
 

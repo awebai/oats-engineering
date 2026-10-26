@@ -81,7 +81,7 @@ confused.
 
 **A maintainer** launches new work, reviews, merges and releases what the experts land, and
 keeps the project coherent. It is a soul of its own, never also an expert: it hands each
-new effort to one lead expert, independent of it, and stays an individual instance. Give it
+new effort to one lead expert, spawned as its child, and never leads the effort. Give it
 a knowledge base too, since what it consults and keeps (the roadmap, architectural calls,
 coherence rules, who owns which domain) is the point:
 
