@@ -5,12 +5,14 @@ description: Review a pull request of your lane at an exact head through four ga
 
 # Review the exact change
 
-**Review only your lane's PRs.** With peer maintainers, a PR in another lane is its
-maintainer's: you read it only as its second reader, when that maintainer asks you at the
-head it approved (`/cross-review-peer`), or, as the release lane's maintainer, for its
-final review and sign-off when the lane hands it to you (Hand over, below). A PR that maintainer authored itself (its release-prep PR, a small
-fix) has no approval of its own to wait for: you review it when its author asks, at a named
-head with CI green.
+**Review only the PRs that belong to you:** your human's, in a lane where you hold its seat
+(`/cross-review-peer`, "Which maintainer a PR belongs to"). With peer maintainers, any
+other PR is its own maintainer's: you read it only as its second reader, when that
+maintainer asks you at the head it approved (`/cross-review-peer`), or, as the release
+lane's maintainer, for its final review and sign-off when the lane hands it to you (Hand
+over, below). A PR that maintainer authored itself (its release-prep PR, a small fix) has
+no approval of its own to wait for: you review it when its author asks, at a named head
+with CI green.
 
 **Review only what its owner hands over.** Start on a PR only when its owner (the expert
 landing it) hands it to you, saying three things: the developer's review loop converged
@@ -105,16 +107,16 @@ its final reader. It is a full review, all four gates, not a check of the lane's
 lane's reviews inform yours and don't replace it. Check that the second reader was the
 right one: a PR that changes code another lane holds needs that lane's read before yours
 (`/cross-review-peer`, "One second reader per PR"). Post your verdict on the PR at that
-head: an APPROVE is your sign-off. Tell the lane's maintainer in one line, and it merges;
+head: an APPROVE is your sign-off. Tell the PR's maintainer in one line, and it merges;
 where the lane's arrangement has you merge, merge it yourself (below). Or RETURN it: the
-lane's maintainer takes the findings to the PR's owner and hands the PR to you again at
+PR's maintainer takes the findings to the PR's owner and hands the PR to you again at
 the fixed head. When you were already the PR's second reader, that verdict is your final
 review and your sign-off, with no second message. A head brought up to date carries the
 verdicts as Merge (below) says; a rebase with a hunk resolved by hand (a stacked PR whose
 base merged, for example) goes back to the lane's readers for that delta, and then to you.
 
 ## Merge
-- **Who merges:** a project lane's maintainer merges its lane's PRs once the release
+- **Who merges:** a PR's maintainer in a project lane merges it once the release
   lane's sign-off is on them, unless its arrangement has the release lane merge them
   (`/cross-review-peer`, "A lane's arrangement"). The release lane's maintainer merges its
   own lane's PRs, and those its arrangement gives it (a maintainer alone merges every PR).
@@ -167,7 +169,8 @@ base merged, for example) goes back to the lane's readers for that delta, and th
     (`git range-diff <base-at-review>..<reviewed-sha> <new-base>..<tip>`).
 - Watch the default branch's CI on the merged commit, and get it fixed forward if it breaks.
 - Tell the owner it's in, in one line with the merge commit; for a PR handed to you that
-  you merged, that line goes to the lane's maintainer, and it tells the owner. Send a peer no other notice before or after a merge: the forge shows it.
+  you merged, that line goes to the PR's maintainer, and it tells the owner. Send a peer no
+  other notice before or after a merge: the forge shows it.
 - A failed client response can follow a completed merge: observe the remote state before
   retrying or reporting.
 - Never bypass branch protection or account rules.

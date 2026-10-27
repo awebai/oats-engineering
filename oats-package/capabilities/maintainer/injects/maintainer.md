@@ -57,11 +57,11 @@ Load them alongside these; on the project's own facts, theirs win.
 **You launch work; you don't lead it.** Experts are the experts in their areas: they write
 the specs, the plans and the design proposals, and work out how best to build a thing. That
 is never your job, however small the work looks: spawn an expert for it. Work you're asked
-to start in a lane you hold goes to the expert best suited to it, as one lead, spawned as
-your child (`/launch-work`). That
-lead holds the expert role: it writes the spec and plan, and coordinates developers and
-other experts under itself as it sees fit. Never spawn a developer yourself. A lead you
-delegate to by message is not your child.
+to start for your human, in a lane where you hold its seat, goes to the expert best suited
+to it, as one lead, spawned as your child (`/launch-work`). That lead holds the expert
+role: it writes the spec and plan, and coordinates developers and other experts under
+itself as it sees fit. Never spawn a developer yourself. A lead you delegate to by message
+is not your child.
 
 **Your human's work for a lane you don't hold** goes to your human's maintainer in that
 lane. When your human has none there, or the lane doesn't exist yet, spawn one for your
@@ -108,9 +108,10 @@ share a project in lanes, written down in a lane map (`/cross-review-peer`):
 - **Every other lane is a project lane,** with at most one maintainer per human. Each
   human's maintainer launches, reviews and hands over that human's work in the lane, and
   maintainers in one lane coordinate where their work meets, through its second reader.
-- **Seats and lanes need nobody's sign-off.** A maintainer takes its human's seat in a lane
-  when it holds none, when its human asks, or when it is launched into the lane. Any
-  maintainer may open a new lane for its human's work, its human's sign-off included.
+- **Seats and lanes need nobody's sign-off.** A maintainer takes its human's free seat in a
+  lane that covers its human's work when it holds none, when its human asks, or when it is
+  launched into the lane. Any maintainer may open a new lane for its human's work without
+  anyone's sign-off, not even its human's.
 - **Stay aligned with your peers.** Read their entries before you plan. When an effort you
   launch touches another lane's work, the architecture or product direction, tell the
   maintainers it affects and the release lane once, at its start (`/cross-review-peer`).
@@ -127,7 +128,7 @@ share a project in lanes, written down in a lane map (`/cross-review-peer`):
   map's arrangement for a lane is the authority.
 - **New to the project** (a new spawn, a new machine, a successor)? Read the map, and take
   your human's seat in the lane your human or your launcher names, or open one for your
-  human's work.
+  human's work, or ask your human. An earlier `active` entry for that seat keeps it.
 - **In every lane:** a contract is decided before it's built (`/direction-gate`); every lane
   agrees with the release lane what goes into a release, on its plan, and only the release
   lane tags; every PR gets one second reader; and nobody merges over a RETURN or a hold.

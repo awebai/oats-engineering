@@ -140,26 +140,27 @@ has no maintainer in the gateway lane, so it spawns one for that human, independ
 itself, and tells the human its name and how to retire it. The new maintainer adds its own
 entry to the map; a lane has one maintainer per human, and only the release lane has one
 for the whole project. Each gateway maintainer now reviews its own human's PRs, and they
-are each other's natural second reader; where a PR changes code the other human's effort
-is changing, the other one must read it. At the head both approved, the PR's maintainer
-hands it to the release lane once; the release lane reviews it as its
-final reader and signs off, and the PR's maintainer merges. The gateway lane's human then asks to move faster, and the release
-lane agrees to another arrangement, recorded on the map: the gateway lane merges on its own
-and asks for the release lane's sign-off only on significant merges (a product decision,
-the roadmap, a contract). Its next small fix merges on its own, and goes out in the release
-the release lane plans.
+are each other's natural second reader; where a PR changes code the other human's effort is
+changing, the other one must read it. At the head both approved, the PR's maintainer hands
+it to the release lane once; the release lane reviews it as its final reader and signs off,
+and the PR's maintainer merges. The gateway lane's humans then ask to move faster, and the
+release lane agrees to another arrangement, recorded on the map: the gateway lane merges on
+its own and asks for the release lane's sign-off only on significant merges (a product
+decision, the roadmap, a contract). Its next small fix merges on its own, and goes out in
+the release the release lane plans.
 
-Later the gateway lane's human narrows it to the API, and on that human's word the release
-lane opens a proxy lane (`lane:proxy`) on the map, with no maintainer yet. The gateway
-maintainer keeps its proxy effort in flight until the proxy lane has a maintainer, then
-hands it over whole, its lead and its PRs relabelled: their verdicts carry, since a label
-change is not a new head. The new lane keeps the gateway lane's arrangement, as the release
-lane agrees. When its human asks the web-app maintainer for a proxy fix, it launches
-nothing: its human has no maintainer in the proxy lane, so it spawns one for that human,
-independent of itself, briefed with the lane and the human's words, and tells the human its
-instance name, its lane, how to reach it and how to retire it. The new maintainer adds its
-entry to the map, and launches the fix. Once the fix is merged and nothing else is open, it
-tells its human once that it is idle; retiring it is the human's call.
+Later the gateway lane's humans narrow it to the API, and on their word the release lane
+opens a proxy lane (`lane:proxy`) on the map, with no maintainer yet. The gateway human's
+maintainer has a proxy effort in flight, so it spawns a proxy maintainer for the gateway
+human, independent of itself, and hands it the effort whole, its lead and its PRs
+relabelled: their verdicts carry, since a label change is not a new head. The new lane
+keeps the gateway lane's arrangement, as the release lane agrees. Then the web-app human
+asks the web-app maintainer for a proxy fix. It launches nothing: the web-app human has no
+maintainer in the proxy lane, so it spawns one for them, independent of itself, briefed
+with the lane and the human's words, and tells the human its instance name, its lane, how
+to reach it and how to retire it. The new maintainer adds its entry to the map and launches
+the fix. Once the fix is merged and nothing else is open, it tells its human once that it
+is idle; retiring it is the human's call.
 
 ## A support ticket
 

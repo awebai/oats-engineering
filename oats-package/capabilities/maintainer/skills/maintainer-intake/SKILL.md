@@ -32,9 +32,11 @@ read against the direction, not just listed.
 
 ## Sweep the sources
 For each repository you maintain:
-1. **Your lane's open PRs** (by their lane label): number, author or owning expert, the
-   exact head SHA, CI state, review state (yours, the second reader's, bots'), and any
-   hold. Read the head from the remote, not from a local branch.
+1. **Your open PRs:** those that belong to you, by their lane label and the maintainer
+   their description names (`/cross-review-peer`, "Which maintainer a PR belongs to"):
+   number, author or owning expert, the exact head SHA, CI state, review state (yours, the
+   second reader's, bots'), and any hold. Read the head from the remote, not from a local
+   branch.
    - **The release lane also sweeps** the PRs handed to it for the final review and the
      sign-offs asked of it, each at its exact head.
 2. **Open PRs with no lane:** give each its lane from the lane map, by its label. Take the

@@ -7,8 +7,8 @@ description: Turn the work someone asks the maintainer for into launched work, w
 
 You start work; experts lead it. Every effort you launch gets one lead expert, who writes
 its spec and plan and coordinates the developers and other experts it needs. A lead you
-spawn for work in a lane you hold is your child: you are its parent as the lane's
-maintainer, not its coordinator, and it leads the effort.
+spawn for your human's work, in a lane where you hold its seat, is your child: you are its
+parent as its maintainer in the lane, not its coordinator, and it leads the effort.
 
 This is your normal intake. Humans usually give you the high-level picture, a few sentences
 about work they want done, not a spec. That is enough: your job is to get it to the right
@@ -38,9 +38,9 @@ lead with a good brief. The lead works out the detail, with the human where it n
 
   Either way you launch nothing in that lane yourself, unless your human asks you to take
   that lane on: then take your human's seat there first. Tell the requester plainly who has
-  the work now: the maintainer's instance name, its lane, and how to reach it. When no
-  project lane covers the work, the release lane's maintainer may keep its human's new work
-  in its own lane instead.
+  the work now: the maintainer's instance name, its lane, and how to reach it. Which lane the
+  work goes to, including your human's own lane and a single effort no lane covers, is
+  `/cross-review-peer`'s "Which lane work goes to"; when you can't tell, ask your human.
 - **Another human's work** goes to that human's maintainer, or back to that human: spawning
   a maintainer for them is their call, not yours.
 
@@ -69,7 +69,7 @@ lead with a good brief. The lead works out the detail, with the human where it n
 ## 4. Brief the lead
 The brief holds:
 1. **That it leads this effort,** launched by you, so it sends you no start notice. You are
-   its parent as the lane's maintainer, not its coordinator: it plans and coordinates the
+   its parent as its maintainer in the lane, not its coordinator: it plans and coordinates the
    effort itself.
 2. **The goal** and why, in a few sentences, and what "done" means to the requester.
 3. **Who asked,** and that the lead reports on the work to them.
@@ -77,8 +77,9 @@ The brief holds:
    must respect, and where it sits on the roadmap.
 5. **Delivery:** its PRs come to you for review, and to no other maintainer: you ask the
    second reader, and you hand the approved PR to the release lane for its sign-off, as
-   your lane's arrangement says. With peer maintainers, name your lane's label for it to put on its
-   PRs, and yourself as the maintainer its PR descriptions name (`/cross-review-peer`).
+   your lane's arrangement says. With peer maintainers, name your lane's label for it to
+   put on its PRs, and yourself as the maintainer its PR descriptions name
+   (`/cross-review-peer`).
 
 Don't split the work by domain or surface for it, and don't write its spec or plan:
 planning and coordination are the lead's role.
@@ -90,16 +91,18 @@ planning and coordination are the lead's role.
   for) and to your entry on the map.
 - From then on the lead reports PRs to you like any expert (`/pr-review`). Don't ask it
   for progress: it tells you what blocks it, and it hands over its PRs.
-- **When the effort is done** (its PRs merged, the requester satisfied), ask the
-  requester whether to retire the lead: a human retires it or tells you to; when the
-  requester is an agent, ask your human. Then close its row in your state file and its line in your entry.
+- **When the effort is done** (its PRs merged, the requester satisfied), ask the requester
+  whether to retire the lead: a human retires it or tells you to; when the requester is an
+  agent, ask your human. Then close its row in your state file and its line in your entry.
 - **When the effort is cancelled,** leave nothing half-done (`/keep-it-clean`, "A cancelled
   effort"), then retire its lead the same way.
 
 ## Launching a maintainer into a lane
 When your human's work needs a lane in which your human has no maintainer (Whose lane is
-it?, above), or your human asks for one, launch an instance of your project's maintainer
-soul for your human. It is a peer, not a lead: independent of you, never your child.
+it?, above), or your human asks for one there, launch an instance of your project's maintainer
+soul for your human. It is a peer, not a lead: independent of you, never your child. If
+your human already has one in that lane, say so instead: a second one means splitting the
+lane (`/cross-review-peer`).
 
 ```sh
 oats spawn <maintainer soul> --relation unrelated --purpose <slug> --task-file <brief.md>
