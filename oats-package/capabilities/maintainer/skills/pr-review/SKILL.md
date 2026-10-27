@@ -89,8 +89,8 @@ ask the PR's second reader once you approve, at that head (`/cross-review-peer`)
 
 ## Hand over to the release lane
 Every project lane hands its approved PRs to the release lane for the final review and the
-sign-off, unless its arrangement asks for the sign-off only on significant merges
-(`/cross-review-peer`, "A lane's arrangement").
+sign-off; under an arrangement that asks for the sign-off only on significant merges, it
+hands over only those (`/cross-review-peer`, "A lane's arrangement").
 - **When:** your approval and the second reader's verdict are on the PR at the same head,
   CI is green on it, and no hold applies. When the second reader is the release lane's
   maintainer, your request for its second read is the hand-over: it reads once.
@@ -116,8 +116,8 @@ verdicts as Merge (below) says; a rebase with a hunk resolved by hand (a stacked
 base merged, for example) goes back to the lane's readers for that delta, and then to you.
 
 ## Merge
-- **Who merges:** a PR's maintainer in a project lane merges it once the release
-  lane's sign-off is on them, unless its arrangement has the release lane merge them
+- **Who merges:** a PR's maintainer in a project lane merges it once the release lane's
+  sign-off is on it, unless its lane's arrangement has the release lane merge it
   (`/cross-review-peer`, "A lane's arrangement"). The release lane's maintainer merges its
   own lane's PRs, and those its arrangement gives it (a maintainer alone merges every PR).
 - Only with the authority for it, an approval at the current head, its second reader's

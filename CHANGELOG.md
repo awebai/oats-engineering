@@ -14,7 +14,7 @@ what each is doing, and a definition of a lane.
   area lanes never overlap, nor two lanes for the same kind of work; a lane defined by a
   kind of work or by whose requests it is may overlap area lanes, and the area lane a PR
   touches is its second reader. A lane closes when its
-  project is finished or absorbed, or after two releases with no work.
+  work is finished or absorbed, or after two releases with no work.
 - **An entry per maintainer on the lane map** (`/cross-review-peer`, `/maintainer-intake`,
   `/launch-work`). Each maintainer keeps one entry, which only it edits: its lane, its
   human, `active` or `left`, its efforts with their leads, its open PRs by number, and the
@@ -42,12 +42,12 @@ what each is doing, and a definition of a lane.
   it is idle, and asks its human to say before retiring it, so it marks its entry `left`
   first. A maintainer retired without that is marked `left` by the map's keeper on its
   human's own word. A maintainer that can't be reached holds only its own human's work.
-
 - **A maintainer owns its lane** (the inject, `/cross-review-peer`). Once it holds a seat,
-  it owns its human's work in the lane, even when another maintainer spawned it: it
-  doesn't report to its spawner. Every lane's maintainer is a full maintainer (overview,
-  architecture, product direction, coordination); only the release lane's final review or
-  sign-off, and its say on releases, stand above it.
+  it owns its human's work in the lane, even when another maintainer spawned it: it doesn't
+  report to its spawner. Every lane's maintainer is a full maintainer (overview,
+  architecture, coordination, and its fit with the product direction set for it, which the
+  release lane keeps aligned); only the release lane's final review or sign-off, and its
+  say on releases, stand above it.
 - **Staying aligned** (the inject, `/cross-review-peer`). Maintainers read each other's
   entries before they plan, and tell the maintainers an effort affects, and the release
   lane, once at its start when it touches another lane, the architecture or product
@@ -90,6 +90,9 @@ what each is doing, and a definition of a lane.
 - Where one human has two maintainers in one lane, ask that human which keeps the seat, or
   split the lane, before both add entries.
 - Close or absorb lanes that are really single efforts.
+- A lane whose line records no arrangement was on the old default, where the release lane
+  merges. The keeper records "the release lane merges" on its line, unless the lane and the
+  release lane agree to the new default.
 - Name the maintainer soul in your workspace's rules, so an expert can spawn one.
 
 ## 1.13.0 - 2026-10-26

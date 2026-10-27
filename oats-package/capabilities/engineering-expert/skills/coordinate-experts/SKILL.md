@@ -83,7 +83,11 @@ expert, unless a coordinator does this for it, finds its own as it starts:
    - else your human's own lane, when one is defined by your human's requests;
    - else the lane that covers your work;
    - no lane covers it: the release lane's maintainer is yours for a single effort; work
-     that keeps coming needs a lane, so tell the release lane's maintainer.
+     that keeps coming needs a lane, so tell the release lane's maintainer, which is yours
+     until the new lane's maintainer is seated.
+
+   In your human's own lane or the lane that covers your work, when your human has no
+   `active` maintainer there, step 3 spawns one.
 
    When you can't tell, ask your human.
 3. **Your maintainer:** the map's `active` entry for your human in that lane, read with your
@@ -92,7 +96,8 @@ expert, unless a coordinator does this for it, finds its own as it starts:
      PRs go to it.
    - **Not running:** mail it anyway (mail waits) and tell your human it is stopped, so
      they can start it. Don't spawn another. If it hasn't been updated for two weeks, ask
-     your human whether it was retired: on their word the map's keeper frees the seat.
+     your human whether it was retired. When your human says it was, ask the map's keeper,
+     quoting the human's words, to mark it `left`; then step 3's spawn applies.
    - **None, or its entry is marked `left`:** spawn your project's maintainer soul for your
      human, independent of you, never as your child, so your retirement can't stop it:
      ```bash

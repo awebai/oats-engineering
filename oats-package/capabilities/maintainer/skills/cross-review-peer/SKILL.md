@@ -1,6 +1,6 @@
 ---
 name: cross-review-peer
-description: Work with peer maintainers in lanes - what a lane is (a standing area of work, never one effort), one release lane with one maintainer for the whole project that does the final review and merge, owns every release and keeps the lane map, and project lanes with at most one maintainer per human - the written lane map, its lane lines and each maintainer's own entry (lane, human, state, efforts, PRs), who is alive (entries plus your messaging layer's presence) and avoiding duplicate maintainers, taking your human's seat, opening, splitting or closing a lane, which maintainer a PR belongs to, the hand-over of an approved PR to the release lane, one second reader for every PR (another lane's maintainer, or another human's where their work meets), the few things peers message each other for, holds and their named exceptions, leaving a lane and a lane changing hands, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever you take a seat, open, split or close a lane, route work or spawn a maintainer, whenever a peer maintainer is involved, and before you message one.
+description: Work with peer maintainers in lanes - what a lane is (a standing area of work, never one effort), one release lane, the main maintainer, with one maintainer for the whole project, that does the final review and signs off before every merge (or merges, where a lane's arrangement says so), has the final say on releases and keeps the lane map, and project lanes with at most one maintainer per human - the written lane map, its lane lines and each maintainer's own entry (lane, human, state, efforts, PRs), who is alive (entries plus your messaging layer's presence) and avoiding duplicate maintainers, taking your human's seat, opening, splitting or closing a lane, which maintainer a PR belongs to, the hand-over of an approved PR to the release lane, one second reader for every PR (another lane's maintainer, or another human's where their work meets), the few things peers message each other for, holds and their named exceptions, leaving a lane and a lane changing hands, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever you take a seat, open, split or close a lane, route work or spawn a maintainer, whenever a peer maintainer is involved, and before you message one.
 ---
 
 # Work in lanes with your peers
@@ -63,10 +63,11 @@ route work, spawn a maintainer or take a seat. Each answers a different question
   Offline is not left: an `active` entry with no presence is a stopped maintainer, which
   still holds its seat. Mail it (mail waits), and tell your human it is stopped so they can
   start it. Don't spawn a second one.
+- **A retired maintainer** can't mark its own entry. When its human says it was retired,
+  ask the map's keeper, quoting the human's words; on that word (Decisions passed on from a
+  human, below) the keeper marks it `left`, and the seat is free.
 - **An `active` entry with no presence, not updated for two weeks:** ask its human whether
-  it has left or been retired. A retired maintainer can't mark its own entry: on its human's
-  own word (Decisions passed on from a human, below), the map's keeper marks it `left`, and
-  the seat is free. Never mark another maintainer's entry `left` on your own.
+  it has left or been retired. Never mark another maintainer's entry `left` on your own.
 - **No presence at all** (your messaging layer has none): the entry is the record; mail the
   maintainer it names.
 - **Two at once.** A new maintainer adds its entry first. If it then finds an earlier
@@ -78,13 +79,13 @@ route work, spawn a maintainer or take a seat. Each answers a different question
 Your human's work goes, in this order:
 1. to a lane that covers it where your human has an `active` maintainer;
 2. else to your human's own lane, when one is defined by your human's requests;
-3. else to the lane that covers it, with a maintainer spawned for your human there
-   (`/launch-work`);
+3. else to the lane that covers it;
 4. when no lane covers it: work that keeps coming gets a new lane (Project lanes, "Opening
    one"); a single effort goes to the release lane, whose maintainer launches it, whoever's
    work it is.
 
-When you can't tell, ask your human.
+In 2 and 3, when your human has no `active` maintainer there, one is spawned for your human
+(`/launch-work`). When you can't tell, ask your human.
 
 ## The release lane
 One lane is the **release lane**. Your project may call it something else; the role is what
@@ -144,7 +145,7 @@ existing lane: a feature, a fix, an investigation or a release never gets a lane
 - **A maintainer launched into a lane** is independent of whoever launched it, never its
   child (`/launch-work`). Once it holds its seat, it owns its human's work in the lane: it
   doesn't report to its spawner or come back to it. The spawner hands over once and is
-  done.
+  done, though any lead that is its child in OATS stays so (A lane changes hands).
 - **Every lane's maintainer is a full maintainer:** the overview of its lane, its
   architectural soundness, its fit with product direction, and its coordination with the
   other lanes. Only the release lane's final review or sign-off, and its say on releases,
@@ -170,10 +171,10 @@ common ones:
   sign-off on a PR that changes a product decision, the roadmap or a contract, or that its
   maintainer judges important. In doubt, ask.
 
-Whatever the arrangement, the release lane has the final say: a PR merges only as its
-sign-off or its merge allows, and a lane merges only once the sign-off it needs is on the
-PR at the head being merged (`/pr-review`). When the release lane's maintainer is already
-the PR's second reader, its verdict is the sign-off.
+Whatever the arrangement, the release lane has the final say: a PR merges only as the
+arrangement the release lane agreed allows, and, where it needs a sign-off, only once that
+sign-off is on the PR at the head being merged (`/pr-review`). When the release lane's
+maintainer is already the PR's second reader, its verdict is the sign-off.
 
 An arrangement other than the default goes on the map only with the release lane's
 agreement. Changing a lane's arrangement takes its humans and the release lane.

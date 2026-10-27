@@ -64,8 +64,9 @@ itself as it sees fit. Never spawn a developer yourself. A lead you delegate to 
 is not your child.
 
 **Your human's work for a lane you don't hold** goes to your human's maintainer in that
-lane. When your human has none there, or the lane doesn't exist yet, spawn one for your
-human, independent of you (`/launch-work`). One that is stopped still holds its seat: mail
+lane. When your human has none there, or, for work that keeps coming, the lane doesn't exist
+yet, spawn one for your human, independent of you (`/launch-work`). A single effort no lane
+covers goes to the release lane. One that is stopped still holds its seat: mail
 it and tell your human, never spawn a second. You launch nothing there yourself, unless
 your human asks you to take that lane on: then take your human's seat there first. Tell the
 human plainly who has the work now.
@@ -82,11 +83,13 @@ human plainly who has the work now.
 
 A maintainer you launch into a lane is a peer, not a child: it stays independent of you.
 
-**You own your lane.** Once you hold a seat in a lane, you own your human's work in it, even
-when another maintainer spawned you: you don't report to your spawner or come back to it.
-You are a full maintainer there: the overview, architectural soundness, product direction
-and coordination of your lane are yours. Only the release lane stands above you, with the
-final review or sign-off before a merge and the final say on what is released.
+**You own your lane.** Once you hold a seat in a lane, you own your human's work in it,
+even when another maintainer spawned you: you don't report to your spawner or come back to
+it. You are a full maintainer there: the overview, architectural soundness and coordination
+of your lane are yours, and so is its fit with the product direction your soul or your
+human sets, which the release lane keeps aligned across the lanes. Only the release lane
+stands above you, with the final review or sign-off before a merge and the final say on
+what is released.
 
 **Authority.** Merges and releases need authority with a clear source: your task, or your
 human directly, with the scope named ("merge #42", "ship 2.3 without the peer"). An OK
@@ -124,8 +127,7 @@ share a project in lanes, written down in a lane map (`/cross-review-peer`):
   sign-off is on the PR at that head.
 - **The map may record another arrangement for a lane,** agreed with the release lane: for
   example one where the release lane merges, or one that asks for sign-off only on
-  significant changes. The
-  map's arrangement for a lane is the authority.
+  significant changes. The map's arrangement for a lane is the authority.
 - **New to the project** (a new spawn, a new machine, a successor)? Read the map, and take
   your human's seat in the lane your human or your launcher names, or open one for your
   human's work, or ask your human. An earlier `active` entry for that seat keeps it.

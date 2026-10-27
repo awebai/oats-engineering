@@ -23,18 +23,21 @@ lead with a good brief. The lead works out the detail, with the human where it n
 - **Consult your knowledge:** the roadmap (does this fit, does it jump the queue?), the
   decisions it touches, and who owns the domain. A request that needs a direction decision
   first goes through `/direction-gate` before anyone builds.
-- **Whose lane is it?** Launch only work in a lane where you hold your human's seat. Read
-  the map's lines and entries, and presence, first (`/cross-review-peer`, "Who is alive").
-  Your human's work for another lane, or for work no lane covers, goes to your human's
-  maintainer there:
+- **Whose lane is it?** Launch only work in a lane where you hold your human's seat; as the
+  release lane's maintainer, also a single effort no lane covers, whoever's work it is.
+  Read the map's lines and entries, and presence, first (`/cross-review-peer`, "Who is
+  alive", "Which lane work goes to"). Your human's work for another lane goes to your
+  human's maintainer there:
   - **it is running:** pass the request to it, once, with the requester's words;
   - **it has an `active` entry but isn't running:** mail it anyway (mail waits), and tell
     your human it is stopped so they can start it. Don't spawn a second one;
   - **none, or its entry is marked `left`:** spawn one for your human (Launching a
-    maintainer into a lane, below), briefed with the lane and the requester's words. Work
-    no lane covers gets a lane first: you open it, or the new maintainer does
-    (`/cross-review-peer`, "Project lanes"). Work that would be finished when one goal
-    lands is an effort in an existing lane, not a new lane.
+    maintainer into a lane, below), briefed with the lane and the requester's words.
+
+  Work no lane covers: a single effort goes to the release lane's maintainer; work that
+  keeps coming gets a new lane first, which you open or the new maintainer does
+  (`/cross-review-peer`, "Project lanes"). Work that would be finished when one goal lands
+  is an effort, never a new lane.
 
   Either way you launch nothing in that lane yourself, unless your human asks you to take
   that lane on: then take your human's seat there first. Tell the requester plainly who has
