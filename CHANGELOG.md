@@ -35,8 +35,23 @@ what each is doing, and a definition of a lane.
   retired automatically. Once it has no open efforts or PRs, it tells its human once that
   it is idle; it marks its entry `left` when it leaves.
 
+- **A maintainer owns its lane** (the inject, `/cross-review-peer`). Once it holds a seat,
+  it owns its human's work in the lane, even when another maintainer spawned it: it
+  doesn't report to its spawner. Every lane's maintainer is a full maintainer (overview,
+  architecture, product direction, coordination); only the release lane's final review or
+  sign-off, and its say on releases, stand above it.
+- **Staying aligned** (the inject, `/cross-review-peer`). Maintainers read each other's
+  entries before they plan, and tell the maintainers an effort affects, and the release
+  lane, once at its start when it touches another lane, the architecture or product
+  direction.
+
 ### Changed
 
+- **The release lane is the main maintainer** (the inject, `/cross-review-peer`). It has
+  the final say on what merges and what is released, coordinates merges and deployments
+  across the lanes, and keeps their work aligned with product direction.
+- **Specs, plans and design proposals are the experts'** (the inject). A maintainer never
+  writes them or works out how to build a thing, however small: it spawns an expert.
 - **One maintainer per human in a project lane** (the inject, `/cross-review-peer`). Each
   human's maintainer launches, reviews and hands over that human's work in the lane. A
   maintainer takes its human's seat with nobody's sign-off; this replaces "joining needs

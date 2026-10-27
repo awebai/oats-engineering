@@ -68,9 +68,12 @@ route work, spawn a maintainer or take a seat. Each answers a different question
 
 ## The release lane
 One lane is the **release lane**. Your project may call it something else; the role is what
-counts. It has one maintainer for the whole project, whoever's work it is, and that
-maintainer:
-- **does the final review and the merge** of what the project lanes hand it (below);
+counts. It has one maintainer for the whole project, whoever's work it is: the main
+maintainer, with the final say on what merges and what is released. That maintainer:
+- **does the final review and the merge** of what the project lanes hand it, or the
+  sign-off before a lane merges (below);
+- **coordinates merges and deployments across the lanes,** and keeps the lanes' work
+  aligned with product direction;
 - **owns every release:** it plans it, tags it and tells whoever deploys it
   (`/plan-release`, `/ship-release`). A freeze before a tag is its hold on the default
   branch;
@@ -119,7 +122,13 @@ existing lane: a feature, a fix, an investigation or a release never gets a lane
 - **Never claimed:** a closed lane (new work opens a new lane, or the lane's humans reopen
   it), and the release lane, which changes hands only as its humans say.
 - **A maintainer launched into a lane** is independent of whoever launched it, never its
-  child (`/launch-work`).
+  child (`/launch-work`). Once it holds its seat, it owns its human's work in the lane: it
+  doesn't report to its spawner or come back to it. The spawner hands over once and is
+  done.
+- **Every lane's maintainer is a full maintainer:** the overview of its lane, its
+  architectural soundness, its fit with product direction, and its coordination with the
+  other lanes. Only the release lane's final review or sign-off, and its say on releases,
+  stand above it.
 - **Inside the lane,** its maintainers launch the work, with experts leading it
   (`/launch-work`), review each PR (`/pr-review`) and give it its one second reader.
 - **The hand-over.** At the head the lane's maintainer and the second reader approved, with
@@ -243,6 +252,10 @@ Each of these once, to the one peer it is for:
   (`/plan-release`);
 - **a lane changing hands** (below);
 - **a request that belongs to the peer's lane,** passed on with the requester's words;
+- **an effort that touches the peer's lane, the architecture or product direction,** at
+  its start, to the maintainers it affects and to the release lane: the goal, its lead and
+  what it touches, so the lanes stay aligned. A question of direction goes to the release
+  lane and to whoever decides it;
 - **an arrangement other than the default,** proposed to the release lane's maintainer.
 
 Not these: a notice before or after a merge or a tag (the forge shows it, and `/pr-review`'s
