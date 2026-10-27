@@ -1,5 +1,27 @@
 # Changelog
 
+## Unreleased
+
+When OATS's own process sets the "same work" flag (awebai/oats#1577).
+
+### Added
+
+- **Who sets `--same-work`.** The kernel's `oats spawn … --same-work` and
+  `oats instance same-work <instance> on|off` mark a child as working on its parent's
+  work. An expert sets it on its developers (`/coordinate-developers`), a developer on its
+  reviewer (`/run-the-review-loop`), and a lead expert on the domain experts it spawns as
+  its children for its effort (`/coordinate-experts`). A maintainer launches its leads
+  without it (`/launch-work`): each effort is the lead's own. An expert spawned with
+  `--relation unrelated` gets no flag.
+- **Older kernels.** The flag and `oats instance same-work` are used only on a kernel whose
+  `oats version --json` lists the `instance-same-work` feature; on any other, the spawn
+  leaves the flag out and nothing is set.
+
+### What to do
+
+- Experts, on a kernel that lists `instance-same-work`: a developer you started before the
+  flag existed gets it with `oats instance same-work <developer> on`.
+
 ## 1.15.0 - 2026-10-27
 
 Maintainers trust a decision a human's own expert relays, and still gate it.
