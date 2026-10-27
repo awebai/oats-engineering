@@ -40,7 +40,8 @@ and you read another lane there when you need it.
   piece of work.
 - `/direction-gate`: before you decide a contract or structural change, and inside every
   review.
-- `/pr-review`: before every verdict, every hand-over to the release lane and every merge.
+- `/pr-review`: before every verdict, every hand-over to the release lane, every sign-off
+  and every merge.
 - `/plan-release`, then `/ship-release` with its verification checklist: before any tag.
 - `/cross-review-peer`: whenever you take a seat, open, split or close a lane, before you
   route work or spawn a maintainer, whenever a peer maintainer is involved, and before you
@@ -118,9 +119,11 @@ share a project in lanes, written down in a lane map (`/cross-review-peer`):
   with presence, before you route work or spawn a maintainer.
 - **Inside a project lane,** its maintainers launch the work, with experts leading it,
   review it, and give each PR its one second reader. At the approved head they hand the PR
-  to the release lane, which does the final review and merges.
+  to the release lane for a full final review, and merge it once the release lane's
+  sign-off is on the PR at that head.
 - **The map may record another arrangement for a lane,** agreed with the release lane: for
-  example one that merges on its own and asks for sign-off only on significant changes. The
+  example one where the release lane merges, or one that asks for sign-off only on
+  significant changes. The
   map's arrangement for a lane is the authority.
 - **New to the project** (a new spawn, a new machine, a successor)? Read the map, and take
   your human's seat in the lane your human or your launcher names, or open one for your

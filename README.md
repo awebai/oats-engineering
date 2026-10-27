@@ -37,11 +37,11 @@ Where a project has a **maintainer**, it launches each new effort to one lead ex
 spawned as its child or delegated, and every PR the experts land goes through it. It holds
 the overview, gates each change on direction and architecture, reviews and merges at an
 exact head, plans and ships releases, and works in lanes with its peer maintainers: one
-release lane with one maintainer for the whole project, for the final review, merge and
-tags, and project lanes with one maintainer per human, each PR getting one second reader.
-An expert started without a maintainer finds its human's maintainer for its lane, or
-spawns one. A human gives it the high-level picture; it briefs and launches
-the expert who writes the spec and plan. A maintainer is not an expert: it doesn't lead
+release lane, the main maintainer, with the final review and sign-off before every merge
+and the final say on releases; and project lanes, each owned by one maintainer per human,
+which merge once signed off, each PR getting one second reader. An expert started without
+a maintainer finds its human's maintainer for its lane, or spawns one. A human gives it the
+high-level picture; it briefs and launches the expert who writes the spec and plan. A maintainer is not an expert: it doesn't lead
 efforts.
 
 ## What's in the package

@@ -70,8 +70,8 @@ route work, spawn a maintainer or take a seat. Each answers a different question
 One lane is the **release lane**. Your project may call it something else; the role is what
 counts. It has one maintainer for the whole project, whoever's work it is: the main
 maintainer, with the final say on what merges and what is released. That maintainer:
-- **does the final review and the merge** of what the project lanes hand it, or the
-  sign-off before a lane merges (below);
+- **does the final review of every PR the project lanes hand it,** and signs it off for
+  the lane to merge, or merges it where the lane's arrangement says so (below);
 - **coordinates merges and deployments across the lanes,** and keeps the lanes' work
   aligned with product direction;
 - **owns every release:** it plans it, tags it and tells whoever deploys it
@@ -131,32 +131,32 @@ existing lane: a feature, a fix, an investigation or a release never gets a lane
   stand above it.
 - **Inside the lane,** its maintainers launch the work, with experts leading it
   (`/launch-work`), review each PR (`/pr-review`) and give it its one second reader.
-- **The hand-over.** At the head the lane's maintainer and the second reader approved, with
-  CI green, the lane's maintainer hands the PR to the release lane's maintainer once, with
-  `/pr-review`'s handoff template. The release lane reviews it at that head (`/pr-review`),
-  and merges it or returns it to the lane's maintainer, who takes the findings to the PR's
-  owner. When the release lane's maintainer is the PR's second reader, the second-read
-  request is the hand-over: it reviews once, as the final review, and merges or returns
-  it.
+- **The hand-over, the sign-off and the merge.** At the head the lane's maintainer and the
+  second reader approved, with CI green, the lane's maintainer hands the PR to the release
+  lane's maintainer once, with `/pr-review`'s handoff template. The release lane gives it a
+  full final review at that head (`/pr-review`) and signs off or returns it to the lane's
+  maintainer, who takes the findings to the PR's owner. Once the sign-off is on the PR at
+  that head, the lane's maintainer merges it, in the order the release lane asks for when
+  it coordinates a release. When the release lane's maintainer is the PR's second reader,
+  the second-read request is the hand-over: it reviews once, as the final review.
 
 ### A lane's arrangement
-The hand-over above is the default, and a new lane starts with it. The map may record
+The sign-off above is the default, and a new lane starts with it. The map may record
 another arrangement for a lane, and the map's arrangement for a lane is the authority. Two
 common ones:
-- **Sign-off on every merge:** the lane merges its own PRs, each only once the release
-  lane's sign-off is on the PR at the head being merged.
+- **The release lane merges:** the lane hands each approved PR over, and the release lane
+  reviews and merges it itself.
 - **Sign-off on significant merges only:** the lane merges on its own, and asks for the
   sign-off on a PR that changes a product decision, the roadmap or a contract, or that its
   maintainer judges important. In doubt, ask.
 
-A sign-off is asked once, at the head the lane's maintainer and the second reader
-approved, and the lane merges only once it is on the PR at that head (`/pr-review`). When
-the release lane's maintainer is already the PR's second reader, its verdict is the
-sign-off.
+Whatever the arrangement, the release lane has the final say: a PR merges only as its
+sign-off or its merge allows, and a lane merges only once the sign-off it needs is on the
+PR at the head being merged (`/pr-review`). When the release lane's maintainer is already
+the PR's second reader, its verdict is the sign-off.
 
 An arrangement other than the default goes on the map only with the release lane's
-agreement, since it hands over the final merge. Changing a lane's arrangement takes its
-humans and the release lane.
+agreement. Changing a lane's arrangement takes its humans and the release lane.
 
 ### A lane that splits
 When a lane narrows (its project shrinks to part of what it covered) and the rest moves to a
@@ -245,8 +245,8 @@ verdict was bound again at every head.
 ## What you message a peer for
 Each of these once, to the one peer it is for:
 - **a second read:** the request at an exact head, and its verdict in one line;
-- **a hand-over to the release lane,** or a sign-off where the lane's arrangement asks for
-  one, at an exact head, and its verdict in one line;
+- **a hand-over to the release lane** for its final review and sign-off, at an exact head,
+  and its verdict in one line;
 - **a hold that must stop work already in flight** (below);
 - **the release plan,** where the peer's lane has PRs in it or left out of it
   (`/plan-release`);

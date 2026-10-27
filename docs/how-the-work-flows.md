@@ -128,7 +128,9 @@ track the web app's PRs: when it needs one, it reads it on the forge. The backen
 hands its rate-limit PR to the gateway maintainer alone. That maintainer approves first and
 then asks for the second read, once, at the head it approved. The second reader is the
 release lane's maintainer, so its read is also the final review: it posts its verdict on
-the PR, merges, and tells the gateway maintainer in one line. When it freezes the default
+the PR, which is its sign-off, and tells the gateway maintainer in one line. The gateway
+maintainer merges. The gateway lane owns its work; the release lane, the main maintainer,
+keeps the final say on what merges and what is released. When it freezes the default
 branch before the tag, it opens an issue with the hold label, and every lane's merge step
 finds it there.
 
@@ -141,7 +143,7 @@ for the whole project. Each gateway maintainer now reviews its own human's PRs, 
 are each other's natural second reader; where a PR changes code the other human's effort
 is changing, the other one must read it. At the head both approved, the PR's maintainer
 hands it to the release lane once; the release lane reviews it as its
-final reader and merges. The gateway lane's human then asks to move faster, and the release
+final reader and signs off, and the PR's maintainer merges. The gateway lane's human then asks to move faster, and the release
 lane agrees to another arrangement, recorded on the map: the gateway lane merges on its own
 and asks for the release lane's sign-off only on significant merges (a product decision,
 the roadmap, a contract). Its next small fix merges on its own, and goes out in the release

@@ -76,8 +76,8 @@ The brief holds:
 4. **What your knowledge says** that bears on it: the decisions and coherence rules it
    must respect, and where it sits on the roadmap.
 5. **Delivery:** its PRs come to you for review, and to no other maintainer: you ask the
-   second reader, and you hand the approved PR on to the release lane where your lane's
-   arrangement says so. With peer maintainers, name your lane's label for it to put on its
+   second reader, and you hand the approved PR to the release lane for its sign-off, as
+   your lane's arrangement says. With peer maintainers, name your lane's label for it to put on its
    PRs, and yourself as the maintainer its PR descriptions name (`/cross-review-peer`).
 
 Don't split the work by domain or surface for it, and don't write its spec or plan:

@@ -50,6 +50,13 @@ what each is doing, and a definition of a lane.
 - **The release lane is the main maintainer** (the inject, `/cross-review-peer`). It has
   the final say on what merges and what is released, coordinates merges and deployments
   across the lanes, and keeps their work aligned with product direction.
+- **A lane merges its own PRs once the release lane has signed off** (`/cross-review-peer`,
+  `/pr-review`, the inject, `/launch-work`). This is the new default arrangement: the lane
+  hands the approved PR to the release lane, which gives it a full final review at that
+  head; once its sign-off is on the PR at that head, the lane's maintainer merges, in the
+  order the release lane asks for in a release. "The release lane merges" and "sign-off on
+  significant merges only" remain arrangements a lane may agree with the release lane.
+  Lanes already on a map keep the arrangement recorded there.
 - **Specs, plans and design proposals are the experts'** (the inject). A maintainer never
   writes them or works out how to build a thing, however small: it spawns an expert.
 - **One maintainer per human in a project lane** (the inject, `/cross-review-peer`). Each
