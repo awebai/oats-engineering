@@ -82,6 +82,15 @@ what each is doing, and a definition of a lane.
   belongs to the maintainer of the human whose effort produced it, in its lane: the
   effort's human, not the forge account. Where it changes code another human's effort in
   the lane is changing, that human's maintainer is its second reader.
+- **Shorter injects and skills, rules unchanged** (`oats.maintainer`,
+  `oats.engineering-expert`, `oats.developer`). Each inject opens with a short block of
+  the rules that are expensive to break, marked IMPORTANT, ALWAYS or NEVER, the only caps
+  in the text. Rationale and duplication between the inject and the skills are cut, and
+  every rule keeps one home: the inject says when to load a skill, and the skill holds the
+  procedure. Word counts (inject; skills):
+  - maintainer: 2,046 to 1,101; 14,214 to 11,399;
+  - expert: 981 to 484; 3,647 to 2,950;
+  - developer: 597 to 292; 2,720 to 2,085.
 
 ### What to do
 
