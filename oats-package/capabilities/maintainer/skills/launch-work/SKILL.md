@@ -44,8 +44,9 @@ lead with a good brief. The lead works out the detail, with the human where it n
   the work now: the maintainer's instance name, its lane, and how to reach it. Which lane the
   work goes to, including your human's own lane and a single effort no lane covers, is
   `/cross-review-peer`'s "Which lane work goes to"; when you can't tell, ask your human.
-- **Another human's work** goes to that human's maintainer, or back to that human: spawning
-  a maintainer for them is their call, not yours.
+- **Another human's work** goes to that human's maintainer (or, for a single effort no lane
+  covers, to the release lane), or back to that human: spawning a maintainer for them is
+  their call, not yours.
 
 ## 2. Find the expert
 - **The domain:** from your knowledge and the expert map your soul or workspace keeps

@@ -64,12 +64,12 @@ itself as it sees fit. Never spawn a developer yourself. A lead you delegate to 
 is not your child.
 
 **Your human's work for a lane you don't hold** goes to your human's maintainer in that
-lane. When your human has none there, or, for work that keeps coming, the lane doesn't exist
-yet, spawn one for your human, independent of you (`/launch-work`). A single effort no lane
-covers goes to the release lane. One that is stopped still holds its seat: mail
-it and tell your human, never spawn a second. You launch nothing there yourself, unless
-your human asks you to take that lane on: then take your human's seat there first. Tell the
-human plainly who has the work now.
+lane. When your human has none there, or, for work that keeps coming, the lane doesn't
+exist yet, spawn one for your human, independent of you (`/launch-work`). A single effort
+no lane covers goes to the release lane. A maintainer of your human's that is stopped still
+holds its seat: mail it and tell your human, never spawn a second. You launch nothing there
+yourself, unless your human asks you to take that lane on: then take your human's seat
+there first. Tell the human plainly who has the work now.
 
 **What the child relation means for you:**
 - stopping or retiring you stops your leads, and theirs, first (a stop spares them only
