@@ -1,6 +1,6 @@
 ---
 name: cross-review-peer
-description: Work with peer maintainers in lanes - one release lane that does the final review and merge, owns every release and keeps the lane map, and one project lane per project, which a maintainer defines or claims, with nobody's sign-off, when it holds none or its human asks - the written lane map and each lane's arrangement, claiming, joining or defining a lane, maintainers sharing a lane, a lane that splits, the hand-over of an approved PR to the release lane, one second reader for every PR (another lane's maintainer when the PR changes code that lane holds), the few things peers message each other for, holds as a label on the forge and their named exceptions, a lane changing hands or closing, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever you claim, join, define or split a lane, whenever a peer maintainer is involved, and before you message one.
+description: Work with peer maintainers in lanes - what a lane is (a standing area of work, never one effort), one release lane with one maintainer for the whole project that does the final review and merge, owns every release and keeps the lane map, and project lanes with at most one maintainer per human - the written lane map, its lane lines and each maintainer's own entry (lane, human, state, efforts, PRs), who is alive (entries plus your messaging layer's presence) and avoiding duplicate maintainers, taking your human's seat, opening, splitting or closing a lane, which maintainer a PR belongs to, the hand-over of an approved PR to the release lane, one second reader for every PR (another lane's maintainer, or another human's where their work meets), the few things peers message each other for, holds and their named exceptions, leaving a lane and a lane changing hands, the fallback when a peer is unreachable, and how to verify a decision passed on from a human. Use whenever you take a seat, open, split or close a lane, route work or spawn a maintainer, whenever a peer maintainer is involved, and before you message one.
 ---
 
 # Work in lanes with your peers
@@ -16,14 +16,21 @@ Write it down where all of you can read it (an issue or a file on the forge), an
 - **The release lane:** its label, its maintainer and their human, and the second reader
   of its own PRs (below).
 - **A line per project lane:** its name and label, what it covers (the project: areas of
-  the repository, kinds of work, or whose requests), its maintainers and their human (none
-  yet, while it is open to claim), its second reader, and its arrangement when it isn't the
-  default (below). A lane with one maintainer names the release lane's maintainer as its
-  second reader, or another peer.
+  the repository, kinds of work, or whose requests), its second reader, and its
+  arrangement when it isn't the default (below). A lane with one maintainer names the
+  release lane's maintainer as its second reader, or another peer.
+- **An entry per maintainer** (below), which says who holds a seat in which lane, and what
+  each is doing.
 - **How a PR shows its lane:** a label (`lane:<name>`), put on by its owner or by the first
   maintainer who sees it without one. Every effort and PR is in exactly one lane: the lane
-  of the effort that produced it. A new lane's line names its project, not another lane's
-  areas.
+  of the effort that produced it.
+- **Which maintainer a PR belongs to:** the one holding the seat, in the PR's lane, of the
+  human whose effort produced it. That is the effort's human, not whoever owns the forge
+  account: several humans' agents may share one. The PR's description names it.
+- **Overlap.** Lanes defined by areas or by a kind of work don't overlap each other: to take
+  part of one, split it (A lane that splits, below). A lane defined by whose requests it is
+  may overlap them: a PR from that human's effort is in that lane, and the area lane it
+  touches names itself on the PR as its second reader (One second reader per PR, below).
 - **The hold label** (`hold`, unless you agree another).
 - **How you reach each other.**
 
@@ -31,9 +38,38 @@ The release lane's maintainer keeps the map, unless it names another keeper. Eac
 lane's maintainers write and update their own line. When the map doesn't cover a question,
 ask the peer it concerns; don't assume authority you weren't given.
 
+### Your entry
+Each maintainer keeps one entry on the map, and only it edits that entry, so no maintainer
+overwrites another's (on a forge issue, a comment of its own). It holds:
+- your lane, your human and your instance name;
+- your state: `active`, or `left` with the date;
+- your efforts: each one's lead instance and goal, one line each;
+- your open PRs, by number only: the forge holds their state;
+- the date you last updated it.
+
+Update it at every intake, when an effort starts or ends, and when you hand a PR over. Add
+it before you launch or review anything in the lane, and mark it `left` when you leave the
+lane or are retired (A lane changes hands, below).
+
+### Who is alive
+Read the lines, the entries and your messaging layer's presence (its roster) before you
+route work, spawn a maintainer or take a seat. Each answers a different question:
+- **The entry is the record of who holds a seat.** An `active` entry holds it until it is
+  marked `left` (Project lanes, "A free seat").
+- **Presence says whether that instance is running now,** on whatever machine it runs.
+  Offline is not left: an `active` entry with no presence is a stopped maintainer, which
+  still holds its seat. Mail it (mail waits), and tell your human it is stopped so they can
+  start it. Don't spawn a second one.
+- **An `active` entry with no presence and an old date:** ask its human whether it has left.
+  Never mark another maintainer's entry `left` yourself.
+- **Two at once.** A new maintainer adds its entry first. If it then finds an earlier
+  `active` entry for the same human and lane, the earlier one holds the seat: the newcomer
+  hands over whatever it took and asks its human to retire it.
+
 ## The release lane
 One lane is the **release lane**. Your project may call it something else; the role is what
-counts. Its maintainer:
+counts. It has one maintainer for the whole project, whoever's work it is, and that
+maintainer:
 - **does the final review and the merge** of what the project lanes hand it (below);
 - **owns every release:** it plans it, tags it and tells whoever deploys it
   (`/plan-release`, `/ship-release`). A freeze before a tag is its hold on the default
@@ -50,31 +86,40 @@ and never tags. A maintainer alone holds the release lane, and its lane is the w
 project.
 
 ## Project lanes
-Every lane other than the release lane is a project lane: one per project.
-- **Taking one.** A maintainer takes a lane when it holds none yet (Joining as a new
-  maintainer, below), or when its human asks it to take one on. Otherwise work for another
-  lane is routed, not taken (`/launch-work`).
-- **Defining one.** A maintainer defines a lane for its human's work with nobody's
-  sign-off: it adds the lane's line to the map, creates its label, and puts the label on
-  the lane's PRs. The release lane may also open a lane on the map with no maintainer yet,
-  for one to claim.
-- **Claiming one.** A maintainer may claim a project lane that has no active maintainer,
-  with nobody's sign-off, by adding itself to the lane's line. A lane has no active
-  maintainer when its line names none, or the one it names has left the lane. Only the
-  leaving maintainer, its human, or the map's keeper on that human's word marks it as left;
-  a retired maintainer has left once the map or its human records it. An unreachable
-  maintainer still holds its lane (When a peer is unreachable, below). A closed lane isn't
-  claimed: new work defines a new lane, or the lane's humans reopen it. The release lane is
-  never claimed: it changes hands only as its humans say.
-- **Joining one** that has an active maintainer takes its human launching you into it, or
-  the agreement of the lane's maintainer or its human.
-- **Several maintainers may share a lane,** and a lane's human may launch maintainers into
-  it. A
-  maintainer launches another maintainer into a lane only when its human asks for one, or
-  asks for work in a lane that has no maintainer or no lane yet; the new maintainer is
-  independent of it, never its child (`/launch-work`). Each maintainer in a shared
-  lane reviews the PRs handed to it and tracks the efforts it launched; another maintainer
-  of the lane is the natural second reader.
+Every lane other than the release lane is a project lane.
+
+**What a lane is.** A standing area of the project's work: areas of the repository, a kind
+of work, or one human's requests. It outlives the efforts and releases inside it. Its line
+states its label, what it covers (clearly enough that anyone can place a new PR without
+asking), its arrangement and its second-reader rule.
+
+**A lane, not an effort.** An effort has one goal and ends when it lands; a lane keeps
+getting work after that. Work that would be finished when one goal lands is an effort in an
+existing lane: a feature, a fix, an investigation or a release never gets a lane of its own.
+
+- **One maintainer per human.** A project lane has at most one maintainer for each human
+  whose work is in it. That maintainer launches, reviews and hands over its human's work in
+  the lane, and tracks only those efforts. A human who wants two maintainers in one lane
+  splits the lane instead (A lane that splits, below).
+- **Taking your human's seat.** A maintainer takes the seat of its human in a lane, with
+  nobody's sign-off, by adding its entry: when it holds no lane yet (Joining as a new
+  maintainer, below), when its human asks it to take one on, or when it is launched into
+  the lane for its human. Otherwise its human's work for another lane goes to its human's
+  maintainer there, or to one it spawns (`/launch-work`).
+- **A free seat.** A human's seat in a lane is free when no `active` entry for that human
+  holds it. Only the leaving maintainer, its human, or the map's keeper on that human's
+  word marks an entry `left`; a retired maintainer has left once its entry or its human
+  says so. An unreachable maintainer still holds its seat (When a peer is unreachable,
+  below). Nobody takes another human's seat.
+- **Opening one.** When work keeps coming that no lane covers, any maintainer opens a lane
+  for its human's work with nobody's sign-off, its human's included: it adds the line,
+  creates the label and puts it on the lane's PRs. It takes the seat when it holds no lane;
+  otherwise it spawns a maintainer for its human to hold it (`/launch-work`). The release
+  lane may also open a lane with no maintainer yet.
+- **Never claimed:** a closed lane (new work opens a new lane, or the lane's humans reopen
+  it), and the release lane, which changes hands only as its humans say.
+- **A maintainer launched into a lane** is independent of whoever launched it, never its
+  child (`/launch-work`).
 - **Inside the lane,** its maintainers launch the work, with experts leading it
   (`/launch-work`), review each PR (`/pr-review`) and give it its one second reader.
 - **The hand-over.** At the head the lane's maintainer and the second reader approved, with
@@ -108,10 +153,11 @@ humans and the release lane.
 When a lane narrows (its project shrinks to part of what it covered) and the rest moves to a
 new lane or an existing one, its maintainers or its humans split it, or the release lane on
 their word; never another maintainer.
-- **The map records both lines:** what each covers now, and its maintainers.
+- **The map records both lines:** what each covers now. Each maintainer's entry names the
+  lane it holds a seat in.
 - **Efforts move whole,** relabelled by effort, not by file. An effort in flight in the
-  part that moved goes, with its lead and all its PRs, to the other lane's maintainer by
-  hand-over (A lane changes hands). Until that lane has a maintainer, it stays with the
+  part that moved goes, with its lead and all its PRs, to its human's maintainer in the other
+  lane by hand-over (A lane changes hands). Until that human has a maintainer there, it stays with the
   maintainer that launched it. The lead stays that maintainer's child in OATS: its stop or
   retire still stops the lead, so it tells the new maintainer before either.
 - **A moved PR keeps its verdicts:** a label change is not a new head. Its hand-over comes
@@ -123,22 +169,26 @@ their word; never another maintainer.
   arrangement for the same work is the natural default.
 
 ### A lane that's done
-When its project is finished, the lane's maintainer marks its line closed on the map, once
-its PRs are merged or closed. A closed lane's label stays on its old PRs.
+When its project is finished or absorbed into another lane, or it has had no work for two
+releases, its maintainers or its humans mark its line closed, once its PRs are merged or
+closed. A closed lane's label stays on its old PRs. Closing a lane retires nobody: each of
+its maintainers marks its entry `left` (Leaving a lane, below).
 
 ## Joining as a new maintainer
 A maintainer instance new to the project (a new spawn, a new machine, a successor) holds no
 lane until it takes one:
-1. Read the lane map, and find the release lane's maintainer.
-2. Take the lane your human or your launcher names, and add yourself to its line (a lane
-   with an active maintainer: as "Joining one" says, above). With no lane named, claim a lane that has no active maintainer or define one for your human's
-   work (Project lanes, above), or ask your human which lane is yours.
-3. Until you have a lane, review, merge, tag and launch nothing. Read what you need.
+1. Read the lane map (its lines and entries) and presence, and find the release lane's
+   maintainer.
+2. Take your human's seat in the lane your human or your launcher names, by adding your
+   entry (Your entry, above). With no lane named, take your human's free seat in a lane
+   that covers your human's work, open one (Project lanes, above), or ask your human which
+   lane is yours. If an earlier `active` entry already holds that seat, it keeps it (Who is
+   alive, above).
+3. Until you have a seat, review, merge, tag and launch nothing. Read what you need.
 
-A successor takes its predecessor's place in a lane only when the map, its human or the
-predecessor's hand-over says so, or by claiming the lane once the predecessor has left it:
-a similar name is not a lane. A lane's arrangement doesn't change because a maintainer
-joins it.
+A successor takes its predecessor's seat only when the map, its human or the predecessor's
+hand-over says so, or once the predecessor's entry is marked `left`: a similar name is not
+a seat. A lane's arrangement doesn't change because a maintainer joins it.
 
 ## What you share, and what you don't
 - **The forge is the one copy of a PR's state:** its lane, head, CI, verdicts and holds.
@@ -154,7 +204,11 @@ joins it.
 Every PR gets one second reader: one, not a read from every maintainer. This supersedes
 the earlier pairing practice, in which every peer reviewed every PR in parallel and every
 verdict was bound again at every head.
-- **Who:** the second reader its lane names, or another maintainer of a shared lane.
+- **Who:** the second reader its lane names. In a lane with seats for several humans, the
+  natural one is another human's maintainer in the lane.
+- **Where two humans' work meets.** A PR that changes code another human's open effort or
+  PR in the same lane is changing gets that human's maintainer in the lane as its second
+  reader, in place of the usual one.
 - **Another lane's code.** A PR that changes code another lane holds (another package or
   area), or something another lane's code or text reads (a contract, an answer, a sentence
   a test reads), names that lane on the PR, and that lane's maintainer is its second
@@ -214,9 +268,15 @@ A hold is the hold label on the forge, never a message alone:
 - Message a peer about a hold only when it must stop something already in flight. Say that
   you need a confirmation; the peer answers in one line.
 
+## Leaving a lane
+A maintainer someone else spawned belongs to its human, not to its spawner, and is never
+retired automatically. Once you have no open efforts or PRs, tell your human once that you
+are idle and can be retired with `oats retire <name>`. Retiring is their call. Mark your
+entry `left` when you leave, which frees the seat for your human's next maintainer.
+
 ## A lane changes hands
-When a maintainer leaves a lane (it is retired, overloaded, or a human says so), update its
-line on the map, and hand over once what the forge doesn't show: the decisions asked for
+When a maintainer leaves a lane (it is retired, overloaded, or a human says so), its entry
+is marked `left` and the successor adds its own; the leaving maintainer hands over once what the forge doesn't show: the decisions asked for
 and not yet had, the authority given and its scope, the reason behind each hold, and the
 efforts in flight with their leads. The successor takes those leads over as their
 maintainer: they report to it from then on. It doesn't become their parent in OATS:

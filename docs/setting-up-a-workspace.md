@@ -96,11 +96,14 @@ capabilities:
 ```
 
 Its `AGENTS.md` names the experts it launches for each domain (or your workspace's rules
-do, section 3). Experts that a human starts directly tell the maintainer what they start,
-so its overview stays complete.
+do, section 3). Experts that a human starts directly find their human's maintainer for the
+lane their work is in, on the lane map, and tell it what they start, so its overview stays
+complete; when their human has none there, they spawn one.
 
 Maintainers usually work with peers, often on different machines and for different
-humans, and review each other's work. Put your project's own release lane and
+humans, and review each other's work. A project lane has one maintainer per human; the
+release lane has one for the whole project. Keep the lane map where every maintainer can
+read it, with an entry per maintainer that says what it is doing. Put your project's own release lane and
 test gate in the soul's `AGENTS.md` or skills, or in your workspace's rules (section 3),
 under names of their own: a soul skill named like a capability skill (`pr-review`, say) is
 refused at spawn.

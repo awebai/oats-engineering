@@ -16,8 +16,9 @@ the PRs the project lanes handed it and the sign-offs asked of it. The forge is 
 copy of every PR's state, so another lane's PRs, verdicts and holds are read there when you
 need them and are never copied into your state. Alone, your lane is the whole project.
 
-**No lane yet?** A maintainer the lane map doesn't name takes, claims or defines one first
-(`/cross-review-peer`, "Joining as a new maintainer") and sweeps nothing until it has a lane.
+**No seat yet?** A maintainer with no entry on the lane map takes its human's seat in a
+lane, or opens one, first (`/cross-review-peer`, "Joining as a new maintainer"), and sweeps
+nothing until it has one.
 
 ## When to sweep, and when not
 - **A full sweep:** at session start, after a compaction, and at least weekly.
@@ -61,7 +62,10 @@ Then the people:
 9. **Your peer maintainers:** the second reads you owe and the ones you asked for, and the
    hand-overs and sign-offs you are waiting on from the release lane (`/cross-review-peer`).
    Nothing else of a peer's lane.
-10. **Your human:** decisions you asked for and haven't had, and instructions not yet
+10. **The lane map:** the lines and the entries, against presence (`/cross-review-peer`,
+    "Who is alive"). Note a lane you route work to whose maintainer has left or is
+    stopped.
+11. **Your human:** decisions you asked for and haven't had, and instructions not yet
     carried out.
 
 After a crash, compaction or restart, reconcile against exact identifiers (message ids, PR
@@ -75,6 +79,10 @@ on every sweep and updated between sweeps whenever you act (a verdict, a merge, 
 hold, a decision). Its order is its priority: what others wait on from you comes first.
 Every line names its exact reference (`repo#PR @ sha`, a message id, an issue), and every
 hold says its reason and its scope.
+
+Then update your own entry on the map: your efforts, your open PRs and today's date.
+Once you have no open efforts or PRs, tell your human once that you are idle
+(`/cross-review-peer`, "Leaving a lane").
 
 ## The knowledge pass
 End every intake with your knowledge (the maintainer inject says what it keeps):

@@ -1,5 +1,64 @@
 # Changelog
 
+## Unreleased
+
+Maintainers per human, experts that find theirs, a lane map that shows who is alive and
+what each is doing, and a definition of a lane.
+
+### Added
+
+- **What a lane is** (`/cross-review-peer`, the inject). A standing area of a project's
+  work: areas of the repository, a kind of work, or one human's requests. Work that would
+  be finished when one goal lands is an effort in an existing lane, not a new lane. Each
+  line states its label, what it covers, its arrangement and its second-reader rule. Area
+  and kind-of-work lanes don't overlap; a lane defined by whose requests it is may overlap
+  them, and the area lane a PR touches is its second reader. A lane closes when its
+  project is finished or absorbed, or after two releases with no work.
+- **An entry per maintainer on the lane map** (`/cross-review-peer`, `/maintainer-intake`,
+  `/launch-work`). Each maintainer keeps one entry, which only it edits: its lane, its
+  human, `active` or `left`, its efforts with their leads, its open PRs by number, and the
+  date. It updates the entry at every intake, when an effort starts or ends, and at every
+  hand-over.
+- **Who is alive** (`/cross-review-peer`). The entry is the record of who holds a seat;
+  your messaging layer's presence says whether it is running now. A stopped maintainer
+  still holds its seat: mail it and tell your human, never spawn a second. An old entry
+  with no presence is a question for its human. Of two maintainers spawned at once for the
+  same human and lane, the earlier entry holds the seat.
+- **Experts find their maintainer** (the expert inject, `/coordinate-experts`,
+  `/land-your-prs`). An expert no maintainer launched or delegated finds its human (its
+  brief, else its spawning instance's human, else the deployment's one human; when
+  unclear, it asks and opens no PR), then its human's maintainer for its lane on the map,
+  and gives it the start notice. When there is none, it spawns one for its human,
+  independent of itself, and its effort is delegated to it. Its PR descriptions name the
+  maintainer.
+- **Leaving a lane** (`/cross-review-peer`, `/maintainer-intake`). A maintainer is never
+  retired automatically. Once it has no open efforts or PRs, it tells its human once that
+  it is idle; it marks its entry `left` when it leaves.
+
+### Changed
+
+- **One maintainer per human in a project lane** (the inject, `/cross-review-peer`). Each
+  human's maintainer launches, reviews and hands over that human's work in the lane. A
+  maintainer takes its human's seat with nobody's sign-off; this replaces "joining needs
+  the agreement of the lane's maintainer or its human". The release lane keeps one
+  maintainer for the whole project.
+- **Opening a lane needs nobody's sign-off,** its human's included (`/cross-review-peer`,
+  the inject). A maintainer that already holds a lane spawns a maintainer for its human to
+  hold the new one.
+- **Routing is per human** (`/launch-work`, the inject). Your human's work for another lane
+  goes to your human's maintainer there; when your human has none, you spawn one for your
+  human. Another human's work goes to that human's maintainer.
+- **Which maintainer a PR belongs to, and its second reader** (`/cross-review-peer`). A PR
+  belongs to the maintainer of the human whose effort produced it, in its lane: the
+  effort's human, not the forge account. Where it changes code another human's effort in
+  the lane is changing, that human's maintainer is its second reader.
+
+### What to do
+
+- Move your lane map to the new shape: a line per lane, and an entry per maintainer that
+  only that maintainer edits. Each running maintainer adds its entry at its next intake.
+- Name the maintainer soul in your workspace's rules, so an expert can spawn one.
+
 ## 1.13.0 - 2026-10-26
 
 A maintainer's leads are its children, lanes can be claimed and split, work for another
