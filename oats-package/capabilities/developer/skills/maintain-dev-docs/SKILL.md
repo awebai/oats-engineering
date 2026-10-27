@@ -10,8 +10,8 @@ development docs and comments, in the same change as the code.
 
 ## What they are
 Use the repository's existing names and places:
-- Contributor guide (`AGENTS.md`, `CONTRIBUTING.md`, the README): build, test and run; the
-  branch and PR rules; the test gate.
+- Contributor guide (`AGENTS.md`, `CONTRIBUTING.md`, the README's development section):
+  build, test and run; the branch and PR rules; the test gate.
 - Architecture (`ARCHITECTURE.md`, `docs/architecture/`, a module's README): the parts,
   their responsibilities, how data and control flow, where to change what.
 - Conventions: naming, error handling, logging, file layout, patterns used and avoided.
