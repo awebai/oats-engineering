@@ -15,9 +15,9 @@ of the code can be wrong. Check:
 - Scope: what's out of scope; which files you must not touch.
 - Size: one piece of work, or several to split?
 
-Take what's ambiguous, contradictory or missing to your expert as concrete questions,
-batched, each with your proposed answer. Hold the parts a question affects until it's
-answered; the rest can go ahead.
+Questions go to your expert (what's ambiguous, contradictory or missing, and anything
+else), batched, each with your proposed answer. Hold the parts a question affects until
+it's answered; the rest can go ahead.
 
 ## If you have no spec
 After reading the code, write one carefully in the standard shape (goal, done when,

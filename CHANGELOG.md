@@ -88,9 +88,9 @@ what each is doing, and a definition of a lane.
   in the text. Rationale and duplication between the inject and the skills are cut, and
   every rule keeps one home: the inject says when to load a skill, and the skill holds the
   procedure. Word counts (inject; skills):
-  - maintainer: 2,046 to 1,097; 14,214 to 11,349;
-  - expert: 981 to 476; 3,647 to 2,939;
-  - developer: 597 to 287; 2,720 to 2,082.
+  - maintainer: 2,046 to 1,101; 14,214 to 11,399;
+  - expert: 981 to 484; 3,647 to 2,950;
+  - developer: 597 to 292; 2,720 to 2,085.
 
 ### What to do
 

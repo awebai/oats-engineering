@@ -63,7 +63,8 @@ An expert a maintainer launched or delegated has one: send no notice. Any other 
 unless a coordinator does this for it, finds its own as it starts:
 1. **Your human:** the human your brief names as asking; else, when an instance spawned
    you, its human (ask it if its brief doesn't say); else the one human who runs your
-   deployment. Still unclear: ask your spawner or requester. Meanwhile you may plan.
+   deployment. Still unclear: ask your spawner or requester. Meanwhile you may plan, but
+   spawn no maintainer and open no PR.
 2. **Your lane,** on your workspace's lane map, in this order:
    - a lane that covers your work where your human has an `active` maintainer;
    - else your human's own lane, when your human's requests define one;

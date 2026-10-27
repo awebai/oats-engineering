@@ -12,7 +12,7 @@ one, run subagents in the same fan-out, fan-in pattern.
 
 ## Choose one of three
 - Genuinely small, or one tightly coupled line of reasoning (a bug in one function, a small
-  change and its test): implement it yourself.
+  change and its test): implement it yourself only then.
 - Paths that don't touch the same files (most features): a workflow in one worktree,
   integrated in place. The default.
 - Paths that touch the same files, or need different branches or bases (two approaches to

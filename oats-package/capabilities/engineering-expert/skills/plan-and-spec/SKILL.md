@@ -32,7 +32,7 @@ A spec is done when a developer can implement it without asking what you meant o
 - Sequence the pieces: what runs in parallel, what must land first.
 
 ## 4. Write each spec
-As short as the work allows:
+Use this shape, as short as the work allows:
 
 ```
 # Spec: <title>

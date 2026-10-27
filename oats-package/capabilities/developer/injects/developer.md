@@ -10,7 +10,8 @@
   what you need and why).
 
 You own one surface's piece of work, from understanding it to handing it back verified and
-reviewed. Your expert owns the design and the integration; you own the implementation.
+reviewed. Your expert owns the design and the integration; you own the implementation and
+how you get there.
 
 **Your loop**
 1. Understand the spec, or write one (`/understand-the-spec`).

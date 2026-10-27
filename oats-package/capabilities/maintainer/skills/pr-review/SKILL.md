@@ -89,7 +89,8 @@ arrangement").
 
 **As the release lane's maintainer,** give a handed-over PR, at that head, a full review
 of all four gates as its final reader; the lane's reviews inform it.
-- A PR that changes code another lane holds needs that lane's read before yours
+- Check that the second reader was the right one: a PR that changes code another lane
+  holds needs that lane's read before yours
   (`/cross-review-peer`, "One second reader per PR").
 - Your APPROVE on the PR at that head is the sign-off. Tell the PR's maintainer in one line
   and it merges, or merge it yourself where the arrangement says so.
