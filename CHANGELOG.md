@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.14.0 - 2026-10-27
 
 Maintainers per human, experts that find theirs, a lane map that shows who is alive and
 what each is doing, and a definition of a lane.

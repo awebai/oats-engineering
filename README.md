@@ -63,7 +63,7 @@ names, who merges) stay in your repository.
 1. **Declare the package** in your `oats-workspace.yaml`:
    ```yaml
    packages:
-     oats.engineering: v1.13.0
+     oats.engineering: v1.14.0
    ```
 2. **Give the capabilities to your souls** in each `soul.yaml`:
    ```yaml
