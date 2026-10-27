@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.15.0 - 2026-10-27
 
 Maintainers trust a decision a human's own expert relays, and still gate it.
 
