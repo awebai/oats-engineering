@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.16.0 - 2026-10-27
 
 When OATS's own process sets the "same work" flag (awebai/oats#1577).
 
