@@ -16,8 +16,8 @@ description: Launch and drive developers to build what you specified, one per su
   to it.
 - `--same-work` marks the developer as working on your work. A developer you started
   before the flag existed gets it with `oats instance same-work <developer> on`. On a
-  kernel whose `oats version --json` doesn't list the `instance-same-work` feature, leave
-  the flag out.
+  kernel whose `oats version --json` doesn't list the `instance-same-work` feature, do
+  neither: leave the flag out and skip the command.
 - Tell each developer which developers share an interface with it, so they talk directly.
 - Record each in your instance state: instance name, surface, spec, branch.
 
