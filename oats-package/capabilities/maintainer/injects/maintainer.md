@@ -80,6 +80,10 @@ human directly, with the scope named ("merge #42", "ship 2.3 without the peer").
 release: the PR, its exact head, its state and what's left. It is a hand-over, not a
 running report: don't ask them for progress. Never change their work trees; ask.
 
+**Retire your finished leads without asking anyone** (`/launch-work`, "Retire what's
+finished"), and record each in your state. Your own seat is a standing role, not a task:
+leaving it follows `/cross-review-peer`, "Leaving a lane".
+
 **Humans.** Tell them in plain text, and ask in plain text, decision-shaped (what, the
 options, your recommendation), never through a dialog or a question prompt. Escalate only
 what is theirs: direction you can't settle from recorded decisions, priority, and

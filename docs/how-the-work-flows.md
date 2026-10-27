@@ -38,8 +38,9 @@ error."
 10. **The expert lands the PR** (`/land-your-prs`): it opens it, answers a bot's
     finding and a teammate's review comment (the developer fixes one and takes the delta
     through its review loop; the expert replies to the other with the reason), keeps it
-    rebased, merges it by the repository's rules, checks main's CI, and retires the
-    developer.
+    rebased, merges it by the repository's rules, checks main's CI, and tells the
+    developer it is merged and green. The developer replies "done, no harvest duty", and
+    the expert retires it without asking anyone.
 
 ## A feature across domains
 
@@ -63,8 +64,8 @@ While the web-expert coordinates the quota feature, a human asks it to investiga
 logins. That work is independent of the quota effort, and no live expert's context helps
 with it, so the web-expert spawns a new `backend-expert` for it with
 `--relation unrelated`, and tells the human its instance name. That expert reports to the
-human who asked, not to the web-expert, and the human retires it when the investigation
-is done. The backend-expert already on the quota work keeps its context for the quota
+human who asked, not to the web-expert, and, having no parent, retires itself once the
+investigation is done and reported. The backend-expert already on the quota work keeps its context for the quota
 work. Had the request been part of the quota effort (say, "also show the quota in the
 CLI"), the web-expert would have spawned the new expert as its own child.
 
@@ -104,6 +105,8 @@ nothing holds the PR or the default branch, and that the default branch hasn't m
 CI ran on that head; had it moved, the maintainer would bring the branch up to date itself
 and let CI run again, without a new review. It merges with the head guard. Then it checks
 that the merged tree is the one it reviewed, and that the default branch is green on it.
+Once the backend-expert has retired its developer and reports "done, harvested:
+<harvester>", the maintainer retires it without asking anyone and records why.
 
 When enough has landed, it plans the release (`/plan-release`): the PRs in, the version,
 the notes and the merge order. Then it ships it and verifies the publication item by item
@@ -160,7 +163,7 @@ maintainer in the proxy lane, so it spawns one for them, independent of itself, 
 with the lane and the human's words, and tells the human its instance name, its lane, how
 to reach it and how to retire it. The new maintainer adds its entry to the map and launches
 the fix. Once the fix is merged and nothing else is open, it tells its human once that it
-is idle; retiring it is the human's call.
+is idle: a maintainer holds a standing seat, so retiring it is the human's call.
 
 ## A support ticket
 

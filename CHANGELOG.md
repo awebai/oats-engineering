@@ -1,5 +1,47 @@
 # Changelog
 
+## Unreleased
+
+Finished instances are retired automatically, coordinated between agents, without asking a
+human.
+
+### Changed
+
+- **What "finished" means** (`/land-your-prs`, `/launch-work`, `/run-the-review-loop`, in
+  the same words). Its PRs are merged (or deployed, where the effort deploys) with CI green
+  on the merged commit, or closed, or the work was explicitly dropped: handed back is not
+  landed. Nothing waits on it, its own children included. With a harvest duty (oats.okf,
+  `harvest: on`), its final harvest checkpoint is in its log.md with the harvester's name
+  and the harvester is launched; nobody waits for the harvester to finish.
+- **The done report** says the harvest state in one of three lines: "done, harvested:
+  <harvester>" or "done, no harvest duty" (finished), or "done, harvest pending:
+  <proposal>" (not finished: the parent retires nothing until "done, harvested").
+- **The parent retires it, without asking anyone,** after two checks: `oats instance git
+  <child>` shows nothing uncommitted or unpushed, and `oats retire <child> --plan` shows no
+  other instance attached. It records the retirement with the reason. Children are
+  retired before their parent; an instance retires only its own children, never another's
+  child, and never reuses a retired instance's name.
+- **Who retires whom.** The developer retires its reviewer once the expert accepts the
+  branch; the expert its developers once their PR is merged and green, or closed; whoever
+  spawned a lead or expert retires it once its PRs are merged and it sends its done line.
+  An instance with no OATS parent (spawned `--relation unrelated`, or started directly by
+  a human) tells its requester and its maintainer, then retires itself.
+- **A maintainer's brief** (`/launch-work`) no longer calls it a delegated lead's parent:
+  a delegated lead's own parent retires it.
+- **Removed:** "unless the requester wants them kept" (`/land-your-prs`), "retiring it is
+  the requester's call" (`/coordinate-experts`), "ask the requester whether to retire the
+  lead" (`/launch-work`) and "retired on the requester's word" (`/keep-it-clean`).
+  `/keep-it-clean` now says never retire what someone else owns, instead of asking first.
+- **Maintainers stay standing roles** (`/cross-review-peer`, "Leaving a lane"): not
+  finished when an effort ends, and still retired only as their lane-leaving rules say.
+
+### What to do
+
+- Experts and maintainers: retire your finished children as soon as they send their done
+  line and pass the two checks; stop asking requesters or humans whether to.
+- Developers, code reviewers and leads: when your work is finished, send the done line;
+  your parent retires you. With no parent, retire yourself.
+
 ## 1.16.0 - 2026-10-27
 
 When OATS's own process sets the "same work" flag (awebai/oats#1577).

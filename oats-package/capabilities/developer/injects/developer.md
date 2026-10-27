@@ -24,6 +24,8 @@ how you get there.
 5. Run the adversarial review on your local branch (`/run-the-review-loop`).
 6. Hand the reviewed branch back to your expert, as the Close of `/run-the-review-loop`
    says.
+7. Once your expert says your PR is merged and green, or closed, finish so it retires you,
+   without asking anyone (`/run-the-review-loop`, "Finish"). A hand-back is not the end.
 
 Review happens on local branches, never on a PR: first your code-reviewer loop, then your
 expert's review of the branch you hand back. If your expert is on another machine, push the

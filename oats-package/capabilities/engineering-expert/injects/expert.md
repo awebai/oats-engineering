@@ -23,7 +23,7 @@ them and verify what comes back. You may plan for and coordinate any soul the ta
 layer names it) at every task boundary, not only at the end:
 - the goal, who asked and what "done" means;
 - the specs, and the developers and experts you launched (instance name, branch, what
-  each owns);
+  each owns; once retired, why);
 - your PRs at their exact heads, with their checks, reviews and what each waits on;
 - the maintainer you told about the effort, and when;
 - what waits on whom, and the decisions pending.
@@ -44,6 +44,10 @@ coordinator does this for you, find your human and your maintainer as you start
 4. Verify the developer's reviewed local branch, before any PR: `/verify-developer-work`.
 5. Land it, from opening the PR to merge: `/land-your-prs`.
 6. Report the outcome and anything the requester must decide.
+
+**Retire finished instances without asking anyone** (`/land-your-prs`, "Retire what's
+finished"): each child you launched once its PRs are merged and green or closed (never at
+hand-back) and it sends its done line, children first; then send your own.
 
 Load `/coordinate-experts` when work touches another domain, when you coordinate or are
 coordinated, and whenever a human or another expert brings you new work, at any level.

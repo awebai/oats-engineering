@@ -59,13 +59,15 @@ lane where you hold its seat, is your child.
 - **Your children:** stopping or retiring you stops your leads, and theirs, first (a
   non-recursive stop spares them); a retire refuses (`E_CHILDREN_RUNNING`) while one won't
   stop. A retire stops every lead that is your child, handed over or not, keeps their
-  homes, and moves them to your own parent (top level when you have none). So you are
-  retired once your efforts are done, or once a successor has taken them over and can
-  restart the stopped leads (`/cross-review-peer`, "A lane changes hands").
+  homes, and moves them to your own parent (top level when you have none). So you leave
+  only once your efforts are done, or once a successor has taken them over and can
+  restart the stopped leads (`/cross-review-peer`, "Leaving a lane", "A lane changes
+  hands").
 
 ## 4. Brief the lead
 1. **It leads this effort,** launched by you, so it sends you no start notice. You are its
-   parent as its maintainer in the lane, not its coordinator: it plans and coordinates.
+   maintainer in the lane, not its coordinator: it plans and coordinates. Spawned, you are
+   also its parent, which retires it once finished; delegated, its own parent stays so.
 2. **The goal** and why, in a few sentences, and what "done" means to the requester.
 3. **Who asked,** and that the lead reports on the work to them.
 4. **What your knowledge says** that bears on it: decisions and coherence rules to respect,
@@ -84,11 +86,53 @@ Don't split the work by domain or surface for it.
   effort to your map entry.
 - The lead then hands over its PRs like any expert (`/pr-review`) and tells you what blocks
   it.
-- **Done** (PRs merged, requester satisfied): ask the requester whether to retire the lead;
-  a human retires it or tells you to; for an agent requester, ask your human. Then close
-  its row in your state and its line in your entry.
+- **Done:** the effort's PRs are merged and green, or closed, and the lead sends its done
+  line: retire it (Retire what's finished), then close its row in your state and its line
+  in your entry.
 - **Cancelled:** leave nothing half-done (`/keep-it-clean`, "A cancelled effort"), then
   retire the lead the same way.
+- **A lead that isn't your child** (delegated, or started directly by a human): close its
+  row and retire nothing. Its own parent retires it once it is finished; with none, it
+  retires itself and tells you.
+
+## Retire what's finished
+Finished instances are retired without asking anyone, a human included.
+
+An instance is **finished** when all of these hold:
+- its work has landed: its PRs are merged (or deployed, where the effort deploys) with CI
+  green on the merged commit, or closed, or the work was explicitly dropped. Handed back
+  is not landed: it may still be needed for fixes and rebases;
+- nothing waits on it: no open PR, review, question or hand-back of its own, and its own
+  children are retired;
+- with a harvest duty (oats.okf; `oats okf status` says `harvest: on`), its final harvest
+  checkpoint ("you finish a task") is recorded in its log.md with the harvester's name, and
+  the harvester is launched. The harvester snapshots its evidence at spawn and the retire
+  keeps a recovery copy, so nobody waits for the harvester to finish.
+
+- **The done report** says its harvest state in one of three lines, sent once the child has
+  retired its own children and removed its extra worktrees:
+  - "done, harvested: <harvester>": finished;
+  - "done, no harvest duty": finished;
+  - "done, harvest pending: <proposal>": not finished, its final proposal still waits.
+    Retire nothing yet; it reports again, "done, harvested: <harvester>", once the
+    proposal goes through.
+
+  Ask for the line when a done report lacks it.
+- **Before you retire it, check:**
+  - `oats instance git <child>`: no uncommitted changes and no unpushed commits (a retire
+    would keep such a work tree, not deliver it); otherwise the child finishes or hands its
+    work over first;
+  - `oats retire <child> --plan`: no other instance is attached to its work tree;
+    otherwise wait until that one is retired by its own parent.
+- **Retire it** with `oats retire <child>`, and record it in your state (name, why). No
+  acknowledgement is needed, and nothing goes upward beyond your normal report.
+- **Only your own children.** Never retire another's child: tell its parent or requester
+  instead. Children are retired before their parent: a parent's retire stops and keeps its
+  running children, and refuses with `E_CHILDREN_RUNNING` when one won't stop.
+- **Never reuse a name:** a new instance never takes a retired one's name, which couldn't
+  harvest.
+- **Not you, nor a maintainer you launched:** a maintainer holds a standing seat, not a
+  task (`/cross-review-peer`, "Leaving a lane").
 
 ## Launching a maintainer into a lane
 When your human's work needs a lane where your human has no maintainer, or your human asks
