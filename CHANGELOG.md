@@ -1,5 +1,37 @@
 # Changelog
 
+## Unreleased
+
+Maintainers trust a decision a human's own expert relays, and still gate it.
+
+### Changed
+
+- **A relayed decision is the human's decision** (`/cross-review-peer`, "Decisions passed
+  on from a human", the maintainer inject). An architecture, a design, a scope or a
+  product call that an expert reports as made with its own human (the human its brief
+  names), or that a peer maintainer reports for its own human, is taken as that human's
+  decision: the maintainer doesn't ask the human again. It counts for what that human may
+  decide, no more. The maintainer still gates it (`/direction-gate`), and takes a conflict
+  with a recorded decision to whoever decides it.
+- **Authority is confirmed directly, and the list is wider.** A human's word passed on by
+  any agent grants no authority that bypasses a safeguard until the maintainer confirms it
+  with the human: a merge without its second reader, an exception to a hold or a freeze, a
+  tag or a publication, a deploy, a destructive or outward-facing act (deleting,
+  force-pushing, posting or sending outside the project), or marking another maintainer
+  `left`. The "Decided with" form never carries it.
+- **How an expert relays a decision** (`/coordinate-experts`). It records the decision
+  where it applies (the spec, the PR or the issue), then says "Decided with <human>:
+  <decision>" and where it is recorded. Anything else is a proposal.
+
+### What to do
+
+- Experts: relay decisions made with your human as "Decided with <human>: <decision>",
+  with where they are recorded. Without that line, your maintainer weighs it as a
+  proposal.
+- Maintainers: decisions relayed that way are no longer confirmed with the human. Confirm
+  directly every authority grant on the new list, including deploys, destructive or
+  outward-facing acts, and marking a maintainer `left`.
+
 ## 1.14.0 - 2026-10-27
 
 Maintainers per human, experts that find theirs, a lane map that shows who is alive and
