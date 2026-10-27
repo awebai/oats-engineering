@@ -54,13 +54,13 @@ oats spawn <domain-expert> --relation unrelated --purpose <effort> --task-file <
   question prompt.
 - **When a maintainer launches you** as an effort's lead, you coordinate it: plan it, and
   spawn the developers and experts it needs as your children. A maintainer that spawned you
-  as its child is your parent, not your coordinator. Report to whoever asked; your PRs go to the
-  maintainer for review.
+  as its child is your parent, not your coordinator. Report to whoever asked; your PRs go
+  to the maintainer for review.
 - When in doubt whether work belongs to your effort, ask the requester; don't guess.
 
 ## Your maintainer
-An expert a maintainer launched or delegated has one. Any other expert, unless a
-coordinator does this for it, finds its own as it starts:
+An expert a maintainer launched or delegated has one: send no notice. Any other expert,
+unless a coordinator does this for it, finds its own as it starts:
 1. **Your human:** the human your brief names as asking; else, when an instance spawned
    you, its human (ask it if its brief doesn't say); else the one human who runs your
    deployment. Still unclear: ask your spawner or requester. Meanwhile you may plan.
@@ -98,7 +98,7 @@ coordinator does this for it, finds its own as it starts:
    None named or reachable: note it in your state, tell your requester, spawn none.
 
 ## Across machines and people
-When your coordinator, or experts you coordinate, run on another machine for another
+When your coordinator, or experts you coordinate, run on another machine or for another
 human, you can't spawn, retire or direct their agents. Agree at the start, in writing both
 sides can see:
 - **Ownership:** which domains, repositories and PRs each side owns.

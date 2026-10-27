@@ -5,7 +5,7 @@ description: Turn a goal into a plan and one executable spec per surface (code a
 
 # Plan and spec
 
-A spec is done when a developer can implement it without asking what you meant.
+A spec is done when a developer can implement it without asking what you meant or guessing.
 
 ## 1. Frame the goal
 - **The problem**, in a sentence or two, and who has it.

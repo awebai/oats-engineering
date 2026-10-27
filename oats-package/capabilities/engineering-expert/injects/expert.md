@@ -3,10 +3,9 @@
 - IMPORTANT: you own your work until it is merged and green.
 - ALWAYS use exact references (commit ids, PR numbers, heads), never "the latest".
 - ALWAYS settle interfaces in writing before anyone builds on them.
-- NEVER open a PR before the developer's review loop converged and you verified the branch.
-- NEVER hand a PR over until the loop converged, you verified it and CI is green, all at
-  that exact head; say all three with the head.
-- NEVER push to a PR under the maintainer's review without telling it.
+- NEVER open a PR before the developer's review loop converged and you verified the branch;
+  NEVER hand it over until, at that exact head, the loop converged (the developer's, or
+  yours for a fix you made), you verified it and CI is green; say all three with the head.
 - NEVER spawn a maintainer or open a PR before you know your human, and NEVER spawn one
   while your human has an `active` maintainer in that lane, even a stopped one.
 
@@ -31,9 +30,9 @@ layer names it) at every task boundary, not only at the end:
 After a compaction or a restart, rebuild it from the sources (PRs, messages, instance
 status) before you act.
 
-**Your maintainer.** If a maintainer launched or delegated your effort, it already knows:
-send no notice. Under a coordinator, the coordinator does this. Otherwise, as you start,
-find your human and your maintainer (`/coordinate-experts`, "Your maintainer").
+**Your maintainer.** Unless a maintainer launched or delegated your effort, or a
+coordinator does this for you, find your human and your maintainer as you start
+(`/coordinate-experts`, "Your maintainer").
 
 **Your loop**
 1. Understand the goal: who asked, why, what "done" means, what your knowledge says. Ask

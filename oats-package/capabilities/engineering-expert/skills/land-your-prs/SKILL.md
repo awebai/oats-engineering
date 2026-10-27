@@ -41,8 +41,8 @@ one if that one was retired), and the new head is ready when the loop converges.
   human's maintainer in the lane the work is in (`/coordinate-experts`, "Your maintainer").
   Name it in the description. If a second maintainer reads the PR, your maintainer asks
   it, not you. Add its lane's label when your brief or the map names one.
-- Batch the maintainer's review fixes, let the loop converge again, then hand over the new
-  head with the delta.
+- Don't push to a PR under the maintainer's review without telling it. Batch its review
+  fixes, let the loop converge again, then hand over the new head with the delta.
 - After the hand-over, leave the branch alone: when the default branch moves, the
   maintainer updates your branch on the forge and comes back to you only for a conflict.
   Fetch before you touch the branch again.

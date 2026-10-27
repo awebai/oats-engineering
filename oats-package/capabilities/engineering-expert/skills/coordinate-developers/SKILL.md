@@ -22,7 +22,7 @@ description: Launch and drive developers to build what you specified, one per su
   everyone it affects.
 - The spec fixes what and the constraints; the developer chooses how (including whether to
   parallelize).
-- When two developers disagree about a shared shape, you decide.
+- Watch the interfaces; when two developers disagree about a shared shape, you decide.
 
 ## When work comes back
 - A developer reports when its review loop has converged. Don't act on intermediate heads.
