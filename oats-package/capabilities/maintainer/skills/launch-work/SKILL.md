@@ -71,21 +71,22 @@ lane where you hold its seat, is your child.
 4. **What your knowledge says** that bears on it: decisions and coherence rules to respect,
    and where it sits on the roadmap.
 5. **Delivery:** its PRs come to you for review, and to no other maintainer; you ask the
-   second reader and hand the approved PR to the release lane as your lane's arrangement
-   says. With peers, name your lane's label for its PRs, and yourself as the maintainer its
-   PR descriptions name.
+   second reader and hand the approved PR to the release lane for its sign-off, as your
+   lane's arrangement says. With peers, name your lane's label for its PRs, and yourself as
+   the maintainer its PR descriptions name.
 
 Don't split the work by domain or surface for it.
 
 ## 5. Close the loop
-- Tell the requester the lead's instance name and how to reach it.
+- Tell the requester the lead's instance name and how to reach it: a human in plain text,
+  never through a dialog.
 - Add the effort, its lead, who asked and what you wait for to your state file, and the
   effort to your map entry.
 - The lead then hands over its PRs like any expert (`/pr-review`) and tells you what blocks
   it.
 - **Done** (PRs merged, requester satisfied): ask the requester whether to retire the lead;
-  a human retires it or tells you to; for an agent requester, ask your human. Then close its
-  row in your state and its line in your entry.
+  a human retires it or tells you to; for an agent requester, ask your human. Then close
+  its row in your state and its line in your entry.
 - **Cancelled:** leave nothing half-done (`/keep-it-clean`, "A cancelled effort"), then
   retire the lead the same way.
 

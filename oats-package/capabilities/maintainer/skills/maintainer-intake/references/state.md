@@ -41,7 +41,8 @@ Merged (with SHAs), released, retired, decided, recorded in knowledge.
 ```
 
 Rules:
-- References: `repo#PR @ <sha>`, message ids, issue numbers, tags.
+- Exact references only: `repo#PR @ <sha>`, message ids, issue numbers, tags. Never "the
+  latest".
 - A hold names its scope (which PR, which action) and who can lift it. The hold itself is
   the label on the forge (`/cross-review-peer`); this file only says what you wait for
   because of it.

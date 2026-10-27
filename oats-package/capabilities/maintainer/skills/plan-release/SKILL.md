@@ -52,11 +52,12 @@ second reader: the one your lane names or, without a peer, the reviewer you agre
 your human (`/cross-review-peer`).
 
 ## Write the plan down
-The release lane's maintainer owns each release (`/cross-review-peer`, "The release
-lane"). It writes the plan on the forge, in an issue or in the release-prep PR, before the
-plan's first merge: the version; PRs in, and those out with their reasons; the merge
-order; who reviews the release-prep PR; the gates still to run; what users must do. Your
-state file names where it is and doesn't repeat it.
+The release lane's maintainer owns each release (`/cross-review-peer`, "The release lane").
+Every lane, whatever its arrangement, agrees with it what goes in and when, on this plan;
+only the release lane tags. It writes the plan on the forge, in an issue or in the
+release-prep PR, before the plan's first merge: the version; PRs in, and those out with
+their reasons; the merge order; who reviews the release-prep PR; the gates still to run;
+what users must do. Your state file names where it is and doesn't repeat it.
 
 A peer whose lane has PRs in the plan, or left out of it, is told once where the plan is,
 and answers there. A freeze before the tag is a hold on the default branch
