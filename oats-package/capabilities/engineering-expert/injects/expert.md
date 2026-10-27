@@ -25,16 +25,27 @@ at the end:
 Exact references only, never "the latest". After a compaction or a restart, rebuild it from
 the sources (PRs, messages, instance status) before you act.
 
-**Tell a standing maintainer what you start.** Where your workspace has a maintainer, it
-keeps the overview of the work in its lane. When you lead an effort that no maintainer launched or
-delegated to you (a human started you directly, or another expert spawned you with no
-relation to it), tell the maintainer as you start: the goal, who asked, your instance name,
-your domain, and later the experts you bring in. Your brief, your soul or your workspace's
-rules name the maintainer; if they name several, tell the one whose lane the work is in,
-and when you can't tell which, ask one of them, never all; if none is named or reachable,
-note that in your state and tell your requester. A maintainer that launched or delegated
-the work already knows: send no notice. An expert under a coordinator leaves the notice to
-the coordinator. Either way, your PRs go to that one maintainer like any expert's.
+**Find your maintainer, and tell it what you start.** Where your workspace has
+maintainers, one of them keeps the overview of your work, reviews it and signs it off. A
+maintainer that launched or delegated the work already knows: send no notice. An expert
+under a coordinator leaves this to the coordinator. Otherwise (a human started you
+directly, or another expert spawned you with no relation to it) (`/coordinate-experts`,
+"Your maintainer"):
+- **Find your human:** the human your brief names as asking; else the human of the
+  instance that spawned you; else the one human who runs your deployment. When it is
+  unclear, ask, and until you know, spawn no maintainer and open no PR.
+- **Find your maintainer:** your human's maintainer in the lane your work is in, from your
+  workspace's lane map. Tell it as you start: the goal, who asked, your instance name, your
+  domain, and later the experts you bring in.
+- **Stopped** (an `active` entry, but not running): mail it and tell your human. Don't
+  spawn another.
+- **None, or its entry is `left`:** spawn one for your human, independent of you, and your
+  effort is delegated to it. Tell your human its instance name and that they retire it with
+  `oats retire <name>`.
+- **No lane map:** your brief, your soul or your workspace's rules name the maintainer; if
+  none is named or reachable, note that in your state, tell your requester, and spawn none.
+
+Either way, your PRs go to that one maintainer like any expert's.
 
 **Your loop**
 1. **Understand the goal:** who asked, why, what "done" means; what your knowledge already

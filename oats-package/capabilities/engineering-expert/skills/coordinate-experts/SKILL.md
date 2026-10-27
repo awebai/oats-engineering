@@ -1,6 +1,6 @@
 ---
 name: coordinate-experts
-description: Lead, or take part in, work that spans several domains. One expert coordinates; each expert owns its domain's plan, specs, developers, verification and PRs. Covers launching experts as siblings under the coordinator, integration instructions, coordination across machines and people, and where new work goes (a live expert, a new child expert, or a new unrelated expert). Use when work touches more than your domain, when you coordinate or are coordinated, or when a human or another expert brings you a new piece of work.
+description: Lead, or take part in, work that spans several domains. One expert coordinates; each expert owns its domain's plan, specs, developers, verification and PRs. Covers launching experts as siblings under the coordinator, integration instructions, coordination across machines and people, where new work goes (a live expert, a new child expert, or a new unrelated expert), and finding your maintainer when none launched you (your human, your lane, its maintainer on the lane map, or spawning one for your human). Use when work touches more than your domain, when you coordinate or are coordinated, when a human or another expert brings you a new piece of work, or when you start an effort no maintainer launched.
 ---
 
 # Coordinate experts
@@ -60,8 +60,8 @@ oats spawn <domain-expert> --relation unrelated --purpose <effort> --task-file <
   is the requester's call. OATS records no link from it to the requester, so tell the
   requester its instance name (its messaging alias) and that they retire it with
   `oats retire <name>`. When the requester is a human, tell them in plain text in your
-  reply, never through a dialog or question prompt. Its brief also names your workspace's
-  maintainer, if there is one, so the new expert sends it the start notice.
+  reply, never through a dialog or question prompt. Its brief also names the requester's
+  human, so the new expert finds its maintainer (Your maintainer, below).
 - **The same holds for you.** Don't take on unrelated work yourself mid-effort; spawn an
   expert for it and go on with yours.
 - **When a maintainer launches you** as an effort's lead, you are its coordinator: plan it,
@@ -70,6 +70,48 @@ oats spawn <domain-expert> --relation unrelated --purpose <effort> --task-file <
   work to whoever asked for it, and your PRs go to the maintainer for review.
 - **When in doubt, ask the requester** whether the work belongs to your effort. Don't
   guess the relation.
+
+## Your maintainer
+An expert that a maintainer launched or delegated has its maintainer already. Any other
+expert, unless a coordinator does this for it, finds its own as it starts:
+1. **Your human:** the human your brief names as asking. Else, when an instance spawned you,
+   that instance's human (ask it if its brief doesn't say). Else, when one human runs your
+   deployment, that human. When it is still unclear, ask your spawner or your requester.
+   Meanwhile you may plan, but spawn no maintainer and open no PR.
+2. **Your lane,** on your workspace's lane map, in this order:
+   - a lane that covers your work where your human has an `active` maintainer;
+   - else your human's own lane, when one is defined by your human's requests;
+   - else the lane that covers your work;
+   - no lane covers it: the release lane's maintainer is yours for a single effort; work
+     that keeps coming needs a lane, so tell the release lane's maintainer, which is yours
+     until the new lane's maintainer is seated.
+
+   In your human's own lane or the lane that covers your work, when your human has no
+   `active` maintainer there, step 3 spawns one.
+
+   When you can't tell, ask your human.
+3. **Your maintainer:** the map's `active` entry for your human in that lane, read with your
+   messaging layer's presence (its roster; without one, the entry alone).
+   - **Running:** send it the start notice. It reviews and signs off your work, and your
+     PRs go to it.
+   - **Not running:** mail it anyway (mail waits) and tell your human it is stopped, so
+     they can start it. Don't spawn another. If it hasn't been updated for two weeks, ask
+     your human whether it was retired. When your human says it was, ask the map's keeper,
+     quoting the human's words, to mark it `left`; then step 3's spawn applies.
+   - **None, or its entry is marked `left`:** spawn your project's maintainer soul for your
+     human, independent of you, never as your child, so your retirement can't stop it:
+     ```bash
+     oats spawn <maintainer soul> --relation unrelated --purpose <slug> --task-file <brief.md>
+     ```
+     Its brief: "maintainer for <human> in <lane>; first effort: <your instance> on <goal>",
+     and where the lane map is. Your effort is then delegated to it: you report to it as a
+     delegated lead. Tell your human its instance name and that they retire it with
+     `oats retire <name>`. When your workspace names no maintainer soul, ask your human and
+     spawn none.
+4. **No lane map:** the maintainer your brief, your soul or your workspace's rules name.
+   With several named, the one whose lane the work is in; when you can't tell which, ask
+   one of them, never all. With none named or reachable, note that in your state, tell your
+   requester, and spawn none.
 
 ## Across machines and people
 Some efforts are led by a coordinator on another machine that belongs to another human, and

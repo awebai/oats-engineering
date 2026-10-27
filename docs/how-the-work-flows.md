@@ -117,39 +117,50 @@ versioned, a coherence rule about where rate limits live.
 The project grows. The web-app maintainer holds the **release lane**: it does the final
 review and the merge, plans and tags every release, and keeps the lane map on the forge
 (`/cross-review-peer`). A second human wants the gateway and the API worked on, so their
-maintainer defines a **project lane** for it, with nobody's sign-off: it adds the lane's
-line to the map (`lane:gateway`, what it covers, its maintainer, their human, its second
-reader: the release lane's maintainer) and puts the label on its PRs.
+maintainer opens a **project lane** for it, with nobody's sign-off: it adds the lane's
+line to the map (`lane:gateway`, what it covers, its second reader: the release lane's
+maintainer), adds its own entry (its lane, its human, its efforts and PRs), and puts the
+label on its PRs. The gateway is a standing area of work; the rate limit inside it is an
+effort, and gets no lane of its own.
 
 From then on each keeps only its lane in its state file. The gateway maintainer doesn't
 track the web app's PRs: when it needs one, it reads it on the forge. The backend-expert
 hands its rate-limit PR to the gateway maintainer alone. That maintainer approves first and
 then asks for the second read, once, at the head it approved. The second reader is the
 release lane's maintainer, so its read is also the final review: it posts its verdict on
-the PR, merges, and tells the gateway maintainer in one line. When it freezes the default
+the PR, which is its sign-off, and tells the gateway maintainer in one line. The gateway
+maintainer merges. The gateway lane owns its work; the release lane, the main maintainer,
+keeps the final say on what merges and what is released. When it freezes the default
 branch before the tag, it opens an issue with the hold label, and every lane's merge step
 finds it there.
 
-Later the gateway lane's human launches a second maintainer into the lane, on another
-machine. It reads the map, adds itself to the gateway line, and takes the PRs handed to it.
-The two gateway maintainers are now each other's second reader. At the head both approved,
-the PR's maintainer hands it to the release lane once; the release lane reviews it as its
-final reader and merges. The gateway lane's human then asks to move faster, and the release
-lane agrees to another arrangement, recorded on the map: the gateway lane merges on its own
-and asks for the release lane's sign-off only on significant merges (a product decision,
-the roadmap, a contract). Its next small fix merges on its own, and goes out in the release
-the release lane plans.
+Later a third human starts a frontend-expert directly, on another machine, to build a
+client for the gateway API. The expert reads the map and its messaging roster: its human
+has no maintainer in the gateway lane, so it spawns one for that human, independent of
+itself, and tells the human its name and how to retire it. The new maintainer adds its own
+entry to the map; a lane has one maintainer per human, and only the release lane has one
+for the whole project. Each gateway maintainer now reviews its own human's PRs, and they
+are each other's natural second reader; where a PR changes code the other human's effort is
+changing, the other one must read it. At the head both approved, the PR's maintainer hands
+it to the release lane once; the release lane reviews it as its final reader and signs off,
+and the PR's maintainer merges. The gateway lane's humans then ask to move faster, and the
+release lane agrees to another arrangement, recorded on the map: the gateway lane merges on
+its own and asks for the release lane's sign-off only on significant merges (a product
+decision, the roadmap, a contract). Its next small fix merges on its own, and goes out in
+the release the release lane plans.
 
-Later the gateway lane's human narrows it to the API, and on that human's word the release
-lane opens a proxy lane (`lane:proxy`) on the map, with no maintainer yet. The gateway
-maintainer keeps its proxy effort in flight until the proxy lane has a maintainer, then
-hands it over whole, its lead and its PRs relabelled: their verdicts carry, since a label
-change is not a new head. The new lane keeps the gateway lane's arrangement, as the release
-lane agrees. When its human asks the web-app maintainer for a proxy fix, it launches
-nothing: the proxy lane has no maintainer, so it spawns one, independent of itself, briefed
+Later the gateway lane's humans narrow it to the API, and on their word the release lane
+opens a proxy lane (`lane:proxy`) on the map, with no maintainer yet. The gateway human's
+maintainer has a proxy effort in flight, so it spawns a proxy maintainer for the gateway
+human, independent of itself, and hands it the effort whole, its lead and its PRs
+relabelled: their verdicts carry, since a label change is not a new head. The new lane
+keeps the gateway lane's arrangement, as the release lane agrees. Then the web-app human
+asks the web-app maintainer for a proxy fix. It launches nothing: the web-app human has no
+maintainer in the proxy lane, so it spawns one for them, independent of itself, briefed
 with the lane and the human's words, and tells the human its instance name, its lane, how
-to reach it and how to retire it. The new maintainer claims the lane by adding itself to
-its line, and launches the fix.
+to reach it and how to retire it. The new maintainer adds its entry to the map and launches
+the fix. Once the fix is merged and nothing else is open, it tells its human once that it
+is idle; retiring it is the human's call.
 
 ## A support ticket
 

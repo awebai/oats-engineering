@@ -1,17 +1,18 @@
 ---
 name: pr-review
-description: Review a pull request of your lane at an exact head through four gates (direction, correctness, security, mergeability), post a verdict bound to that head on the PR, ask its second reader once, hand the approved PR to the release lane for its final review and merge (or merge it yourself where your lane's arrangement says so), and merge only the head reviewed - after checking for a hold and for a default branch that moved since CI ran - then check that what landed is what was reviewed. Covers the release lane's final review (a full review), moving heads, bringing a branch up to date without a new review, holds and handoffs. Use before every verdict, every hand-over to the release lane and every merge, when verifying fixes, and when reconciling a stale review or a HOLD/GO instruction.
+description: Review a pull request of your lane at an exact head through four gates (direction, correctness, security, mergeability), post a verdict bound to that head on the PR, ask its second reader once, hand the approved PR to the release lane for its final review and sign-off, and merge it once signed off (or let the release lane merge it where your lane's arrangement says so), merging only the head reviewed - after checking for a hold and for a default branch that moved since CI ran - then check that what landed is what was reviewed. Covers the release lane's final review (a full review), moving heads, bringing a branch up to date without a new review, holds and handoffs. Use before every verdict, every hand-over to the release lane and every merge, when verifying fixes, and when reconciling a stale review or a HOLD/GO instruction.
 ---
 
 # Review the exact change
 
-**Review only your lane's PRs.** With peer maintainers, a PR in another lane is its
-maintainer's: you read it only as its second reader, when that maintainer asks you at the
-head it approved (`/cross-review-peer`), or, as the release lane's maintainer, for its
-final review when the lane hands it to you (Hand over, below) or for a sign-off its lane's
-arrangement asks for. A PR that maintainer authored itself (its release-prep PR, a small
-fix) has no approval of its own to wait for: you review it when its author asks, at a named
-head with CI green.
+**Review only the PRs that belong to you:** your human's, in a lane where you hold its seat
+(`/cross-review-peer`, "Which maintainer a PR belongs to"). With peer maintainers, any
+other PR is its own maintainer's: you read it only as its second reader, when that
+maintainer asks you at the head it approved (`/cross-review-peer`), or, as the release
+lane's maintainer, for its final review and sign-off when the lane hands it to you (Hand
+over, below). A PR that maintainer authored itself (its release-prep PR, a small fix) has
+no approval of its own to wait for: you review it when its author asks, at a named head
+with CI green.
 
 **Review only what its owner hands over.** Start on a PR only when its owner (the expert
 landing it) hands it to you, saying three things: the developer's review loop converged
@@ -87,42 +88,43 @@ Tell the owner your verdict in one line: the findings are on the PR. With peer m
 ask the PR's second reader once you approve, at that head (`/cross-review-peer`).
 
 ## Hand over to the release lane
-In a project lane with the default arrangement, you don't merge: the release lane does
-(`/cross-review-peer`, "Project lanes").
+Every project lane hands its approved PRs to the release lane for the final review and the
+sign-off; under an arrangement that asks for the sign-off only on significant merges, it
+hands over only those (`/cross-review-peer`, "A lane's arrangement").
 - **When:** your approval and the second reader's verdict are on the PR at the same head,
   CI is green on it, and no hold applies. When the second reader is the release lane's
   maintainer, your request for its second read is the hand-over: it reads once.
 - **How:** once, to the release lane's maintainer, with the handoff template
   ([references/reviewed-delivery.md](references/reviewed-delivery.md)): the PR, the
   approved head, both verdicts, and anything it should know that the PR doesn't say.
-- **Then** the PR is the release lane's to merge. A head its owner moves before the merge
-  comes back to you first, like any moved head (above); the release lane bringing the
-  branch up to date doesn't (Merge, below).
+- **Then** you merge it once the sign-off is on the PR at that head (Merge, below), or, where
+  your lane's arrangement has the release lane merge, it is the release lane's to merge. A
+  head its owner moves before the merge comes back to you first, like any moved head
+  (above); bringing the branch up to date doesn't (Merge, below).
 
 **As the release lane's maintainer,** review a PR handed to you at the head handed over, as
 its final reader. It is a full review, all four gates, not a check of the lane's: the
 lane's reviews inform yours and don't replace it. Check that the second reader was the
 right one: a PR that changes code another lane holds needs that lane's read before yours
 (`/cross-review-peer`, "One second reader per PR"). Post your verdict on the PR at that
-head. Merge it (below), or RETURN it and tell the lane's maintainer in one line: it takes
-the findings to the PR's owner and hands the PR to you again at the fixed head. When you
-were already the PR's second reader, that verdict is your final review: merge or return it
-then, with no second message. A head brought up to date carries the verdicts as Merge
-(below) says; a rebase with a hunk resolved by hand (a stacked PR whose base merged, for
-example) goes back to the lane's readers for that delta, and then to you.
-
-Where your lane's arrangement lets you merge, with or without the release lane's sign-off,
-skip the hand-over and merge as below.
+head: an APPROVE is your sign-off. Tell the PR's maintainer in one line, and it merges;
+where the lane's arrangement has you merge, merge it yourself (below). Or RETURN it: the
+PR's maintainer takes the findings to the PR's owner and hands the PR to you again at
+the fixed head. When you were already the PR's second reader, that verdict is your final
+review and your sign-off, with no second message. A head brought up to date carries the
+verdicts as Merge (below) says; a rebase with a hunk resolved by hand (a stacked PR whose
+base merged, for example) goes back to the lane's readers for that delta, and then to you.
 
 ## Merge
-- **Who merges:** the release lane's maintainer, for a PR handed to it and for its own
-  lane's PRs (a maintainer alone merges every PR); a project lane's maintainer, where its
-  lane's arrangement lets it merge (`/cross-review-peer`, "A lane's arrangement").
+- **Who merges:** a PR's maintainer in a project lane merges it once the release lane's
+  sign-off is on it, unless its lane's arrangement has the release lane merge it
+  (`/cross-review-peer`, "A lane's arrangement"). The release lane's maintainer merges its
+  own lane's PRs, and those its arrangement gives it (a maintainer alone merges every PR).
 - Only with the authority for it, an approval at the current head, its second reader's
-  verdict at that head (`/cross-review-peer`), and green CI. For a PR handed to the release
-  lane, its own final verdict at that head too.
-- **The release lane's sign-off at that head,** when your lane's arrangement asks for one on
-  this merge: on every merge, or on a significant one. It is on the PR, from the release
+  verdict at that head (`/cross-review-peer`), and green CI. For a PR the release lane
+  merges, its own final verdict at that head too.
+- **The release lane's sign-off at that head,** on every merge, or, where your lane's
+  arrangement says so, on a significant one. It is on the PR, from the release
   lane's maintainer; a sign-off at an earlier head carries only as the verdicts do.
 - **No hold.** The PR doesn't carry the hold label, and no open default-branch hold
   applies to it: none is open, or each open one names an exception for this PR at this head
@@ -166,9 +168,9 @@ skip the hand-over and merge as below.
   - **rebase merge:** compare the rebased commits with the reviewed ones
     (`git range-diff <base-at-review>..<reviewed-sha> <new-base>..<tip>`).
 - Watch the default branch's CI on the merged commit, and get it fixed forward if it breaks.
-- Tell the owner it's in, in one line with the merge commit; for a PR handed to you, that
-  line goes to the lane's maintainer, as your verdict on the hand-over, and it tells the
-  owner. Send a peer no other notice before or after a merge: the forge shows it.
+- Tell the owner it's in, in one line with the merge commit; for a PR handed to you that
+  you merged, that line goes to the PR's maintainer, and it tells the owner. Send a peer no
+  other notice before or after a merge: the forge shows it.
 - A failed client response can follow a completed merge: observe the remote state before
   retrying or reporting.
 - Never bypass branch protection or account rules.

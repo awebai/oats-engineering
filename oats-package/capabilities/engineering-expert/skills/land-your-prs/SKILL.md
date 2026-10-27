@@ -46,9 +46,10 @@ converges.
   something in your domain.
 
 ## Hand over to the maintainer
-- Hand a PR to one maintainer: the one who launched your effort, or whose lane the work is
-  in. Where a second maintainer reads the PR, that maintainer asks it; you don't. Put its lane's label on
-  the PR when your brief names one.
+- Hand a PR to one maintainer: the one who launched or delegated your effort, or your
+  human's maintainer in the lane the work is in (`/coordinate-experts`, "Your maintainer").
+  Name it in the PR's description. Where a second maintainer reads the PR, your maintainer
+  asks it; you don't. Put its lane's label on the PR when your brief or the map names one.
 - Hand it over only once three things hold, and say all three with the head:
   the review loop converged (the developer's, or yours for a fix you made), you verified
   it, and CI is green on that exact head.
