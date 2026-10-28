@@ -131,9 +131,9 @@ the same human and lane.
   entry, its parent's included: it tells its parent each lead it launches (instance name and
   goal) and each effort it closes, and the parent updates its entry.
 - **New intake goes to it** while you have more than 5 efforts of your own in flight: pass
-  each request on once, with the requester's words, and tell the requester who has it. You
-  keep your own efforts. At 5 or fewer, take new intake yourself again; the seat finishes
-  what it has.
+  each request on once, with the requester's words, and tell an agent requester who has it
+  (a human one hears only what they must decide, approve or provide). You keep your own
+  efforts. At 5 or fewer, take new intake yourself again; the seat finishes what it has.
 - **It drives the efforts it is given up to hand-back:** it launches each with one lead as
   its child (`/launch-work`), tracks them (`/maintainer-intake`), reviews each PR at its
   exact head (`/pr-review`) and hands the approved PR to its parent at that head. It
