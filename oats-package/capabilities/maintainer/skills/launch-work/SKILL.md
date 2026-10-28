@@ -168,10 +168,10 @@ your human its instance name, its lane, how to reach it, and that they retire it
 
 ## Launching an overflow seat
 With more than 5 efforts of your own in flight in your lane, and no overflow seat of yours
-that isn't retired, running or stopped, spawn one (`/cross-review-peer`, "An overflow
-seat"). A stopped one is still your seat: start it again (`oats session start --home
-<home>`), or ask the human whose machine runs it; never spawn a second. Never spawn one as
-an overflow seat yourself:
+yet (a running or stopped one counts until it is retired), spawn one (`/cross-review-peer`,
+"An overflow seat"). A stopped one is still your seat: start it again (`oats session start
+--home <home>`), or ask the human whose machine runs it; never spawn a second. As an
+overflow seat, never spawn one. Spawn it as your child:
 
 ```sh
 oats spawn <your maintainer soul> --parent "$OATS_INSTANCE" --purpose <slug> --task-file <brief.md>
