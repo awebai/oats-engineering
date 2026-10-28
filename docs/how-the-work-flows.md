@@ -63,9 +63,9 @@ error."
 While the web-expert coordinates the quota feature, a human asks it to investigate slow
 logins. That work is independent of the quota effort, and no live expert's context helps
 with it, so the web-expert spawns a new `backend-expert` for it with
-`--relation unrelated`, and tells the human its instance name. That expert reports to the
-human who asked, not to the web-expert, and, having no parent, retires itself once the
-investigation is done and reported. The backend-expert already on the quota work keeps its context for the quota
+`--relation unrelated`. That expert works for the human who asked, not for the web-expert,
+and contacts them only for what they must decide. Having no parent, it sends its done line
+to its maintainer and retires itself once the investigation is done. The backend-expert already on the quota work keeps its context for the quota
 work. Had the request been part of the quota effort (say, "also show the quota in the
 CLI"), the web-expert would have spawned the new expert as its own child.
 

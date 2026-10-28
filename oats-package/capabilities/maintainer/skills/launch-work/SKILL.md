@@ -80,8 +80,9 @@ lane where you hold its seat, is your child.
 Don't split the work by domain or surface for it.
 
 ## 5. Close the loop
-- Tell the requester the lead's instance name and how to reach it: a human in plain text,
-  never through a dialog.
+- Tell an agent requester the lead's instance name and how to reach it. A human requester
+  hears from the lead when they must decide, approve or provide something, not about the
+  launch.
 - Add the effort, its lead, who asked and what you wait for to your state file, and the
   effort to your map entry.
 - The lead then hands over its PRs like any expert (`/pr-review`) and tells you what blocks
@@ -96,7 +97,10 @@ Don't split the work by domain or surface for it.
   retires itself and tells you.
 
 ## Retire what's finished
-Finished instances are retired without asking anyone, a human included.
+Finished instances are retired without asking or telling a human. Spawning and retiring
+never involve one: done lines and retirements go to the parent, or, with none, to the
+maintainer the instance reports to. A human hears only when they must decide, approve or
+provide something.
 
 An instance is **finished** when all of these hold:
 - its work has landed: its PRs are merged (or deployed, where the effort deploys) with CI
@@ -130,8 +134,8 @@ An instance is **finished** when all of these hold:
     otherwise wait until that one is retired by its own parent.
 - **Retire it** with `oats retire <child>`, and record it in your state (name, why). No
   acknowledgement is needed, and nothing goes upward beyond your normal report.
-- **Only your own children.** Never retire another's child: tell its parent or requester
-  instead. Children are retired before their parent: a parent's retire stops and keeps its
+- **Only your own children.** Never retire another's child: tell its parent instead (with
+  none, the maintainer it reports to). Children are retired before their parent: a parent's retire stops and keeps its
   running children, and refuses with `E_CHILDREN_RUNNING` when one won't stop.
 - **Never reuse a name:** a new instance never takes a retired one's name, which couldn't
   harvest.

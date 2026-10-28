@@ -56,9 +56,10 @@ oats spawn <domain-expert> --relation unrelated --purpose <effort> --task-file <
 - **An unrelated expert belongs to whoever asked.** Its brief names the requester (who
   decides its scope and gets its reports) and the requester's human (to find its
   maintainer). You don't coordinate it, and it isn't your child: once finished, it sends
-  its done line to the requester and its maintainer and retires itself (`/land-your-prs`,
-  "Retire what's finished"). Tell the requester its instance name (its messaging alias); a
-  human in plain text in your reply, never through a dialog or question prompt.
+  its done line to its maintainer and retires itself (`/land-your-prs`, "Retire what's
+  finished"). Tell an agent requester its instance name (its messaging alias); a human
+  requester hears from it when they must decide, approve or provide something, not about
+  the spawn.
 - **When a maintainer launches you** as an effort's lead, you coordinate it: plan it, and
   spawn the developers and experts it needs as your children. A maintainer that spawned you
   as its child is your parent, not your coordinator. Report to whoever asked; your PRs go

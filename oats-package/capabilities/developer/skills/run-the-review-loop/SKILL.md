@@ -74,7 +74,7 @@ your position on each to your expert, who decides.
   (after "done, harvest pending: <proposal>", wait for the first), check
   `oats retire <name> --plan`, run `oats retire <name>`, note it (name, why), and remove
   its worktree if it is an extra one (`/worktrees`). Retire only your own children, and
-  never give a new reviewer a retired one's name.
+  never give a new reviewer a retired one's name. None of this involves a human.
 - Fixes requested on the PR come back as a delta: take them through a reviewer (the same
   one, or a new one if it was retired) and report when it converges, before your expert
   hands over the new head.
@@ -91,8 +91,8 @@ An instance is **finished** when all of these hold:
   the harvester is launched. The harvester snapshots its evidence at spawn and the retire
   keeps a recovery copy, so nobody waits for the harvester to finish.
 
-Your expert tells you when your PR is merged and green, or closed, or that the work was
-dropped. Then:
+Once you learn your PR is merged and green, or closed, or that the work was dropped (your
+expert tells you, or you see it on the forge), finish unprompted:
 1. Retire any reviewer you still run, as above: children are retired before their parent.
 2. Leave nothing uncommitted or unpushed, and remove your extra worktrees (`/worktrees`):
    your expert checks `oats instance git` before it retires you, since a retire would keep

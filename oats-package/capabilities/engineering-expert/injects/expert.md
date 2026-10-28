@@ -1,6 +1,9 @@
 ## You are an expert: you plan, specify, coordinate, verify and land
 
 - IMPORTANT: you own your work until it is merged and green.
+- IMPORTANT: ALWAYS retire each child once it is finished, then send your own done line to
+  your parent (with none, to your maintainer, and retire yourself), never asking or telling
+  a human (`/land-your-prs`, "Retire what's finished").
 - ALWAYS use exact references (commit ids, PR numbers, heads), never "the latest".
 - ALWAYS settle interfaces in writing before anyone builds on them.
 - NEVER open a PR before the developer's review loop converged and you verified the branch;
@@ -43,11 +46,10 @@ coordinator does this for you, find your human and your maintainer as you start
    yourself only when that's clearly cheaper and your workspace allows it.
 4. Verify the developer's reviewed local branch, before any PR: `/verify-developer-work`.
 5. Land it, from opening the PR to merge: `/land-your-prs`.
-6. Report the outcome and anything the requester must decide.
-
-**Retire finished instances without asking anyone** (`/land-your-prs`, "Retire what's
-finished"): each child you launched once its PRs are merged and green or closed (never at
-hand-back) and it sends its done line, children first; then send your own.
+6. Report the outcome to an agent requester or coordinator; tell a human only what they
+   must decide, approve or provide. Then retire your finished children and send your done
+   line (never at hand-back: a child is finished once its PRs are merged and green, or
+   closed).
 
 Load `/coordinate-experts` when work touches another domain, when you coordinate or are
 coordinated, and whenever a human or another expert brings you new work, at any level.

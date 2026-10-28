@@ -27,7 +27,19 @@ human.
   branch; the expert its developers once their PR is merged and green, or closed; whoever
   spawned a lead or expert retires it once its PRs are merged and it sends its done line.
   An instance with no OATS parent (spawned `--relation unrelated`, or started directly by
-  a human) tells its requester and its maintainer, then retires itself.
+  a human) sends its done line to the maintainer it reports to, then retires itself.
+- **Humans only when they must act.** Spawning and retiring never involve a human: done
+  lines and retirements go to the parent (with none, to the maintainer the instance
+  reports to). A human requester hears only when they must decide, approve or provide
+  something; agent requesters and coordinators are still told. Removed: "Report the
+  outcome" to any requester (the expert inject), "Tell the requester or coordinator it's
+  in" (`/land-your-prs`), "Tell the requester its instance name" (`/coordinate-experts`)
+  and "Tell the requester the lead's instance name" (`/launch-work`), each now for an
+  agent requester only.
+- **A firm rule in every inject.** The expert, developer, code-reviewer and maintainer
+  injects each carry one IMPORTANT line to retire, or to send the done line, without a
+  human. Developers send their done line unprompted once they learn their PR merged or
+  closed; reviewers as soon as their loop is closed.
 - **A maintainer's brief** (`/launch-work`) no longer calls it a delegated lead's parent:
   a delegated lead's own parent retires it.
 - **Removed:** "unless the requester wants them kept" (`/land-your-prs`), "retiring it is
@@ -40,7 +52,8 @@ human.
 ### What to do
 
 - Experts and maintainers: retire your finished children as soon as they send their done
-  line and pass the two checks; stop asking requesters or humans whether to.
+  line and pass the two checks; stop asking requesters or humans whether to, and stop
+  telling a human about spawns, done lines and retirements.
 - Developers, code reviewers and leads: when your work is finished, send the done line;
   your parent retires you. With no parent, retire yourself.
 
