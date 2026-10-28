@@ -3,7 +3,23 @@
 ## Unreleased
 
 Finished instances are retired automatically, coordinated between agents, without asking a
-human.
+human, and an overrun maintainer gets an overflow seat.
+
+### Added
+
+- **An overflow seat** (`/cross-review-peer`, "An overflow seat"; `/launch-work`,
+  "Launching an overflow seat"). A maintainer with more than 5 efforts of its own in flight
+  in a lane spawns one more instance of its maintainer soul as its child (`--parent`), at
+  most one at a time. It holds no seat and adds no map entry: its parent lists it, and its
+  efforts, in its own entry. New intake goes to it while its parent is over 5. It launches
+  each effort it is given with a lead as its child, reviews each PR at its exact head and
+  hands the approved PR to its parent, which asks the second reader, gets the sign-off,
+  merges and answers contract and direction questions. It never spawns another. Once every
+  effort it was given is merged or closed and its leads are retired, it hands back what it
+  didn't launch and sends its done line; its parent retires it.
+- "One maintainer per human" (`/cross-review-peer`, the maintainer inject), "Two at once",
+  "never its child", "Joining as a new maintainer", `/maintainer-intake` and `/pr-review`
+  now allow for it.
 
 ### Changed
 
@@ -56,6 +72,8 @@ human.
   telling a human about spawns, done lines and retirements.
 - Developers, code reviewers and leads: when your work is finished, send the done line;
   your parent retires you. With no parent, retire yourself.
+- Maintainers: past 5 efforts of your own in flight, spawn your overflow seat and pass it
+  new intake.
 
 ## 1.16.0 - 2026-10-27
 

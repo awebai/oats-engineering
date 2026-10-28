@@ -101,7 +101,8 @@ lane their work is in, on the lane map, and tell it what they start, so its over
 complete; when their human has none there, they spawn one.
 
 Maintainers usually work with peers, often on different machines and for different
-humans, and review each other's work. A project lane has one maintainer per human; the
+humans, and review each other's work. A project lane has one maintainer per human (and, while it
+has more than 5 efforts of its own in flight, one overflow seat it spawns as its child); the
 release lane has one for the whole project. Keep the lane map where every maintainer can
 read it, with an entry per maintainer that says what it is doing. Put your project's own release lane and
 test gate in the soul's `AGENTS.md` or skills, or in your workspace's rules (section 3),

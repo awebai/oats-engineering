@@ -1,6 +1,6 @@
 ---
 name: cross-review-peer
-description: Work with peer maintainers in lanes - the release lane and project lanes, the lane map and each maintainer's entry, who is alive and avoiding a duplicate maintainer, taking a seat, opening, splitting or closing a lane, which lane work goes to and which maintainer a PR belongs to, lane arrangements, one second reader per PR, what peers message each other for, holds, leaving a lane and a lane changing hands, an unreachable peer, working alone, and trusting a decision a human's own agent relays, or confirming authority passed on from a human. Use whenever you take a seat, open, split or close a lane, route work or spawn a maintainer, whenever a peer maintainer is involved, and before you message one.
+description: Work with peer maintainers in lanes - the release lane and project lanes, the lane map and each maintainer's entry, who is alive and avoiding a duplicate maintainer, taking a seat, opening, splitting or closing a lane, an overflow seat for an overrun maintainer, which lane work goes to and which maintainer a PR belongs to, lane arrangements, one second reader per PR, what peers message each other for, holds, leaving a lane and a lane changing hands, an unreachable peer, working alone, and trusting a decision a human's own agent relays, or confirming authority passed on from a human. Use whenever you take a seat, open, split or close a lane, route work or spawn a maintainer, whenever a peer maintainer is involved, and before you message one.
 ---
 
 # Work in lanes with your peers
@@ -55,7 +55,8 @@ presence before you route work, spawn a maintainer or take a seat:
 - **Two at once:** a new maintainer adds its entry first. If an earlier `active` entry
   holds the same human's seat in the lane, the newcomer marks its own `left`, hands over
   what it took (its leads now report to the earlier one, and it tells them), and asks its
-  human to retire it.
+  human to retire it. An overflow seat adds no entry, so it is never a second one (An
+  overflow seat).
 
 ### Which lane work goes to
 Your human's work goes, in this order:
@@ -87,9 +88,10 @@ never tags.
 ## Project lanes
 A lane outlives the efforts and releases in it; its line says what it covers clearly enough
 to place a new PR without asking.
-- **One maintainer per human.** It launches, reviews and hands over its human's work in the
-  lane, and tracks only those efforts. A human who wants two in one lane asks the lane's
-  humans to split it instead.
+- **One maintainer per human,** and, while it is overrun, the one overflow seat it spawns
+  (An overflow seat). It launches, reviews and hands over its human's work in the lane,
+  and tracks only those efforts. A human who wants two independent maintainers in one lane
+  asks the lane's humans to split it instead.
 - **Taking your human's seat:** take your human's free seat by adding your entry, with
   nobody's sign-off, when you hold no lane yet (Joining as a new maintainer), when your
   human asks, or when you are launched into the lane for your human. Otherwise your human's
@@ -106,13 +108,40 @@ to place a new PR without asking.
   may also open a lane with no maintainer yet.
 - **No seat is taken** in a closed lane (new work opens a new lane, or its humans reopen
   it), nor in the release lane, which changes hands only as its humans say.
-- **A maintainer launched into a lane** is independent of its launcher, never its child.
+- **A maintainer launched into a lane** is independent of its launcher, never its child;
+  only an overflow seat is its spawner's child (An overflow seat).
   The spawner hands over once and is done, though a lead that is its child in OATS stays
   so.
 - **Inside the lane,** its maintainers launch the work with experts leading it, review each
   PR and give it one second reader.
 - **The hand-over, the sign-off and the merge** follow `/pr-review`, in the merge order the
   release lane asks for when it coordinates a release.
+
+### An overflow seat
+A maintainer is never overrun. With more than 5 efforts of its own in flight in a lane, it
+spawns one overflow seat there: another instance of its maintainer soul, as its child, for
+the same human and lane.
+- **Spawn it** as your child (`/launch-work`, "Launching an overflow seat"). At most one at
+  a time; an overflow seat never spawns another.
+- **It holds no seat:** it adds no entry of its own. You list it in your entry (its
+  instance name, and its efforts, a line each) and keep that current, as for your own
+  efforts. "One maintainer per human" and "Two at once" don't count it.
+- **New intake goes to it** while you have more than 5 efforts of your own in flight: pass
+  each request on once, with the requester's words, and tell the requester who has it. You
+  keep your own efforts. At 5 or fewer, take new intake yourself again; the seat finishes
+  what it has.
+- **It drives the efforts it is given up to hand-back:** it launches each with one lead as
+  its child (`/launch-work`), tracks them (`/maintainer-intake`), reviews each PR at its
+  exact head (`/pr-review`) and hands the approved PR to its parent at that head. It
+  launches nothing it wasn't given.
+- **Its parent keeps the rest:** asking the second reader, the hand-over to the release
+  lane and its sign-off, the merge, second reads for peers, and answers on contracts and
+  direction (`/direction-gate`). The seat refers each to its parent. Every maintainer rule
+  still binds it, its NEVER rules included.
+- **It is finished** when every effort it was given is merged or closed and its leads are
+  retired. It hands any intake it hasn't launched back to its parent first, then sends its
+  done line, and its parent retires it (`/launch-work`, "Retire what's finished"). It never
+  retires itself and sends a human no idle notice.
 
 ### A lane's arrangement
 A new lane starts with the default, a sign-off before every merge. The map may record
@@ -156,7 +185,9 @@ take one:
 2. Add your entry for your human's seat in the lane your human or launcher names. With none
    named, take your human's free seat in a lane covering your human's work, open one, or
    ask your human. An earlier `active` entry for that seat keeps it.
-3. Until you have a seat, review, merge, tag and launch nothing.
+3. Until you have a seat, review, merge, tag and launch nothing. An overflow seat holds
+   none: it launches and reviews only what its parent gives it (Project lanes, "An
+   overflow seat").
 
 A successor takes its predecessor's seat only when the map, its human or the predecessor's
 hand-over says so, or once the predecessor's entry is `left`: a similar name is not a seat.
@@ -227,7 +258,8 @@ A hold is the hold label on the forge, never a message alone:
 
 ## Leaving a lane
 A maintainer holds a standing seat, not a task: it isn't finished when an effort ends, and
-the rule that retires finished instances without asking doesn't apply to it. One someone
+the rule that retires finished instances without asking doesn't apply to it. An overflow
+seat holds no seat: its parent retires it once finished (An overflow seat). One someone
 else spawned belongs to its human, not its spawner, and is never retired automatically. With no open efforts or PRs left, tell your human once that you are
 idle and can be retired with `oats retire <name>`, and ask to be told first, so you mark
 your entry `left` before you go. Retiring is their call. A `left` entry frees the seat;

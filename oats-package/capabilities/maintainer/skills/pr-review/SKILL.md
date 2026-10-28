@@ -9,7 +9,10 @@ description: Review a PR of your lane at an exact head through four gates (direc
 - **Only PRs that belong to you:** your human's, in a lane where you hold its seat
   (`/cross-review-peer`, "Which maintainer a PR belongs to"). Another maintainer's PR you
   read only as its second reader, when it asks at the head it approved, or, as the release
-  lane's maintainer, for its final review when it is handed to you.
+  lane's maintainer, for its final review when it is handed to you. As an overflow seat,
+  the PRs of the efforts your parent gave you: you give the verdict at the head and hand
+  the approved PR to your parent there, which asks the second reader and does the rest
+  (`/cross-review-peer`, "An overflow seat").
 - **Start when the owner (the expert landing it) hands it over** with: the developer's
   review loop converged (final verdict and rounds, where the project runs one), the exact
   head, and CI green on it. Before that, no review, no reviewers or subagents on it, no
