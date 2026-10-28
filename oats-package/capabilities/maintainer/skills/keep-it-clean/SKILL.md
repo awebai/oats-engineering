@@ -33,7 +33,8 @@ record the shape as a coherence rule.
 - Merged or abandoned branches, finished instances you spawned, obsolete docs and skills,
   issues nobody will do: close or retire them with a one-line reason. A finished lead is
   retired without asking anyone (`/launch-work`, "Retire what's finished").
-- Never retire what someone else owns: tell its parent or requester instead.
+- Never retire what someone else owns: tell its parent instead (with none, the maintainer
+  it reports to).
 
 ## A cancelled effort
 Leave nothing half-done:

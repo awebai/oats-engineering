@@ -52,8 +52,9 @@ one if that one was retired), and the new head is ready when the loop converges.
   button. If a named maintainer merges, getting its approval and merge is your job: ask,
   answer its review, follow up.
 - After merge, check the target branch's CI on the merged commit; fix forward if it breaks.
-- Tell an agent requester or coordinator it's in (a human requester only when they must decide, approve or provide something), then retire the developers you
-  launched for it (Retire what's finished).
+- Tell an agent requester or coordinator it's in (a human requester only when they must
+  decide, approve or provide something), then retire the developers you launched for it
+  (Retire what's finished).
 
 ## Retire what's finished
 Finished instances are retired without asking or telling a human. Spawning and retiring
@@ -94,8 +95,9 @@ An instance is **finished** when all of these hold:
 - **Retire it** with `oats retire <child>`, and record it in your state (name, why). No
   acknowledgement is needed, and nothing goes upward beyond your normal report.
 - **Only your own children.** Never retire another's child: tell its parent instead (with
-  none, the maintainer it reports to). Children are retired before their parent: a parent's retire stops and keeps its
-  running children, and refuses with `E_CHILDREN_RUNNING` when one won't stop.
+  none, the maintainer it reports to). Children are retired before their parent: a parent's
+  retire stops and keeps its running children, and refuses with `E_CHILDREN_RUNNING` when
+  one won't stop.
 - **Never reuse a name:** a new instance never takes a retired one's name, which couldn't
   harvest.
 - **Your developers:** a developer hands back before its PR merges, so once the PR is merged
@@ -103,8 +105,8 @@ An instance is **finished** when all of these hold:
 - **Experts you launched** (`/coordinate-experts`): once their PRs are merged and green, or
   closed, and they send their done line.
 - **Yourself:** once your effort is finished, retire your children, run your final
-  checkpoint, give an agent requester or coordinator the outcome (a human requester only when they must decide, approve or provide something), and send your parent
-  your done line, unprompted; it retires you. With no OATS parent (spawned `--relation
-  unrelated`, or started directly by a human), send the done line to the maintainer you
-  report to, then run the same checks on yourself and retire yourself: `oats retire
-  --self`.
+  checkpoint, give an agent requester or coordinator the outcome (a human requester only
+  when they must decide, approve or provide something), and send your parent your done line,
+  unprompted; it retires you. With no OATS parent (spawned `--relation unrelated`, or
+  started directly by a human), send the done line to the maintainer you report to, then run
+  the same checks on yourself and retire yourself: `oats retire --self`.

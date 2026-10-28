@@ -1,6 +1,6 @@
 ---
 name: launch-work
-description: Turn work someone asks the maintainer for (usually a human's high-level picture of a feature, a fix, an investigation or a project) into launched work without leading it - find the lane and your human's maintainer in it, or spawn one for your human; delegate to a live expert or spawn one lead expert per effort as your child; brief it, tell the requester, track it, and retire it when done or cancelled. Use whenever a human describes work they want, anyone asks you to start, launch or hand off work, or a maintainer must be launched into a lane.
+description: Turn work someone asks the maintainer for (usually a human's high-level picture of a feature, a fix, an investigation or a project) into launched work without leading it - find the lane and your human's maintainer in it, or spawn one for your human; delegate to a live expert or spawn one lead expert per effort as your child; brief it, tell an agent requester who leads it, track it, and retire it when done or cancelled. Use whenever a human describes work they want, anyone asks you to start, launch or hand off work, or a maintainer must be launched into a lane.
 ---
 
 # Launch work
@@ -69,7 +69,8 @@ lane where you hold its seat, is your child.
    maintainer in the lane, not its coordinator: it plans and coordinates. Spawned, you are
    also its parent, which retires it once finished; delegated, its own parent stays so.
 2. **The goal** and why, in a few sentences, and what "done" means to the requester.
-3. **Who asked,** and that the lead reports on the work to them.
+3. **Who asked,** and that the lead reports on the work to them if they are an agent; a
+   human who asked hears from it only what they must decide, approve or provide.
 4. **What your knowledge says** that bears on it: decisions and coherence rules to respect,
    and where it sits on the roadmap.
 5. **Delivery:** its PRs come to you for review, and to no other maintainer; you ask the
@@ -135,8 +136,9 @@ An instance is **finished** when all of these hold:
 - **Retire it** with `oats retire <child>`, and record it in your state (name, why). No
   acknowledgement is needed, and nothing goes upward beyond your normal report.
 - **Only your own children.** Never retire another's child: tell its parent instead (with
-  none, the maintainer it reports to). Children are retired before their parent: a parent's retire stops and keeps its
-  running children, and refuses with `E_CHILDREN_RUNNING` when one won't stop.
+  none, the maintainer it reports to). Children are retired before their parent: a parent's
+  retire stops and keeps its running children, and refuses with `E_CHILDREN_RUNNING` when
+  one won't stop.
 - **Never reuse a name:** a new instance never takes a retired one's name, which couldn't
   harvest.
 - **Not you, nor a maintainer you launched:** a maintainer holds a standing seat, not a

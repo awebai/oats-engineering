@@ -90,8 +90,8 @@ A human asks it, in one sentence, to rate-limit the public API. That is enough: 
 maintainer doesn't ask for a spec or write one. It consults its knowledge (rate limits sit
 in the gateway, by an earlier decision) and launches the work with `/launch-work`. No live
 expert is on the gateway, so it spawns a `backend-expert` as its child (`--parent`),
-briefed with the goal, who asked and that decision, and tells the requester the expert's
-name. The maintainer is its parent, not its coordinator: the backend-expert leads from
+briefed with the goal, who asked and that decision. The human hears from the expert only
+when there is something to decide. The maintainer is its parent, not its coordinator: the backend-expert leads from
 there, as in the first section. Had a human started the backend-expert directly,
 the expert would have told the maintainer what it was starting.
 
