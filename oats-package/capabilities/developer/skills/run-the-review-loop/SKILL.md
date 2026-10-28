@@ -96,9 +96,11 @@ dropped. Then:
 1. Retire any reviewer you still run, as above: children are retired before their parent.
 2. Leave nothing uncommitted or unpushed, and remove your extra worktrees (`/worktrees`):
    your expert checks `oats instance git` before it retires you, since a retire would keep
-   such a work tree, not deliver it.
+   such a work tree, not deliver it. When your work isn't a Git work tree (directory or
+   workspace mode), it checks each repository your done report names instead.
 3. With a harvest duty, run your final checkpoint and launch the harvester.
 4. Send your done line: "done, harvested: <harvester>" or "done, no harvest duty". After
    "done, harvest pending: <proposal>" you are not finished: send "done, harvested:
-   <harvester>" once the proposal goes through. Your expert, your parent, then retires you
-   with `oats retire <name>`, without asking anyone.
+   <harvester>" once the proposal goes through. When your work isn't a Git work tree, name
+   each repository you used under it, with its branch. Your expert, your parent, then
+   retires you with `oats retire <name>`, without asking anyone.

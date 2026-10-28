@@ -77,11 +77,15 @@ An instance is **finished** when all of these hold:
     Retire nothing yet; it reports again, "done, harvested: <harvester>", once the
     proposal goes through.
 
-  Ask for the line when a done report lacks it.
+  Ask for the line when a done report lacks it. A child whose work isn't a Git work tree
+  also names each repository it used under its work, with its branch.
 - **Before you retire it, check:**
   - `oats instance git <child>`: no uncommitted changes and no unpushed commits (a retire
     would keep such a work tree, not deliver it); otherwise the child finishes or hands its
-    work over first;
+    work over first. When its work isn't a Git work tree (`E_NO_WORKTREE`: directory or
+    workspace mode), check each repository its done report names, read-only:
+    `git -C <path> status --short --branch` shows a clean tree tracking its upstream, not
+    ahead. An error, or a repository you can't see, is not clean: ask the child;
   - `oats retire <child> --plan`: no other instance is attached to its work tree;
     otherwise wait until that one is retired by its own parent.
 - **Retire it** with `oats retire <child>`, and record it in your state (name, why). No

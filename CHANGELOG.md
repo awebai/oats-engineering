@@ -17,7 +17,9 @@ human.
   <harvester>" or "done, no harvest duty" (finished), or "done, harvest pending:
   <proposal>" (not finished: the parent retires nothing until "done, harvested").
 - **The parent retires it, without asking anyone,** after two checks: `oats instance git
-  <child>` shows nothing uncommitted or unpushed, and `oats retire <child> --plan` shows no
+  <child>` shows nothing uncommitted or unpushed (in directory or workspace mode, where it
+  reports `E_NO_WORKTREE`, `git -C <path> status --short --branch` on each repository the
+  done report names; an error is not clean), and `oats retire <child> --plan` shows no
   other instance attached. It records the retirement with the reason. Children are
   retired before their parent; an instance retires only its own children, never another's
   child, and never reuses a retired instance's name.
