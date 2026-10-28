@@ -141,7 +141,8 @@ Later a third human starts a frontend-expert directly, on another machine, to bu
 client for the gateway API. The expert reads the map and its messaging roster: its human
 has no maintainer in the gateway lane, so it spawns one for that human, independent of
 itself, and tells the human its name and how to retire it. The new maintainer adds its own
-entry to the map; a lane has one maintainer per human, and only the release lane has one
+entry to the map; a lane has one maintainer per human (an overrun one adds an
+overflow seat, its child, which holds no seat), and only the release lane has one
 for the whole project. Each gateway maintainer now reviews its own human's PRs, and they
 are each other's natural second reader; where a PR changes code the other human's effort is
 changing, the other one must read it. At the head both approved, the PR's maintainer hands

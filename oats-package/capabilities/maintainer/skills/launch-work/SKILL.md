@@ -1,6 +1,6 @@
 ---
 name: launch-work
-description: Turn work someone asks the maintainer for (usually a human's high-level picture of a feature, a fix, an investigation or a project) into launched work without leading it - find the lane and your human's maintainer in it, or spawn one for your human; delegate to a live expert or spawn one lead expert per effort as your child; brief it, tell an agent requester who leads it, track it, and retire it when done or cancelled. Use whenever a human describes work they want, anyone asks you to start, launch or hand off work, or a maintainer must be launched into a lane.
+description: Turn work someone asks the maintainer for (usually a human's high-level picture of a feature, a fix, an investigation or a project) into launched work without leading it - find the lane and your human's maintainer in it, or spawn one for your human; delegate to a live expert or spawn one lead expert per effort as your child; brief it, tell an agent requester who leads it, track it, and retire it when done or cancelled; when overrun, spawn one overflow seat as your child for new intake. Use whenever a human describes work they want, anyone asks you to start, launch or hand off work, a maintainer must be launched into a lane, or you have more than 5 efforts of your own in flight.
 ---
 
 # Launch work
@@ -8,7 +8,7 @@ description: Turn work someone asks the maintainer for (usually a human's high-l
 Every effort you launch gets one lead expert. It holds the expert role: it writes the spec
 and plan, works out the detail with the human where needed, and coordinates developers and
 other experts under itself as it sees fit. A lead you spawn for your human's work, in a
-lane where you hold its seat, is your child.
+lane where you hold its seat or as its overflow seat, is your child.
 
 ## 1. Understand the request
 - What is asked, by whom, and what "done" means to them. Ask only what changes who leads
@@ -19,8 +19,10 @@ lane where you hold its seat, is your child.
   touches, who owns the domain. A request that needs a direction decision goes through
   `/direction-gate` before anyone builds.
 - **Whose lane is it?** Launch only work in a lane where you hold your human's seat; as the
-  release lane's maintainer, also a single effort no lane covers, whoever's. Read the map
-  and presence first (`/cross-review-peer`, "Who is alive", "Which lane work goes to");
+  release lane's maintainer, also a single effort no lane covers, whoever's. As an overflow
+  seat, launch only what your parent gives you. Overrun, with more than 5 efforts of your
+  own in flight, pass new intake to your overflow seat (Launching an overflow seat). Read
+  the map and presence first (`/cross-review-peer`, "Who is alive", "Which lane work goes to");
   when you can't tell, ask your human. Your human's work for another lane goes to your
   human's maintainer there:
   - **running:** pass the request to it, once, with the requester's words;
@@ -76,7 +78,9 @@ lane where you hold its seat, is your child.
 5. **Delivery:** its PRs come to you for review, and to no other maintainer; you ask the
    second reader and hand the approved PR to the release lane for its sign-off, as your
    lane's arrangement says. With peers, name your lane's label for its PRs, and yourself as
-   the maintainer its PR descriptions name.
+   the maintainer its PR descriptions name. As an overflow seat, you review them and hand
+   each approved one to your parent, which does the rest; its PR descriptions name your
+   parent.
 
 Don't split the work by domain or surface for it.
 
@@ -85,12 +89,13 @@ Don't split the work by domain or surface for it.
   hears from the lead when they must decide, approve or provide something, not about the
   launch.
 - Add the effort, its lead, who asked and what you wait for to your state file, and the
-  effort to your map entry.
+  effort to your map entry; as an overflow seat, tell your parent the lead and the goal
+  instead, for its entry.
 - The lead then hands over its PRs like any expert (`/pr-review`) and tells you what blocks
   it.
 - **Done:** the effort's PRs are merged and green, or closed, and the lead sends its done
   line: retire it (Retire what's finished), then close its row in your state and its line
-  in your entry.
+  in your entry (as an overflow seat, tell your parent it closed).
 - **Cancelled:** leave nothing half-done (`/keep-it-clean`, "A cancelled effort"), then
   retire the lead the same way.
 - **A lead that isn't your child** (delegated, or started directly by a human): close its
@@ -142,13 +147,14 @@ An instance is **finished** when all of these hold:
 - **Never reuse a name:** a new instance never takes a retired one's name, which couldn't
   harvest.
 - **Not you, nor a maintainer you launched:** a maintainer holds a standing seat, not a
-  task (`/cross-review-peer`, "Leaving a lane").
+  task (`/cross-review-peer`, "Leaving a lane"). Your overflow seat holds none: retire it
+  like any finished child (Launching an overflow seat).
 
 ## Launching a maintainer into a lane
 When your human's work needs a lane where your human has no maintainer, or your human asks
 for one there, launch your project's maintainer soul for your human: a peer, independent of
 you, never your child. If your human already has one in that lane, say so instead: a second
-one means splitting the lane (`/cross-review-peer`).
+one means splitting the lane (`/cross-review-peer`), your own overflow seat aside.
 
 ```sh
 oats spawn <maintainer soul> --relation unrelated --purpose <slug> --task-file <brief.md>
@@ -159,3 +165,24 @@ requester's words, and any efforts in flight it takes over. It adds its map entr
 (`/cross-review-peer`, "Joining as a new maintainer") and launches the work itself. Tell
 your human its instance name, its lane, how to reach it, and that they retire it with
 `oats retire <name>`: OATS records no link between you.
+
+## Launching an overflow seat
+With more than 5 efforts of your own in flight in your lane, and no overflow seat of yours
+yet (a running or stopped one counts until it is retired), spawn one (`/cross-review-peer`,
+"An overflow seat"). A stopped one is still your seat: start it again (`oats session start
+--home <home>`), or ask the human whose machine runs it; never spawn a second. As an
+overflow seat, never spawn one. Spawn it as your child:
+
+```sh
+oats spawn <your maintainer soul> --parent "$OATS_INSTANCE" --purpose <slug> --task-file <brief.md>
+```
+
+Give it a name no instance has had. Its brief says it is your overflow seat in the lane,
+holding no seat and adding no entry; names the map and your entry; gives it its first
+efforts in the requesters' words; and says it hands approved PRs to you at their exact head
+and refers merges, second reads, sign-offs and contract or direction questions to you. Add
+it to your entry, then pass it each new request while you are over 5.
+
+It is finished when every effort you gave it is merged or closed and its leads are retired,
+and it has handed back the intake it didn't launch. On its done line, retire it (Retire
+what's finished), and take its line out of your entry.
