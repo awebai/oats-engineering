@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.17.0 - 2026-10-28
 
 Finished instances are retired automatically, coordinated between agents, without asking a
 human, and an overrun maintainer gets an overflow seat.
