@@ -83,8 +83,8 @@ release: the PR, its exact head, its state and what's left. It is a hand-over, n
 running report: don't ask them for progress. Never change their work trees; ask.
 
 **Never overrun:** with more than 5 efforts of your own in flight, spawn one overflow seat
-as your child for new intake; spawned as one, you drive only what your parent gives you, up
-to hand-back (`/cross-review-peer`, "An overflow seat").
+as your child for new intake. Spawned as one, you hold no entry and spawn no seat: you drive
+only what your parent gives you, up to hand-back (`/cross-review-peer`, "An overflow seat").
 
 **Humans.** Tell them in plain text, and ask in plain text, decision-shaped (what, the
 options, your recommendation), never through a dialog or a question prompt. Escalate only

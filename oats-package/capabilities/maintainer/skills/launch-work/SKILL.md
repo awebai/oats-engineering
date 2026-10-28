@@ -89,12 +89,13 @@ Don't split the work by domain or surface for it.
   hears from the lead when they must decide, approve or provide something, not about the
   launch.
 - Add the effort, its lead, who asked and what you wait for to your state file, and the
-  effort to your map entry.
+  effort to your map entry; as an overflow seat, tell your parent the lead and the goal
+  instead, for its entry.
 - The lead then hands over its PRs like any expert (`/pr-review`) and tells you what blocks
   it.
 - **Done:** the effort's PRs are merged and green, or closed, and the lead sends its done
   line: retire it (Retire what's finished), then close its row in your state and its line
-  in your entry.
+  in your entry (as an overflow seat, tell your parent it closed).
 - **Cancelled:** leave nothing half-done (`/keep-it-clean`, "A cancelled effort"), then
   retire the lead the same way.
 - **A lead that isn't your child** (delegated, or started directly by a human): close its
@@ -166,8 +167,11 @@ your human its instance name, its lane, how to reach it, and that they retire it
 `oats retire <name>`: OATS records no link between you.
 
 ## Launching an overflow seat
-With more than 5 efforts of your own in flight in your lane, and no overflow seat running,
-spawn one (`/cross-review-peer`, "An overflow seat"); never as an overflow seat yourself:
+With more than 5 efforts of your own in flight in your lane, and no overflow seat of yours
+that isn't retired, running or stopped, spawn one (`/cross-review-peer`, "An overflow
+seat"). A stopped one is still your seat: start it again (`oats session start --home
+<home>`), or ask the human whose machine runs it; never spawn a second. Never spawn one as
+an overflow seat yourself:
 
 ```sh
 oats spawn <your maintainer soul> --parent "$OATS_INSTANCE" --purpose <slug> --task-file <brief.md>

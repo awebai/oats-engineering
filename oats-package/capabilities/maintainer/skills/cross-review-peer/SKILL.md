@@ -37,7 +37,8 @@ it `left`. It holds your lane or lanes, your human and instance name; your state
 or `left` with the date); your efforts (lead instance and goal, a line each); your open
 PRs, by number only; and the date of your last update. Add it before you launch or review
 anything in the lane; update it at every intake, when an effort starts or ends, and when
-you hand a PR over; mark it `left` when you leave the lane or are retired.
+you hand a PR over; mark it `left` when you leave the lane or are retired. An overflow seat
+has no entry and edits none (An overflow seat).
 
 ### Who is alive
 Read the entries before you plan. Read the lines, the entries and your messaging layer's
@@ -121,11 +122,14 @@ to place a new PR without asking.
 A maintainer is never overrun. With more than 5 efforts of its own in flight in a lane, it
 spawns one overflow seat there: another instance of its maintainer soul, as its child, for
 the same human and lane.
-- **Spawn it** as your child (`/launch-work`, "Launching an overflow seat"). At most one at
-  a time; an overflow seat never spawns another.
+- **Spawn it** as your child (`/launch-work`, "Launching an overflow seat"). At most one
+  until it is retired: a stopped one is still your seat, so start it again (or ask the human
+  whose machine runs it), never spawn a second. An overflow seat never spawns another.
 - **It holds no seat:** it adds no entry of its own. You list it in your entry (its
   instance name, and its efforts, a line each) and keep that current, as for your own
-  efforts. "One maintainer per human" and "Two at once" don't count it.
+  efforts. "One maintainer per human" and "Two at once" don't count it. The seat edits no
+  entry, its parent's included: it tells its parent each lead it launches (instance name and
+  goal) and each effort it closes, and the parent updates its entry.
 - **New intake goes to it** while you have more than 5 efforts of your own in flight: pass
   each request on once, with the requester's words, and tell the requester who has it. You
   keep your own efforts. At 5 or fewer, take new intake yourself again; the seat finishes
@@ -179,15 +183,16 @@ its line closed once its PRs are merged or closed. Its label stays on its old PR
 retires nobody: each maintainer marks its entry `left` (Leaving a lane).
 
 ## Joining as a new maintainer
+An overflow seat skips this: it holds no seat, adds no entry, and launches and reviews only
+what its parent gives it (Project lanes, "An overflow seat").
+
 New to the project (a new spawn, a new machine, a successor), you hold no lane until you
 take one:
 1. Read the lane map and presence, and find the release lane's maintainer.
 2. Add your entry for your human's seat in the lane your human or launcher names. With none
    named, take your human's free seat in a lane covering your human's work, open one, or
    ask your human. An earlier `active` entry for that seat keeps it.
-3. Until you have a seat, review, merge, tag and launch nothing. An overflow seat holds
-   none: it launches and reviews only what its parent gives it (Project lanes, "An
-   overflow seat").
+3. Until you have a seat, review, merge, tag and launch nothing.
 
 A successor takes its predecessor's seat only when the map, its human or the predecessor's
 hand-over says so, or once the predecessor's entry is `left`: a similar name is not a seat.

@@ -63,8 +63,12 @@ Then update your own entry on the map: your efforts, your open PRs, your overflo
 its efforts, and today's date. More than 5 efforts of your own in flight: spawn an overflow
 seat, or pass new intake to the one you have (`/launch-work`, "Launching an overflow
 seat"). Once you have no open efforts or PRs, tell your human once that you are idle
-(`/cross-review-peer`, "Leaving a lane"); an overflow seat sends its parent its done line
-instead.
+(`/cross-review-peer`, "Leaving a lane").
+
+**As an overflow seat,** skip that paragraph: edit no entry and spawn no seat. Tell your
+parent what changed for its entry (a lead launched, an effort closed); once every effort
+you were given is merged or closed and its lead retired, hand back what you didn't launch
+and send your parent your done line (`/cross-review-peer`, "An overflow seat").
 
 ## The knowledge pass
 End every intake with your knowledge (the inject says what it keeps):
