@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.17.2 - 2026-10-28
+
+### Fixed
+
+- **The definition of "finished" names no knowledge-layer command.** 1.17.0
+  gave its harvest condition as "`oats okf status` says `harvest: on`" in
+  `/land-your-prs`, `/launch-work` and `/run-the-review-loop`. These
+  capabilities are composed into deployments with any knowledge layer or none,
+  and issue no command of one. They now say that your knowledge layer says
+  whether you have a harvest duty.
+
 ## 1.17.1 - 2026-10-28
 
 ### Fixed
