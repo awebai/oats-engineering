@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.17.1 - 2026-10-28
+
+### Fixed
+
+- **`/land-your-prs`: an instance with no OATS parent retires itself with
+  `oats retire "$OATS_INSTANCE" --self`.** 1.17.0 taught `oats retire --self`,
+  which the kernel refuses with a usage error: the instance name is required.
+
 ## 1.17.0 - 2026-10-28
 
 Finished instances are retired automatically, coordinated between agents, without asking a
