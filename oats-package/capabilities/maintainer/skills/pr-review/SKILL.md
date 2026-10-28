@@ -144,6 +144,8 @@ of all four gates as its final reader; the lane's reviews inform it.
   - rebase merge: `git range-diff <base-at-review>..<reviewed-sha> <new-base>..<tip>`.
 - Watch CI on the merged commit, and get a break fixed forward.
 - Tell the owner it's in, in one line with the merge commit (for a handed-over PR, tell its
-  maintainer, which tells the owner). No other merge notice to peers.
+  maintainer, which tells the owner), when the owner is an agent. A human author is told
+  only when they must act on it: the forge shows the merge. No other merge notice to
+  peers.
 - A failed client response can follow a completed merge: observe the remote state before
   retrying or reporting.

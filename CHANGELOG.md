@@ -1,5 +1,62 @@
 # Changelog
 
+## Unreleased
+
+Finished instances are retired automatically, coordinated between agents, without asking a
+human.
+
+### Changed
+
+- **What "finished" means** (`/land-your-prs`, `/launch-work`, `/run-the-review-loop`, in
+  the same words). Its PRs are merged (or deployed, where the effort deploys) with CI green
+  on the merged commit, or closed, or the work was explicitly dropped: handed back is not
+  landed. Nothing waits on it, its own children included. With a harvest duty (oats.okf,
+  `harvest: on`), its final harvest checkpoint is in its log.md with the harvester's name
+  and the harvester is launched; nobody waits for the harvester to finish.
+- **The done report** says the harvest state in one of three lines: "done, harvested:
+  <harvester>" or "done, no harvest duty" (finished), or "done, harvest pending:
+  <proposal>" (not finished: the parent retires nothing until "done, harvested").
+- **The parent retires it, without asking anyone,** after two checks: `oats instance git
+  <child>` shows nothing uncommitted or unpushed (in directory or workspace mode, where it
+  reports `E_NO_WORKTREE`, `git -C <path> status --short --branch` on each repository the
+  done report names; an error is not clean), and `oats retire <child> --plan` shows no
+  other instance attached. It records the retirement with the reason. Children are
+  retired before their parent; an instance retires only its own children, never another's
+  child, and never reuses a retired instance's name.
+- **Who retires whom.** The developer retires its reviewer once the expert accepts the
+  branch; the expert its developers once their PR is merged and green, or closed; whoever
+  spawned a lead or expert retires it once its PRs are merged and it sends its done line.
+  An instance with no OATS parent (spawned `--relation unrelated`, or started directly by
+  a human) sends its done line to the maintainer it reports to, then retires itself.
+- **Humans only when they must act.** Spawning and retiring never involve a human: done
+  lines and retirements go to the parent (with none, to the maintainer the instance
+  reports to). A human requester hears only when they must decide, approve or provide
+  something; agent requesters and coordinators are still told. Removed: "Report the
+  outcome" to any requester (the expert inject), "Tell the requester or coordinator it's
+  in" (`/land-your-prs`), "Tell the requester its instance name" (`/coordinate-experts`)
+  and "Tell the requester the lead's instance name" (`/launch-work`), each now for an
+  agent requester only.
+- **A firm rule in every inject.** The expert, developer, code-reviewer and maintainer
+  injects each carry one IMPORTANT line to retire, or to send the done line, without a
+  human. Developers send their done line unprompted once they learn their PR merged or
+  closed; reviewers as soon as their loop is closed.
+- **A maintainer's brief** (`/launch-work`) no longer calls it a delegated lead's parent:
+  a delegated lead's own parent retires it.
+- **Removed:** "unless the requester wants them kept" (`/land-your-prs`), "retiring it is
+  the requester's call" (`/coordinate-experts`), "ask the requester whether to retire the
+  lead" (`/launch-work`) and "retired on the requester's word" (`/keep-it-clean`).
+  `/keep-it-clean` now says never retire what someone else owns, instead of asking first.
+- **Maintainers stay standing roles** (`/cross-review-peer`, "Leaving a lane"): not
+  finished when an effort ends, and still retired only as their lane-leaving rules say.
+
+### What to do
+
+- Experts and maintainers: retire your finished children as soon as they send their done
+  line and pass the two checks; stop asking requesters or humans whether to, and stop
+  telling a human about spawns, done lines and retirements.
+- Developers, code reviewers and leads: when your work is finished, send the done line;
+  your parent retires you. With no parent, retire yourself.
+
 ## 1.16.0 - 2026-10-27
 
 When OATS's own process sets the "same work" flag (awebai/oats#1577).

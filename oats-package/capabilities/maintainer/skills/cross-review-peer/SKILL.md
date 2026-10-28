@@ -226,8 +226,9 @@ A hold is the hold label on the forge, never a message alone:
   confirmation.
 
 ## Leaving a lane
-A maintainer someone else spawned belongs to its human, not its spawner, and is never
-retired automatically. With no open efforts or PRs left, tell your human once that you are
+A maintainer holds a standing seat, not a task: it isn't finished when an effort ends, and
+the rule that retires finished instances without asking doesn't apply to it. One someone
+else spawned belongs to its human, not its spawner, and is never retired automatically. With no open efforts or PRs left, tell your human once that you are
 idle and can be retired with `oats retire <name>`, and ask to be told first, so you mark
 your entry `left` before you go. Retiring is their call. A `left` entry frees the seat;
 without one, the seat is freed on the human's word (Who is alive). The release lane's
