@@ -248,6 +248,11 @@ for (const [index, soulDir] of (Array.isArray(packageManifest?.souls) ? packageM
 }
 
 const knownSkills = new Set(skillNames.keys());
+// These capabilities compose with any knowledge or messaging layer, or none, so their injects and
+// skills issue no layer's command (and the schema keeps layers out of `requires`). This is the
+// bounded rule awebai/oats checks on its mirrors of this package, applied before release.
+// Neutrality as a whole is not machine-decidable: changes to these surfaces still need review.
+const layerCommands = [[/\baw\b/i, "the aweb CLI"], [/\boats okf\b/i, "the OKF layer"]];
 for (const { manifest, root } of capabilities) {
   const markdown = [];
   if (manifest.inject) markdown.push(join(root, manifest.inject));
@@ -268,7 +273,17 @@ for (const { manifest, root } of capabilities) {
         report(rel, `skill reference ${show(code)} must be written as /${code}`);
       }
     }
+    for (const [index, line] of text.split("\n").entries()) {
+      for (const [pattern, layer] of layerCommands) {
+        if (pattern.test(line)) report(`${rel}:${index + 1}`, `commands ${layer}; say what the selected knowledge or messaging layer requires instead`);
+      }
+    }
   }
+}
+// The reviewer's report must still reach the developer when no messaging layer is active.
+const reviewerInject = join(payloadRoot, "capabilities", "code-review", "injects", "reviewer.md");
+if (!/messaging layer if one is active[\s\S]*otherwise print it as your final message/.test(existsSync(reviewerInject) ? readFileSync(reviewerInject, "utf8") : "")) {
+  report(relative(repoRoot, reviewerInject), "the report must fall back to the reviewer's own session when no messaging layer is active");
 }
 
 const docs = [join(repoRoot, "README.md"), ...walk(join(repoRoot, "docs"), (p) => extname(p) === ".md")];
