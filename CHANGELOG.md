@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **The package's own CI checks layer neutrality.** `npm run validate` now fails when an
+  inject or skill issues a messaging or knowledge layer's command (`aw`, `oats okf`), and
+  when the reviewer's report no longer falls back to its own session without a messaging
+  layer. This is the bounded rule awebai/oats checks on its mirrors of this package. Until
+  now it ran only there, after release: 1.17.0 passed this repository's CI and broke OATS
+  0.69.4's release preparation.
+
 ## 1.17.2 - 2026-10-28
 
 ### Fixed

@@ -103,3 +103,27 @@ test("validator rejects package-local ids in docs that are not exported", (t) =>
   assert.equal(result.status, 1);
   assert.match(result.stderr, /package-local id oats\.developr is named in docs but not exported/);
 });
+
+test("validator rejects a skill that commands the messaging layer", (t) => {
+  const result = mutate(t, "oats-package/capabilities/developer/skills/worktrees/SKILL.md", (text) => `${text}\nTell your expert with \`aw mail send\`.\n`);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /developer\/skills\/worktrees\/SKILL\.md:\d+: commands the aweb CLI/);
+});
+
+test("validator rejects an inject that commands the knowledge layer", (t) => {
+  const result = mutate(t, "oats-package/capabilities/engineering-expert/injects/expert.md", (text) => `${text}\nYou are finished when \`oats okf status\` says so.\n`);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /engineering-expert\/injects\/expert\.md:\d+: commands the OKF layer/);
+});
+
+test("validator rejects a layer dependency in requires", (t) => {
+  const result = mutate(t, "oats-package/capabilities/developer/oats.json", (text) => text.replace('"requires": []', '"requires": [{ "capability": "oats.aweb", "why": "messaging" }]'));
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /capabilities\/developer\/oats\.json\/requires\/0/);
+});
+
+test("validator rejects a reviewer whose report needs a messaging layer", (t) => {
+  const result = mutate(t, "oats-package/capabilities/code-review/injects/reviewer.md", (text) => text.replace("otherwise print it as your final message", "and wait for the reply"));
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /reviewer\.md: the report must fall back to the reviewer's own session/);
+});
