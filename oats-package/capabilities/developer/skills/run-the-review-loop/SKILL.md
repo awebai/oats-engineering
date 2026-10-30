@@ -37,7 +37,8 @@ you can: currently Claude Code with Opus 5.5, Fable, or the latest Grok, through
 configuration this host defines (`oats launch-config list`) or `--harness`/`--model`. When
 `launch.effective` names no model, the reviewer gets this machine's default for that
 harness: if that's your harness, count it as your model and pin another model family with
-`--model`. If none is available, use the effective one and say so in your handback.
+`--model`, adding `--harness` when this harness can't run it. If none is available, use the
+effective one and say so in your handback.
 
 ## Brief it: context, not conclusions
 `review-brief.md` holds exactly:
