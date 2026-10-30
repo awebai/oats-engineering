@@ -110,6 +110,16 @@ developers': pin one with `--harness pi --model <provider>/<model>`.
 **What a reviewer can reach.** pi has no sandbox and no permission prompts: a reviewer reads
 what your user can read and has your network, so a crafted diff can reach anything you can.
 
+**Codex models through pi.** To review with Codex models, sign in from pi with `/login openai`,
+then Sign in with ChatGPT. `pi --list-models` lists what you can use. The list changes, so
+take `<model>` from there and pin it:
+
+```sh
+oats soul launch set oats.engineering/code-reviewer --harness pi --model openai-codex/<model>
+```
+
+This was seen on pi 1.4.0, and `openai-codex/<model>` is the only form that was run.
+
 Developers use
 your harness's workflow tool for parallel work; where it has none, its subagents in the same
 pattern, keeping each workflow under 10 agents and asking you first for more. Where the
