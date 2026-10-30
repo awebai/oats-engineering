@@ -123,9 +123,13 @@ oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment
 - **When the result arrives,** remove the job: `oats schedule remove
   "$OATS_INSTANCE-<slug>"`. If that refuses because the job is running, the wake started
   your stopped session: add `--force`, which stops nothing.
-- **No wake can fire** when `oats schedule add` refuses or `oats schedule host status` shows
-  `active: false`. Say so in your state file, and tell your human once: only you were
-  watching this lead. Installing the host's timer is the operator's.
+- **To set a later checkpoint,** remove the job the same way and run the recipe again: `add`
+  refuses an id that exists. A second one's message starts "Second checkpoint:", so the wake
+  says which one this is, even after a restart.
+- **No wake can fire** unless `oats schedule add` succeeds and `oats schedule host status`
+  answers `active: true`, `registered: true` and no `problems`. Failing that, say so in your
+  state file and tell your human once: only you were watching this lead. Installing the
+  host's timer is the operator's.
 
 **When it fires,** the result is overdue, nothing more: a reason to look, not proof the lead
 failed, and no reason to interrupt one that is working. Read its row in `oats status
@@ -133,7 +137,8 @@ failed, and no reason to interrupt one that is working. Read its row in `oats st
 branches, then:
 - **A result or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it, or ask your human if it is theirs.
-- **It moved** (new commits, a new PR, a new event): set one later checkpoint.
+- **The result moved** (new commits on its branch, a new PR): set a later first checkpoint.
+  A start, a claim or a lifecycle event is not movement.
 - **`running` is false:** start it again with `oats session start --home <home>`, and set a
   second checkpoint.
 - **A claim says its turn failed, or nothing shows:** `running` with no claim says nothing
@@ -141,9 +146,11 @@ branches, then:
   failed turn a new start, and set a second checkpoint, half as far out.
 
 **A second overdue checkpoint with no movement ends the wait.** Never set a third on a lead
-that hasn't moved. Check `oats retire <lead> --plan`, retire it (a work tree holding work is
-kept), and spawn a new lead for the effort with what the old one left. Don't stop it
-instead: a stopped home's pending wake starts it again.
+whose result hasn't moved. Check `oats retire <lead> --plan` and retire it: a work tree
+holding work is kept, but the lead's own children are only stopped and move to you, and
+their wakes would start them again, so retire each of those too, the same way. Then spawn a
+new lead for the effort with what they left. Don't stop a lead instead: a stopped home's
+pending wake starts it again.
 
 ## Retire what's finished
 Finished instances are retired without asking or telling a human. Spawning and retiring

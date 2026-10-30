@@ -83,9 +83,13 @@ oats schedule show "$OATS_INSTANCE-review" --json   # nextRun must be the moment
 - **When the verdict arrives,** remove the job: `oats schedule remove
   "$OATS_INSTANCE-review"`. If that refuses because the job is running, the wake started
   your stopped session: add `--force`, which stops nothing.
-- **No wake can fire** when `oats schedule add` refuses or `oats schedule host status` shows
-  `active: false`. Tell your expert once, in one line: its own checkpoint on you then bounds
-  this step. Installing the host's timer is the operator's.
+- **To set a later checkpoint,** remove the job the same way and run the recipe again: `add`
+  refuses an id that exists. Start the message with "Second checkpoint:", so the wake says
+  which one this is, even after a restart.
+- **No wake can fire** unless `oats schedule add` succeeds and `oats schedule host status`
+  answers `active: true`, `registered: true` and no `problems`. Failing that, tell your
+  expert once, in one line: its own checkpoint on you then bounds this step. Installing the
+  host's timer is the operator's.
 
 **When it fires,** the verdict is overdue, nothing more: a reason to look, not proof the
 reviewer failed, and no reason to interrupt one that is working. Read its row in `oats

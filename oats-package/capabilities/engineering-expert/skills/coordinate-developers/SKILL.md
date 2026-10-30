@@ -50,9 +50,13 @@ oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment
 - **When the result arrives,** remove the job: `oats schedule remove
   "$OATS_INSTANCE-<slug>"`. If that refuses because the job is running, the wake started
   your stopped session: add `--force`, which stops nothing.
-- **No wake can fire** when `oats schedule add` refuses or `oats schedule host status` shows
-  `active: false`. Tell your parent once, in one line (with none, your maintainer): its own
-  checkpoint on you then bounds this step. Installing the host's timer is the operator's.
+- **To set a later checkpoint,** remove the job the same way and run the recipe again: `add`
+  refuses an id that exists. A second one's message starts "Second checkpoint:", so the wake
+  says which one this is, even after a restart.
+- **No wake can fire** unless `oats schedule add` succeeds and `oats schedule host status`
+  answers `active: true`, `registered: true` and no `problems`. Failing that, tell your
+  parent once, in one line (with none, your maintainer): its own checkpoint on you then
+  bounds this step. Installing the host's timer is the operator's.
 
 **When it fires,** the result is overdue, nothing more: a reason to look, not proof the
 child failed, and no reason to interrupt one that is working. Read its row in `oats status
@@ -60,7 +64,8 @@ child failed, and no reason to interrupt one that is working. Read its row in `o
 git <child>` (the branch head and its time), then:
 - **A result or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it.
-- **It moved** (new commits, a new event): set one later checkpoint.
+- **The result moved** (new commits on its branch, a new PR): set a later first checkpoint.
+  A start, a claim or a lifecycle event is not movement.
 - **`running` is false:** start it again with `oats session start --home <home>`, and set a
   second checkpoint.
 - **A claim says its turn failed, or nothing shows:** `running` with no claim says nothing
@@ -68,9 +73,11 @@ git <child>` (the branch head and its time), then:
   failed turn a new start, and set a second checkpoint, half as far out.
 
 **A second overdue checkpoint with no movement ends the wait.** Never set a third on a child
-that hasn't moved. Check `oats retire <child> --plan`, retire it (a work tree holding work
-is kept), hand the spec and what its branch holds to a new child, and tell your parent.
-Don't stop it instead: a stopped home's pending wake starts it again.
+whose result hasn't moved. Check `oats retire <child> --plan` and retire it: a work tree
+holding work is kept, but the child's own children are only stopped and move to you, and
+their wakes would start them again, so retire each of those too, the same way. Then hand the
+spec and what the branches hold to a new child, and tell your parent. Don't stop a child
+instead: a stopped home's pending wake starts it again.
 
 ## When work comes back
 - A developer reports when its review loop has converged. Don't act on intermediate heads.
