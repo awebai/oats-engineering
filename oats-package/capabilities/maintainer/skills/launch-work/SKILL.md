@@ -130,8 +130,9 @@ oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment
   answers `active: true`, `registered: true` and no `problems`. Failing that, say so in your
   state file and tell your human once: only you were watching this lead. Installing the
   host's timer is the operator's.
-- **`E_SCHEDULER_BUSY`** means a tick holds the lock and nothing changed: run the command
-  again. It is not a failed checkpoint, and that lock is never yours to remove.
+- **`E_SCHEDULER_BUSY`** may be a tick holding the lock, and nothing changed: run the command
+  once more a little later. Still busy, no wake can be set: note it and tell your human, as
+  above. That lock is never yours to remove.
 
 **When it fires,** the result is overdue, nothing more: a reason to look, not proof the lead
 failed, and no reason to interrupt one that is working. Read its row in `oats status
