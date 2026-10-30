@@ -23,9 +23,11 @@
   sandbox that refuses `oats schedule add`: the waiter then tells its parent, whose own
   checkpoint bounds the step. A wake's Enter answers whatever a session is showing, so a
   waiter sets one only where `wakeHold` on `oats session inspect` reads `on-claims` or
-  `not-exposed`, on a kernel with the feature `wake-hold`. Otherwise it sets none and tells
-  its parent. A `wake-held` event on a child is for someone outside it: the waiter never
-  clears the claim or answers the dialog.
+  `not-exposed`, on a kernel with the feature `wake-hold`. Otherwise it sets none and hands
+  the wait up, and whoever can sets the checkpoint on its own home. **If no level can, for
+  example where every waiter runs on pi or Codex, that wait has no bound,** and the maintainer
+  tells its human so. A `wake-held` event is history: the waiter reads the job, and if it's
+  still held, tells someone. It never clears the claim or answers the dialog.
 - **A stop no longer holds while a checkpoint is pending.** A wake job starts a stopped
   home, so an instance you stop comes back when its checkpoint fires. To hold a stop, run
   `oats schedule disable <id>`, which keeps the job from firing or delivering a pending

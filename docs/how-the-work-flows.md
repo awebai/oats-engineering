@@ -51,7 +51,8 @@ nothing either. Neither can notice, so the developer set a checkpoint first
 
 - The wake fires from the host's timer, whatever the harness or messaging layer, on a home
   whose `wakeHold` covers it: a wake's Enter answers an open dialog. Where it doesn't, the
-  developer sets none and its expert's checkpoint bounds the step.
+  developer hands the wait to its expert, which sets it on its own home. If no level can,
+  the wait has no bound, and the maintainer tells its human.
 - The developer reads what it may read: a `running` reviewer with no claim says nothing either
   way, so that alone proves nothing.
 - It asks one precise question and sets a second checkpoint, half as far out.
@@ -60,7 +61,7 @@ nothing either. Neither can notice, so the developer set a checkpoint first
 
 Had the verdict come in time, it would have removed the job and heard nothing more. Each
 level does the same for the child it waits on (the expert for its developer, the maintainer
-for its lead), so if the developer stalls instead, its expert's checkpoint catches it.
+for its lead), so if the developer stalls instead, a covered expert's checkpoint catches it.
 
 ## A feature across domains
 

@@ -79,7 +79,8 @@ oats schedule show "$OATS_INSTANCE-review" --json   # nextRun must be the moment
 ```
 - **Read `wakeHold` first.** A wake's Enter answers whatever your session is showing. Set one
   only where it reads `on-claims` or `not-exposed`, which needs a kernel with the feature
-  `wake-hold`. With `unknown` or no `wakeHold`, set none: tell your expert once, in one line.
+  `wake-hold`. With `unknown` or no `wakeHold`, set none: hand the wait to your expert in one
+  line (who owes what, by when), and it sets the checkpoint on its own home.
 - **The 60 is the minutes until the verdict is overdue:** what a round like this took, with
   margin; with nothing to go on, an hour.
 - **The cron repeats daily on purpose.** A minute the host slept through is never replayed,
@@ -103,9 +104,10 @@ reviewer failed, and no reason to interrupt one that is working. Read its row in
 status --json` and `oats instance events <reviewer> --json` (`waitingClaims`), then:
 - **A verdict or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it.
-- **A `wake-held` event:** its own wake is waiting behind that claim, and it stays idle until
-  someone outside it acts. Tell your expert: never clear the claim or answer the dialog
-  yourself. A claim can be stale, but a live dialog takes the next Enter.
+- **A `wake-held` event:** history, not a state. Read the job it names: `oats schedule show
+  <schedule> --json`. Only a `lastRun` that still carries `held` means its wake is waiting,
+  and then someone outside it has to act: tell your expert. Never clear the claim or answer the
+  dialog yourself: a claim can be stale, but a live dialog takes the next Enter.
 - **A claim says its turn failed, or `running` is false with `sessionEnd` `exited` or
   `lost`:** replace it now (below).
 - **`running` is false with `sessionEnd` `stopped`, or none:** it may have been stopped on

@@ -119,7 +119,10 @@ oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment
 ```
 - **Read `wakeHold` first.** A wake's Enter answers whatever your session is showing. Set one
   only where it reads `on-claims` or `not-exposed`, which needs a kernel with the feature
-  `wake-hold`. With `unknown` or no `wakeHold`, set none: tell your human once, in one line.
+  `wake-hold`. With `unknown` or no `wakeHold`, set none: tell your human (through your
+  parent, if you have one) who owes what and by when, and that nothing bounds this wait.
+- **A lead hands you a wait:** set that checkpoint as your own. If you can't, tell your human
+  as above.
 - **The 1440 is the minutes until its next result is overdue:** what it told you, or what
   an effort like this took, with margin.
 - **The cron repeats weekly on purpose.** A minute the host slept through is never replayed,
@@ -144,9 +147,10 @@ failed, and no reason to interrupt one that is working. Read its row in `oats st
 then:
 - **A result or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it, or ask your human if it is theirs.
-- **A `wake-held` event:** its own wake is waiting behind that claim, and it stays idle until
-  someone outside it acts. Tell your human: never clear the claim or answer the dialog
-  yourself. A claim can be stale, but a live dialog takes the next Enter.
+- **A `wake-held` event:** history, not a state. Read the job it names: `oats schedule show
+  <schedule> --json`. Only a `lastRun` that still carries `held` means its wake is waiting,
+  and then someone outside it has to act: tell your human (through your parent, if you have one). Never clear the claim or answer the
+  dialog yourself: a claim can be stale, but a live dialog takes the next Enter.
 - **The result moved** (new commits on its branch, a new PR): set a later first checkpoint.
   A start, a claim or a lifecycle event is not movement.
 - **`running` is false, `sessionEnd` `exited`:** it ended by itself. Start it again with
