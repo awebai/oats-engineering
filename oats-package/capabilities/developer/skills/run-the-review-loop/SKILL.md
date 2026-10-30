@@ -96,13 +96,13 @@ oats schedule show "$OATS_INSTANCE-review" --json   # nextRun must be the moment
 
 **When it fires,** the verdict is overdue, nothing more: a reason to look, not proof the
 reviewer failed, and no reason to interrupt one that is working. Read its row in `oats
-status --json` and `oats instance events <reviewer> --json` (`waitingClaims`, `lastEvent`),
-then:
+status --json` and `oats instance events <reviewer> --json` (`waitingClaims`), then:
 - **A verdict or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it.
-- **Its last event is `stopped`:** someone stopped it on purpose. Replace nothing: ask your
-  expert whether it should run.
-- **A claim says its turn failed, or `running` is false:** replace it now (below).
+- **A claim says its turn failed, or `running` is false with `sessionEnd` `exited` or
+  `lost`:** replace it now (below).
+- **`running` is false with `sessionEnd` `stopped`, or none:** it may have been stopped on
+  purpose. Replace nothing: ask your expert whether it should run.
 - **Anything else:** `running` with no claim says nothing either way. Ask it one precise
   question through your messaging layer, and set a second checkpoint, half as far out.
 

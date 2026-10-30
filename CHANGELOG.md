@@ -25,8 +25,8 @@
 - **A stop no longer holds while a checkpoint is pending.** A wake job starts a stopped
   home, so an instance you stop comes back when its checkpoint fires. To hold a stop, run
   `oats schedule disable <id>`, which keeps the job from firing or delivering a pending
-  wake, or retire the instance. A waiter doesn't start a child whose last event is
-  `stopped`: it asks whether the child should run.
+  wake, or retire the instance. A waiter doesn't start or replace a child whose status row
+  shows `sessionEnd` `stopped`, or no `sessionEnd`: it asks whether the child should run.
 - **A reviewer reports a failure that stops its round** while its turn is alive, instead of
   leaving the round unfinished. A failed turn itself runs nothing, so that side belongs to
   the harness.

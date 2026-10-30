@@ -136,16 +136,18 @@ oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment
 
 **When it fires,** the result is overdue, nothing more: a reason to look, not proof the lead
 failed, and no reason to interrupt one that is working. Read its row in `oats status
---json`, `oats instance events <lead> --json` (`waitingClaims`, `lastEvent`), and its PRs
-and branches, then:
+--json`, `oats instance events <lead> --json` (`waitingClaims`), and its PRs and branches,
+then:
 - **A result or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it, or ask your human if it is theirs.
 - **The result moved** (new commits on its branch, a new PR): set a later first checkpoint.
   A start, a claim or a lifecycle event is not movement.
-- **Its last event is `stopped`:** someone stopped it on purpose. Don't start it: ask your
-  human whether it should run.
-- **`running` is false otherwise:** it exited by itself. Start it again with `oats session
-  start --home <home>`, and set a second checkpoint.
+- **`running` is false, `sessionEnd` `exited`:** it ended by itself. Start it again with
+  `oats session start --home <home>`, and set a second checkpoint.
+- **`running` is false, `sessionEnd` `lost`:** add `--resume` to that start, and set a
+  second checkpoint.
+- **`running` is false, `sessionEnd` `stopped`, or none:** it may have been stopped on
+  purpose. Don't start it: ask your human whether it should run.
 - **A claim says its turn failed, or nothing shows:** `running` with no claim says nothing
   either way. Ask it one precise question through your messaging layer, which also gives a
   failed turn a new start, and set a second checkpoint, half as far out.
