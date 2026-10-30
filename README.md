@@ -100,8 +100,16 @@ transcripts.
 
 ## Requirements
 OATS ≥ 0.30.0. Works with any harness OATS supports (pi, Claude Code, Codex). The packaged
-`code-reviewer` prefers Codex with `gpt-6-astra` (`launch:` in its soul); a machine overrides it
-in `oats-local.yaml` `souls.launch`, and spawn flags win over both. Developers use
+`code-reviewer` runs on pi with the machine's default pi model (`launch:` in its soul), so log
+in to a provider in pi first. A machine overrides it in `oats-local.yaml` `souls.launch`, for
+example with `oats soul launch set oats.engineering/code-reviewer --harness claude`, and spawn
+flags win over both. A review is worth more from a different model family than the
+developers': pin one with `--harness pi --model <provider>/<model>`.
+
+**What a reviewer can reach.** pi has no sandbox and no permission prompts: a reviewer reads
+what your user can read and has your network, so a crafted diff can reach anything you can.
+
+Developers use
 your harness's workflow tool for parallel work; where it has none, its subagents in the same
 pattern, keeping each workflow under 10 agents and asking you first for more. Where the
 harness requires your opt-in to run a workflow (Claude Code's workflow tool does), they

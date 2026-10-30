@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Changed
+
+- **The default `code-reviewer` now runs on pi.** It uses the machine's default pi model, so
+  log in to a provider first. pi has no sandbox and no permission prompts: a reviewer reads
+  what your user can read and has your network, so a crafted diff can reach anything you
+  can. Without pi, a spawn says so and names the fix: install pi, or pin the soul, for
+  example `oats soul launch set oats.engineering/code-reviewer --harness claude`. Running
+  homes and existing `souls.launch` entries are unchanged.
+
 ### Added
 
 - **The package's own CI checks layer neutrality.** `npm run validate` now fails when an
