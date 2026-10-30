@@ -90,6 +90,8 @@ oats schedule show "$OATS_INSTANCE-review" --json   # nextRun must be the moment
   answers `active: true`, `registered: true` and no `problems`. Failing that, tell your
   expert once, in one line: its own checkpoint on you then bounds this step. Installing the
   host's timer is the operator's.
+- **`E_SCHEDULER_BUSY`** means a tick holds the lock and nothing changed: run the command
+  again. It is not a failed checkpoint, and that lock is never yours to remove.
 
 **When it fires,** the verdict is overdue, nothing more: a reason to look, not proof the
 reviewer failed, and no reason to interrupt one that is working. Read its row in `oats
