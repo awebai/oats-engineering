@@ -61,6 +61,45 @@ confident you are. The reviewer can ask you for a fact. Its method is its own
 Cap: 4 rounds. Still `CHANGES NEEDED` after round 4: stop, and take the open findings with
 your position on each to your expert, who decides.
 
+## Set a checkpoint before you wait
+Once your turn ends you run no instructions, and a stalled reviewer may report nothing: a
+refused provider, a stuck harness or a sign-in screen can each leave it `running`, with no
+claim and no new event. So before you end your turn to wait for a verdict, on the first
+review and on each re-review, set a wake that fires from outside your session. From your
+home:
+```bash
+node -e 'const d=new Date(Date.now()+60*60000);console.log(d.getUTCMinutes(),d.getUTCHours())'
+cat > checkpoint.json <<EOF
+{"kind":"wake","enabled":true,"cron":"<minute> <hour> * * *","tz":"UTC","home":"$OATS_INSTANCE_HOME",
+ "message":"Checkpoint: <reviewer> owes a verdict on <head>. If it came, remove this job and stop; if not, follow 'Set a checkpoint before you wait' in /run-the-review-loop."}
+EOF
+oats schedule add "$OATS_INSTANCE-review" --file checkpoint.json
+oats schedule show "$OATS_INSTANCE-review" --json   # nextRun must be the moment you meant
+```
+- **The 60 is the minutes until the verdict is overdue:** what a round like this took, with
+  margin; with nothing to go on, an hour.
+- **The cron repeats daily on purpose.** A minute the host slept through is never replayed,
+  so a pinned date would stay silent for a year; this one comes round the next day.
+- **When the verdict arrives,** remove the job: `oats schedule remove
+  "$OATS_INSTANCE-review"`. If that refuses because the job is running, the wake started
+  your stopped session: add `--force`, which stops nothing.
+- **No wake can fire** when `oats schedule add` refuses or `oats schedule host status` shows
+  `active: false`. Tell your expert once, in one line: its own checkpoint on you then bounds
+  this step. Installing the host's timer is the operator's.
+
+**When it fires,** the verdict is overdue, nothing more: a reason to look, not proof the
+reviewer failed, and no reason to interrupt one that is working. Read its row in `oats
+status --json` and `oats instance events <reviewer>` (`waitingClaims`, the last event), then:
+- **A verdict or question reached you and you missed it:** act on it.
+- **A claim says what it needs:** give it.
+- **A claim says its turn failed, or `running` is false:** replace it now (below).
+- **Anything else:** `running` with no claim says nothing either way. Ask it one precise
+  question through your messaging layer, and set a second checkpoint, half as far out.
+
+**A second overdue checkpoint ends the wait.** Never set a third, and never read silence as
+approval. Spawn a new reviewer with the same brief, on another model if a provider refused
+this one, retire the stalled one (`oats retire <name>`) and say so in your handback.
+
 ## Close
 - Hand the branch to your expert only once the loop converges, never intermediate heads,
   with: the branch and its head, what was done against "done when", how it was verified,

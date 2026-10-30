@@ -10,6 +10,20 @@
   layer. This is the bounded rule awebai/oats checks on its mirrors of this package. Until
   now it ran only there, after release: 1.17.0 passed this repository's CI and broke OATS
   0.69.4's release preparation.
+- **A stalled child no longer stalls its waiter indefinitely.** An agent that ended its turn
+  runs no instructions, so "check after a while" never fired, and a child whose provider
+  refused its turn reports nothing. Before ending a turn to wait on a child, a developer,
+  expert or maintainer now sets a checkpoint: a wake job on its own home, due when the
+  result is overdue (`/run-the-review-loop`, `/coordinate-developers`, `/launch-work`,
+  "Set a checkpoint before you wait"). When it fires the waiter inspects what it may read,
+  then unblocks the child or asks one precise question, and a second overdue checkpoint
+  with no movement ends the wait: the child is replaced. It takes no new kernel capability,
+  and the wake reaches Claude Code, Codex and pi, idle or busy. No wake can be set or fire
+  on a host without the schedule timer, or in a sandbox that refuses `oats schedule add`:
+  the waiter then tells its parent, whose own checkpoint bounds the step.
+- **A reviewer reports a failure that stops its round** while its turn is alive, instead of
+  leaving the round unfinished. A failed turn itself runs nothing, so that side belongs to
+  the harness.
 
 ## 1.17.2 - 2026-10-28
 

@@ -92,7 +92,7 @@ Don't split the work by domain or surface for it.
   effort to your map entry; as an overflow seat, tell your parent the lead and the goal
   instead, for its entry.
 - The lead then hands over its PRs like any expert (`/pr-review`) and tells you what blocks
-  it.
+  it. Wait on it with a checkpoint set (Set a checkpoint before you wait).
 - **Done:** the effort's PRs are merged and green, or closed, and the lead sends its done
   line: retire it (Retire what's finished), then close its row in your state and its line
   in your entry (as an overflow seat, tell your parent it closed).
@@ -101,6 +101,49 @@ Don't split the work by domain or surface for it.
 - **A lead that isn't your child** (delegated, or started directly by a human): close its
   row and retire nothing. Its own parent retires it once it is finished; with none, it
   retires itself and tells you.
+
+## Set a checkpoint before you wait
+Once your turn ends you run no instructions, and a stalled lead may report nothing: a
+refused provider, a stuck harness or a sign-in screen can each leave it `running`, with no
+claim and no new event. So before you end your turn after launching a lead you are the
+parent of, set a wake that fires from outside your session, one per lead. From your home:
+```bash
+node -e 'const d=new Date(Date.now()+1440*60000);console.log(d.getUTCMinutes(),d.getUTCHours(),d.getUTCDay())'
+cat > checkpoint-<slug>.json <<EOF
+{"kind":"wake","enabled":true,"cron":"<minute> <hour> * * <weekday>","tz":"UTC","home":"$OATS_INSTANCE_HOME",
+ "message":"Checkpoint: <lead> owes <result>. If it came, remove this job and stop; if not, follow 'Set a checkpoint before you wait' in /launch-work."}
+EOF
+oats schedule add "$OATS_INSTANCE-<slug>" --file checkpoint-<slug>.json
+oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment you meant
+```
+- **The 1440 is the minutes until its next result is overdue:** what it told you, or what
+  an effort like this took, with margin.
+- **The cron repeats weekly on purpose.** A minute the host slept through is never replayed,
+  so a pinned date would stay silent for a year; this one comes round again.
+- **When the result arrives,** remove the job: `oats schedule remove
+  "$OATS_INSTANCE-<slug>"`. If that refuses because the job is running, the wake started
+  your stopped session: add `--force`, which stops nothing.
+- **No wake can fire** when `oats schedule add` refuses or `oats schedule host status` shows
+  `active: false`. Say so in your state file, and tell your human once: only you were
+  watching this lead. Installing the host's timer is the operator's.
+
+**When it fires,** the result is overdue, nothing more: a reason to look, not proof the lead
+failed, and no reason to interrupt one that is working. Read its row in `oats status
+--json`, `oats instance events <lead>` (`waitingClaims`, the last event), and its PRs and
+branches, then:
+- **A result or question reached you and you missed it:** act on it.
+- **A claim says what it needs:** give it, or ask your human if it is theirs.
+- **It moved** (new commits, a new PR, a new event): set one later checkpoint.
+- **`running` is false:** start it again with `oats session start --home <home>`, and set a
+  second checkpoint.
+- **A claim says its turn failed, or nothing shows:** `running` with no claim says nothing
+  either way. Ask it one precise question through your messaging layer, which also gives a
+  failed turn a new start, and set a second checkpoint, half as far out.
+
+**A second overdue checkpoint with no movement ends the wait.** Never set a third on a lead
+that hasn't moved. Check `oats retire <lead> --plan`, retire it (a work tree holding work is
+kept), and spawn a new lead for the effort with what the old one left. Don't stop it
+instead: a stopped home's pending wake starts it again.
 
 ## Retire what's finished
 Finished instances are retired without asking or telling a human. Spawning and retiring

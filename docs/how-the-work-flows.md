@@ -42,6 +42,24 @@ error."
     developer it is merged and green. The developer replies "done, no harvest duty", and
     the expert retires it without asking anyone.
 
+## A step that stalls
+
+The same review, but the reviewer's provider refuses its turn. The failed turn runs nothing,
+so the reviewer reports nothing, and the developer, which ended its turn to wait, runs
+nothing either. Neither can notice, so the developer set a checkpoint first
+(`/run-the-review-loop`): a wake job on its own home, due when the verdict is overdue.
+
+- The wake fires from the host's timer, whatever the harness or messaging layer. The
+  developer reads what it may read: a `running` reviewer with no claim says nothing either
+  way, so that alone proves nothing.
+- It asks one precise question and sets a second checkpoint, half as far out.
+- The second one fires with no answer, which ends the wait: it spawns a new reviewer on
+  another model with the same brief, retires the stalled one and says so in its handback.
+
+Had the verdict come in time, it would have removed the job and heard nothing more. Each
+level does the same for the child it waits on (the expert for its developer, the maintainer
+for its lead), so if the developer stalls instead, its expert's checkpoint catches it.
+
 ## A feature across domains
 
 **The goal:** "Show each user their remaining API quota in the web app."
