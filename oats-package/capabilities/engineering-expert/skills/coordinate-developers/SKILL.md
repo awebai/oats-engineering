@@ -35,6 +35,7 @@ claim and no new event. So before you end your turn to wait on a child, set a wa
 fires from outside your session, one per child, each time you hand it something. From your
 home:
 ```bash
+oats session inspect --home "$OATS_INSTANCE_HOME" --json   # wakeHold: see below
 node -e 'const d=new Date(Date.now()+240*60000);console.log(d.getUTCMinutes(),d.getUTCHours(),d.getUTCDay())'
 cat > checkpoint-<slug>.json <<EOF
 {"kind":"wake","enabled":true,"cron":"<minute> <hour> * * *","tz":"UTC","home":"$OATS_INSTANCE_HOME",
@@ -43,6 +44,9 @@ EOF
 oats schedule add "$OATS_INSTANCE-<slug>" --file checkpoint-<slug>.json
 oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment you meant
 ```
+- **Read `wakeHold` first.** A wake's Enter answers whatever your session is showing. Set one
+  only where it reads `on-claims` or `not-exposed`, which needs a kernel with the feature
+  `wake-hold`. With `unknown` or no `wakeHold`, set none: tell your parent once, in one line.
 - **The 240 is the minutes until the result is overdue:** your plan's estimate, with margin.
   Past a day, put the weekday it prints in the last cron field.
 - **The cron repeats on purpose.** A minute the host slept through is never replayed, so a
@@ -67,6 +71,9 @@ child failed, and no reason to interrupt one that is working. Read its row in `o
 <child>` (the branch head and its time), then:
 - **A result or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it.
+- **A `wake-held` event:** its own wake is waiting behind that claim, and it stays idle until
+  someone outside it acts. Tell your parent: never clear the claim or answer the dialog
+  yourself. A claim can be stale, but a live dialog takes the next Enter.
 - **The result moved** (new commits on its branch, a new PR): set a later first checkpoint.
   A start, a claim or a lifecycle event is not movement.
 - **`running` is false, `sessionEnd` `exited`:** it ended by itself. Start it again with

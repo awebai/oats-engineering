@@ -68,6 +68,7 @@ claim and no new event. So before you end your turn to wait for a verdict, on th
 review and on each re-review, set a wake that fires from outside your session. From your
 home:
 ```bash
+oats session inspect --home "$OATS_INSTANCE_HOME" --json   # wakeHold: see below
 node -e 'const d=new Date(Date.now()+60*60000);console.log(d.getUTCMinutes(),d.getUTCHours())'
 cat > checkpoint.json <<EOF
 {"kind":"wake","enabled":true,"cron":"<minute> <hour> * * *","tz":"UTC","home":"$OATS_INSTANCE_HOME",
@@ -76,6 +77,9 @@ EOF
 oats schedule add "$OATS_INSTANCE-review" --file checkpoint.json
 oats schedule show "$OATS_INSTANCE-review" --json   # nextRun must be the moment you meant
 ```
+- **Read `wakeHold` first.** A wake's Enter answers whatever your session is showing. Set one
+  only where it reads `on-claims` or `not-exposed`, which needs a kernel with the feature
+  `wake-hold`. With `unknown` or no `wakeHold`, set none: tell your expert once, in one line.
 - **The 60 is the minutes until the verdict is overdue:** what a round like this took, with
   margin; with nothing to go on, an hour.
 - **The cron repeats daily on purpose.** A minute the host slept through is never replayed,
@@ -99,6 +103,9 @@ reviewer failed, and no reason to interrupt one that is working. Read its row in
 status --json` and `oats instance events <reviewer> --json` (`waitingClaims`), then:
 - **A verdict or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it.
+- **A `wake-held` event:** its own wake is waiting behind that claim, and it stays idle until
+  someone outside it acts. Tell your expert: never clear the claim or answer the dialog
+  yourself. A claim can be stale, but a live dialog takes the next Enter.
 - **A claim says its turn failed, or `running` is false with `sessionEnd` `exited` or
   `lost`:** replace it now (below).
 - **`running` is false with `sessionEnd` `stopped`, or none:** it may have been stopped on

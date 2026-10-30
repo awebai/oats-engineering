@@ -21,7 +21,11 @@
   busy on Claude Code and pi as real instances, and on Codex through its real screen with a
   stub provider. No wake can be set or fire on a host without the schedule timer, or in a
   sandbox that refuses `oats schedule add`: the waiter then tells its parent, whose own
-  checkpoint bounds the step.
+  checkpoint bounds the step. A wake's Enter answers whatever a session is showing, so a
+  waiter sets one only where `wakeHold` on `oats session inspect` reads `on-claims` or
+  `not-exposed`, on a kernel with the feature `wake-hold`. Otherwise it sets none and tells
+  its parent. A `wake-held` event on a child is for someone outside it: the waiter never
+  clears the claim or answers the dialog.
 - **A stop no longer holds while a checkpoint is pending.** A wake job starts a stopped
   home, so an instance you stop comes back when its checkpoint fires. To hold a stop, run
   `oats schedule disable <id>`, which keeps the job from firing or delivering a pending

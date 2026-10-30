@@ -49,8 +49,10 @@ so the reviewer reports nothing, and the developer, which ended its turn to wait
 nothing either. Neither can notice, so the developer set a checkpoint first
 (`/run-the-review-loop`): a wake job on its own home, due when the verdict is overdue.
 
-- The wake fires from the host's timer, whatever the harness or messaging layer. The
-  developer reads what it may read: a `running` reviewer with no claim says nothing either
+- The wake fires from the host's timer, whatever the harness or messaging layer, on a home
+  whose `wakeHold` covers it: a wake's Enter answers an open dialog. Where it doesn't, the
+  developer sets none and its expert's checkpoint bounds the step.
+- The developer reads what it may read: a `running` reviewer with no claim says nothing either
   way, so that alone proves nothing.
 - It asks one precise question and sets a second checkpoint, half as far out.
 - The second one fires with no answer, which ends the wait: it spawns a new reviewer on
