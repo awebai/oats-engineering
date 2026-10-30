@@ -63,14 +63,16 @@ oats schedule show "$OATS_INSTANCE-<slug>" --json   # nextRun must be the moment
 
 **When it fires,** the result is overdue, nothing more: a reason to look, not proof the
 child failed, and no reason to interrupt one that is working. Read its row in `oats status
---json`, `oats instance events <child>` (`waitingClaims`, the last event) and `oats instance
-git <child>` (the branch head and its time), then:
+--json`, `oats instance events <child> --json` (`waitingClaims`, `lastEvent`) and `oats
+instance git <child>` (the branch head and its time), then:
 - **A result or question reached you and you missed it:** act on it.
 - **A claim says what it needs:** give it.
 - **The result moved** (new commits on its branch, a new PR): set a later first checkpoint.
   A start, a claim or a lifecycle event is not movement.
-- **`running` is false:** start it again with `oats session start --home <home>`, and set a
-  second checkpoint.
+- **Its last event is `stopped`:** someone stopped it on purpose. Don't start it: ask your
+  parent (with none, your human) whether it should run.
+- **`running` is false otherwise:** it exited by itself. Start it again with `oats session
+  start --home <home>`, and set a second checkpoint.
 - **A claim says its turn failed, or nothing shows:** `running` with no claim says nothing
   either way. Ask it one precise question through your messaging layer, which also gives a
   failed turn a new start, and set a second checkpoint, half as far out.
