@@ -102,8 +102,9 @@ transcripts.
 OATS ≥ 0.30.0. Works with any harness OATS supports (pi, Claude Code, Codex). The packaged
 `code-reviewer` runs on pi with the machine's default pi model (`launch:` in its soul), so log
 in to a provider in pi first. A machine overrides it in `oats-local.yaml` `souls.launch`, for
-example with `oats soul launch set oats.engineering/code-reviewer --harness claude`, and spawn
-flags win over both. A review is worth more from a different model family than the
+example with `oats soul launch set oats.engineering/code-reviewer --harness claude` (before
+OATS 0.53.0, set that key in `souls.launch` by hand), and spawn flags win
+over both. A review is worth more from a different model family than the
 developers': pin one with `--harness pi --model <provider>/<model>`.
 
 **What a reviewer can reach.** pi has no sandbox and no permission prompts: a reviewer reads
