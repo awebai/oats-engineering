@@ -33,10 +33,12 @@ A reviewer on your model shares your blind spots. Before spawning, compare:
 When the override is another harness than yours, spawn without `--harness`/`--model` so it
 applies; don't force the soul's default over it. When the effective reviewer would run on
 your harness and model, spawn it on another state-of-the-art model, on another harness when
-you can: currently Codex with Astra, Claude Code with Opus 5.5, Fable, or the latest Grok,
-through a launch configuration this host defines (`oats launch-config list`) or
-`--harness`/`--model`. If none is available, use the effective one and say so in your
-handback.
+you can: currently Claude Code with Opus 5.5 or the latest Grok, through a launch
+configuration this host defines (`oats launch-config list`) or `--harness`/`--model`. When
+`launch.effective` names no model, the reviewer gets this machine's default for that
+harness: if that's your harness, count it as your model and pin another model family with
+`--model`, adding `--harness` when this harness can't run it. If none is available, use the
+effective one and say so in your handback.
 
 ## Brief it: context, not conclusions
 `review-brief.md` holds exactly:
