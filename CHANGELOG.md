@@ -11,6 +11,8 @@
   example `oats soul launch set oats.engineering/code-reviewer --harness claude`. Running
   homes and existing `souls.launch` entries are unchanged.
 
+## 1.18.0 - 2026-10-31
+
 ### Added
 
 - **The package's own CI checks layer neutrality.** `npm run validate` now fails when an
@@ -19,6 +21,32 @@
   layer. This is the bounded rule awebai/oats checks on its mirrors of this package. Until
   now it ran only there, after release: 1.17.0 passed this repository's CI and broke OATS
   0.69.4's release preparation.
+- **A stalled child no longer stalls its waiter indefinitely.** An agent that ended its turn
+  runs no instructions, so "check after a while" never fired, and a child whose provider
+  refused its turn reports nothing. Before ending a turn to wait on a child, a developer,
+  expert or maintainer now sets a checkpoint: a wake job on its own home, due when the
+  result is overdue (`/run-the-review-loop`, `/coordinate-developers`, `/launch-work`,
+  "Set a checkpoint before you wait"). When it fires the waiter inspects what it may read,
+  then unblocks the child or asks one precise question, and a second overdue checkpoint
+  with no movement ends the wait: the child is replaced. The wake was rehearsed idle and
+  busy on Claude Code and pi as real instances, and on Codex through its real screen with a
+  stub provider. No wake can be set or fire on a host without the schedule timer, or in a
+  sandbox that refuses `oats schedule add`: the waiter then tells its parent, whose own
+  checkpoint bounds the step. A wake's Enter answers whatever a session is showing, so a
+  waiter sets one only where `wakeHold` on `oats session inspect` reads `on-claims` or
+  `not-exposed`, on a kernel with the feature `wake-hold`. Otherwise it sets none and hands
+  the wait up, and whoever can sets the checkpoint on its own home. **If no level can, for
+  example where every waiter runs on pi or Codex, that wait has no bound,** and the maintainer
+  tells its human so. A `wake-held` event is history: the waiter reads the job, and if it's
+  still held, tells someone. It never clears the claim or answers the dialog.
+- **A stop no longer holds while a checkpoint is pending.** A wake job starts a stopped
+  home, so an instance you stop comes back when its checkpoint fires. To hold a stop, run
+  `oats schedule disable <id>`, which keeps the job from firing or delivering a pending
+  wake, or retire the instance. A waiter doesn't start or replace a child whose status row
+  shows `sessionEnd` `stopped`, or no `sessionEnd`: it asks whether the child should run.
+- **A reviewer reports a failure that stops its round** while its turn is alive, instead of
+  leaving the round unfinished. A failed turn itself runs nothing, so that side belongs to
+  the harness.
 
 ## 1.17.2 - 2026-10-28
 
