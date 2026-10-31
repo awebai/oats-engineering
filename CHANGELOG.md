@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.18.0 - 2026-10-31
+
 ### Added
 
 - **The package's own CI checks layer neutrality.** `npm run validate` now fails when an
